@@ -11,4 +11,36 @@
         android:src="@mipmap/livingroom"
         android:scaleType="centerCrop"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/rigthhand"
+        android:layout_marginTop="120dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/lefthand"
+        android:layout_marginTop="120dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/foot"
+        android:layout_marginTop="120dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/szelektakosbody"
+        android:layout_marginTop="120dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/trouser"
+        android:src="@mipmap/pants00"
+        android:layout_marginTop="120dp"/>
+
+
 </RelativeLayout>

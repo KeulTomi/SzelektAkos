@@ -7,10 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-class Fragment_Pager extends FragmentPagerAdapter {
+class Fragment_pager extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;
-    public Fragment_Pager(FragmentManager fm) {
+    public Fragment_pager(FragmentManager fm) {
         super(fm);
         // TODO Auto-generated constructor stub
     }

@@ -11,4 +11,13 @@
         android:src="@mipmap/kitchen"
         android:scaleType="centerCrop"/>
 
+    <ListView
+        android:layout_width="125dp"
+        android:layout_height="360dp"
+        android:id="@+id/fridge_items_list"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="90dp">
+
+    </ListView>
+
 </RelativeLayout>

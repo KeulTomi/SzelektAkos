@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SzelektAkos</string>
+    <string name="livingroom">nappali</string>
+    <string name="shop_title_food">táplálék</string>
+    <string name="shop_title_trousers">nadrág</string>
+    <string name="shop_title_plus">plusz</string>
 </resources>
