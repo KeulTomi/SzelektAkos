@@ -17,8 +17,8 @@ public class ItemsForTrouser implements ListInterface {
             R.mipmap.pants05, R.mipmap.pants06};
 
 
-    @Override
-    public Object innitItem(int position) {
+
+    public static ItemsForTrouser innitItem(int position) {
         ItemsForTrouser items = new ItemsForTrouser();
 
         SzelektAkos.saveABoolean(names[0], true);

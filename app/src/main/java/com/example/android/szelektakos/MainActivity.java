@@ -7,12 +7,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static ImageView currentTrouser;
     public static TextView userPointsText;
+    public static TextView recentlyPlace;
+    public static ProgressBar life;
+    public static ProgressBar energy;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +26,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         SzelektAkos.innitApp(getApplicationContext());
 
+
+        //Felső header inicializálása
+        life = (ProgressBar) findViewById(R.id.progress_life);
+        energy = (ProgressBar) findViewById(R.id.progress_energy);
+        life.setProgress(SzelektAkos.getLife());
+        energy.setProgress(SzelektAkos.getEnergy());
+        userPointsText = (TextView) findViewById(R.id.user_points);
+
+        recentlyPlace = (TextView) findViewById(R.id.recently_place);
+
         ViewPager pager = (ViewPager) findViewById(R.id.view_pager);
         FragmentManager fm = getSupportFragmentManager();
         Fragment_pager pagerAdapter = new Fragment_pager(fm);
-        // Here you would declare which page to visit on creation
+        // A masodik fragmentet tötljük be kezdésként
         pager.setAdapter(pagerAdapter);
         pager.setCurrentItem(1);
 
@@ -47,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onResume() {
-        userPointsText = (TextView) findViewById(R.id.user_points);
         userPointsText.setText(SzelektAkos.getPoints());
         super.onResume();
     }
@@ -85,4 +99,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
 }

@@ -6,14 +6,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Kitchen extends Fragment {
+public class Kitchen extends Fragment implements AdapterView.OnItemClickListener {
 
     ArrayList<Items> fridgeItems;
     FridgeItemsAdapter listAdapter;
+    private TextView fragmentTitle;
 
     @Nullable
     @Override
@@ -28,6 +31,7 @@ public class Kitchen extends Fragment {
 
         listAdapter = new FridgeItemsAdapter(getActivity(), fridgeItems);
         fridgeItemsList.setAdapter(listAdapter);
+        fridgeItemsList.setOnItemClickListener(this);
 
         return view;
     }
@@ -35,6 +39,9 @@ public class Kitchen extends Fragment {
 
     @Override
     public void onResume() {
+        fragmentTitle = MainActivity.recentlyPlace;
+        fragmentTitle.setText("konyha");
+
         refreshItems();
         listAdapter.notifyDataSetChanged();
         super.onResume();
@@ -55,4 +62,16 @@ public class Kitchen extends Fragment {
 
         }
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        int selectedPosition = i;
+        Items item = new Items();
+        //TODO Itt kell hozzá adni az életéhez a increaseLife() metódussal!!
+        SzelektAkos.increaseLife(item.getLifeValue());
+        fridgeItems.remove(selectedPosition);
+        listAdapter.notifyDataSetChanged();
+    }
+
 }

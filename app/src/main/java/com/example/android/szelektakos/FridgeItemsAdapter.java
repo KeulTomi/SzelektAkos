@@ -37,13 +37,17 @@ public class FridgeItemsAdapter extends ArrayAdapter<Items> {
 
         Items currentItem = getItem(position);
 
+
         TextView foodLifeValue = (TextView) listItemView.findViewById(R.id.fridge_item_value);
         foodLifeValue.setText(String.valueOf(currentItem.getLifeValue() + " %"));
 
         ImageView foodPicture = (ImageView) listItemView.findViewById(R.id.fride_item_pic);
         foodPicture.setImageResource(currentItem.getPicture());
 
+
         return listItemView;
     }
+
+
 
 }

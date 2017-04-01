@@ -3,15 +3,12 @@ package com.example.android.szelektakos;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.ArrayAdapter;
+import android.os.Handler;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.GenericDeclaration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.TreeSet;
 
 /**
  * Created by Tomi on 2017. 03. 28..
@@ -26,6 +23,9 @@ public class SzelektAkos extends Application {
     private static List<Integer> avaiableTrousers = new ArrayList<>();
     private static SharedPreferences mSharedPref;
     private static Context appContext;
+    private static Handler progressBarHandler = new Handler();
+
+
 
     public static void innitApp(Context context) {
         appContext = context;
@@ -59,24 +59,18 @@ public class SzelektAkos extends Application {
 //        else {
 //            energy = 0;
 //        }
+        progressingThread(energy, MainActivity.energy);
     }
 
     public static void increaseEnergy (int plusEnergy) {
         energy = (energy+plusEnergy<= 100 ? energy+plusEnergy: 100);
-//        if (energy+plusEnergy <= 100) {
-//            energy = energy + plusEnergy;
+//        if (energy+plusenergy <= 100) {
+//            energy = energy + plusenergy;
 //        }
 //        else {
 //            energy = 100;
 //        }
-    }
-
-    public static int getEnergy(){
-        return energy;
-    }
-
-    public static int getLife() {
-        return life;
+        progressingThread(energy, MainActivity.energy);
     }
 
     public static void decreaseLife (int minusLife) {
@@ -87,6 +81,7 @@ public class SzelektAkos extends Application {
 //        else {
 //            life = 0;
 //        }
+        progressingThread(life, MainActivity.life);
     }
 
     public static void increaseLife(int plusLife) {
@@ -97,6 +92,15 @@ public class SzelektAkos extends Application {
 //        else {
 //            life = 100;
 //        }
+        progressingThread(life, MainActivity.life);
+    }
+
+    public static int getLife() {
+        return life;
+    }
+
+    public static int getEnergy() {
+        return energy;
     }
 
     public static void changeTrouser (int changeToThis) {
@@ -146,23 +150,38 @@ public class SzelektAkos extends Application {
 
     public static void getAllPrefs () {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
-        points = mSharedPref.getInt("points", 0);
-        life = mSharedPref.getInt("life", 100);
+        points = 500;//mSharedPref.getInt("points", 0);
+        life = 25;//mSharedPref.getInt("life", 100);
         energy = mSharedPref.getInt("life", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants00);
     }
 
+    public static void progressingThread (final int newValue, final ProgressBar progressBar) {
+        new Thread(new Runnable() {
+            public void run() {
 
-    public static <E> ArrayAdapter<E> setNewAdapter (E classToObject, ArrayAdapter adapter) {
+                    // Update the progress bar
+                    progressBarHandler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(newValue);
+                        }
+                    });
+            }
+        }).start();
 
-        ArrayList<E> listItems = new ArrayList<E>();
-        for (int i = 0; i < 7; i++ ) {
-            if ( == Items)
-            listItems.add(classToObject.innitItem(i));
-
-        }
-
-        ArrayAdapter<E> listAdapter = new ArrayAdapter<E>(this,listItems);
-        return listAdapter;
     }
+
+
+//    public static <E> ArrayAdapter<E> setNewAdapter (E classToObject, ArrayAdapter adapter) {
+//
+//        ArrayList<E> listItems = new ArrayList<E>();
+//        for (int i = 0; i < 7; i++ ) {
+//            if ( == Items)
+//            listItems.add(classToObject.innitItem(i));
+//
+//        }
+//
+//        ArrayAdapter<E> listAdapter = new ArrayAdapter<E>(this,listItems);
+//        return listAdapter;
+//    }
 }
