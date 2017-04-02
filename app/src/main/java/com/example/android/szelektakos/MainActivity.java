@@ -2,6 +2,10 @@ package com.example.android.szelektakos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.support.annotation.IntegerRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,14 +22,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ProgressBar life;
     public static ProgressBar energy;
 
+    public static Handler uiHandler; // MainActivity üzenetkezelője (onCreate-ben van definiálva)
+    final static int MSG_UPDATE_LIFE = 0; // Üzenetkód életerő progressbar frissítéséhez
+    final static int MSG_UPDATE_ENERGY = 1; // Üzenetkód energia progressbar frissítéséhez
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SzelektAkos.innitApp(getApplicationContext());
+        // Activity üzenetkezelője
+        uiHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
 
+                switch (msg.what) {
+                    case MSG_UPDATE_LIFE:
+                        // Életerő frissítése üzenet érkezett
+                        life.setProgress((Integer) msg.obj); // Életerő frissítése msg.obj-ben küldött értékkel
+                        break;
+                    case MSG_UPDATE_ENERGY:
+                        energy.setProgress((Integer) msg.obj); // Energia frissítése msg.obj-ben küldött értékkel
+                        break;
+                    default:
+                        // Ha valamilyen más üzenet érkezik, itt lehet lekezelni
+                        break;
+                }
+            }
+        };
+
+        SzelektAkos.innitApp(getApplicationContext());
 
         //Felső header inicializálása
         life = (ProgressBar) findViewById(R.id.progress_life);

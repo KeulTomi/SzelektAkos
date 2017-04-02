@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.os.Message;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -59,7 +60,8 @@ public class SzelektAkos extends Application {
 //        else {
 //            energy = 0;
 //        }
-        progressingThread(energy, MainActivity.energy);
+        //progressingThread(energy, MainActivity.energy);
+        updateProgressBar(MainActivity.MSG_UPDATE_ENERGY);
     }
 
     public static void increaseEnergy (int plusEnergy) {
@@ -70,7 +72,8 @@ public class SzelektAkos extends Application {
 //        else {
 //            energy = 100;
 //        }
-        progressingThread(energy, MainActivity.energy);
+        //progressingThread(energy, MainActivity.energy);
+        updateProgressBar(MainActivity.MSG_UPDATE_ENERGY);
     }
 
     public static void decreaseLife (int minusLife) {
@@ -81,7 +84,9 @@ public class SzelektAkos extends Application {
 //        else {
 //            life = 0;
 //        }
-        progressingThread(life, MainActivity.life);
+        // progressingThread(life, MainActivity.life);
+        updateProgressBar(MainActivity.MSG_UPDATE_LIFE);
+
     }
 
     public static void increaseLife(int plusLife) {
@@ -92,7 +97,30 @@ public class SzelektAkos extends Application {
 //        else {
 //            life = 100;
 //        }
-        progressingThread(life, MainActivity.life);
+        // progressingThread(life, MainActivity.life);
+        updateProgressBar(MainActivity.MSG_UPDATE_LIFE);
+    }
+
+    private static void updateProgressBar(int msgCode) {
+
+        // Progressbar frissítéséhez üzenet küldése a MainActivity üzenetkezelőjének
+        Message msgToMainActivity = new Message();
+
+        switch (msgCode) {
+            case MainActivity.MSG_UPDATE_LIFE:
+                // Üzenet előkészítése életerő frissítéséhez
+                msgToMainActivity.what = MainActivity.MSG_UPDATE_LIFE; // Üzenetkód beállítása
+                msgToMainActivity.obj = (Integer) life; // Küldendő érték beállítása
+                break;
+            case MainActivity.MSG_UPDATE_ENERGY:
+                // Üzenet előkészítése energia frissítéséhez
+                msgToMainActivity.what = MainActivity.MSG_UPDATE_LIFE; // Üzenetkód beállítása
+                msgToMainActivity.obj = (Integer) energy; // Küldendő érték beállítása
+                break;
+        }
+
+
+        MainActivity.uiHandler.sendMessage(msgToMainActivity); // Üzenet küldése
     }
 
     public static int getLife() {
