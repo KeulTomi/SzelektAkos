@@ -60,7 +60,6 @@ public class SzelektAkos extends Application {
 //        else {
 //            energy = 0;
 //        }
-        //progressingThread(energy, MainActivity.energy);
         updateProgressBar(MainActivity.MSG_UPDATE_ENERGY);
     }
 
@@ -72,7 +71,6 @@ public class SzelektAkos extends Application {
 //        else {
 //            energy = 100;
 //        }
-        //progressingThread(energy, MainActivity.energy);
         updateProgressBar(MainActivity.MSG_UPDATE_ENERGY);
     }
 
@@ -84,7 +82,6 @@ public class SzelektAkos extends Application {
 //        else {
 //            life = 0;
 //        }
-        // progressingThread(life, MainActivity.life);
         updateProgressBar(MainActivity.MSG_UPDATE_LIFE);
 
     }
@@ -97,7 +94,6 @@ public class SzelektAkos extends Application {
 //        else {
 //            life = 100;
 //        }
-        // progressingThread(life, MainActivity.life);
         updateProgressBar(MainActivity.MSG_UPDATE_LIFE);
     }
 
@@ -182,21 +178,6 @@ public class SzelektAkos extends Application {
         life = 25;//mSharedPref.getInt("life", 100);
         energy = mSharedPref.getInt("life", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants00);
-    }
-
-    public static void progressingThread (final int newValue, final ProgressBar progressBar) {
-        new Thread(new Runnable() {
-            public void run() {
-
-                    // Update the progress bar
-                    progressBarHandler.post(new Runnable() {
-                        public void run() {
-                            progressBar.setProgress(newValue);
-                        }
-                    });
-            }
-        }).start();
-
     }
 
 
