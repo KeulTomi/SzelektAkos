@@ -3,9 +3,7 @@ package com.example.android.szelektakos;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.IntegerRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -107,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
 
             case R.id.thg_web:
+                Intent openTHGWeb = new Intent(this, THG_Web.class);
+                startActivity(openTHGWeb);
 
             case R.id.shop:
                 Intent openShop = new Intent(this, ShopActivity.class);
