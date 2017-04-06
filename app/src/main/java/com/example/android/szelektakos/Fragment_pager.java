@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 class Fragment_pager extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;
+
     public Fragment_pager(FragmentManager fm) {
         super(fm);
         // TODO Auto-generated constructor stub
@@ -17,14 +18,18 @@ class Fragment_pager extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        // MainActivity-ben tároljuk, hogy melyik oldalon áll a felhasználó
+        MainActivity.currentFragmentPage = position;
 
         switch (position) {
             case 0:
+                // Hálószobára lapozott a felhasználó
                 return new BedRoom();
             case 1:
-                // Calling a Fragment without sending arguments
+                // Nappalira lapozott a felhasználó
                 return new LivingRoom();
             case 2:
+                // Konyhára lapozott a felhasználó
                 return new Kitchen();
             default:
                 return null;

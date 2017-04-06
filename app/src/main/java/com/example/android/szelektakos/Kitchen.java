@@ -68,8 +68,8 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
 
         int selectedPosition = i;
         Items item = new Items();
-        //TODO Itt kell hozzá adni az életéhez a increaseLife() metódussal!!
-        SzelektAkos.increaseLife(item.getLifeValue());
+        //TODO Itt kell hozzá adni az életéhez a changeLifeValue() metódussal!!
+        SzelektAkos.changeLifeValue(item.getLifeValue());
         fridgeItems.remove(selectedPosition);
         listAdapter.notifyDataSetChanged();
     }

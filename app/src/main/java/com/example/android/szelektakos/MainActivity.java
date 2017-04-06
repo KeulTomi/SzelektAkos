@@ -19,10 +19,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static TextView recentlyPlace;
     public static ProgressBar life;
     public static ProgressBar energy;
+    public static int currentFragmentPage;
 
     public static Handler uiHandler; // MainActivity üzenetkezelője (onCreate-ben van definiálva)
     final static int MSG_UPDATE_LIFE = 0; // Üzenetkód életerő progressbar frissítéséhez
     final static int MSG_UPDATE_ENERGY = 1; // Üzenetkód energia progressbar frissítéséhez
+    final int ENERGY_REFRESH_PERIOD = 500; // Energiaszint frissítési periódusa ezredmásodpercben
+    final int LIFE_REFRESH_PERIOD = 30 * 1000; // Életerő frissítési periódusa ezredmásodpercben
 
 
     @Override
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         };
+
 
         SzelektAkos.innitApp(getApplicationContext());
 
@@ -84,6 +88,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         wordsGame.setOnClickListener(this);
         jumpingGame.setOnClickListener(this);
 
+        // Energiaszint időzítő futtatható kódja, ez fut le minden időzítés után
+        Runnable energyTimer = new Runnable() {
+            @Override
+            public void run() {
+                switch (currentFragmentPage) {
+                    case 0:
+                        // Hálószobára lapozott, energiaszint növekszik
+                        SzelektAkos.changeEnergy(1);
+                        break;
+                    case 1:
+                    case 2:
+                        // Konyhára vagy nappalira lapozott, energiaszint csökken
+                        SzelektAkos.changeEnergy(-1);
+                        break;
+                }
+                // Saját magát hívja késleltetés után
+                uiHandler.postDelayed(this, ENERGY_REFRESH_PERIOD);
+            }
+        };
+
+        // Életerő időzítő futtatható kódja, ez fut le minden időzítés után
+        final Runnable lifeTimer = new Runnable() {
+            @Override
+            public void run() {
+                // Életerő csökkentése
+                SzelektAkos.changeLifeValue(-1);
+                // Saját magát hívja késleltetés után
+                uiHandler.postDelayed(this, LIFE_REFRESH_PERIOD);
+            }
+        };
+
+        // Időzítők beindítása (első futtatás)
+        uiHandler.postDelayed(energyTimer, ENERGY_REFRESH_PERIOD);
+        uiHandler.postDelayed(lifeTimer, LIFE_REFRESH_PERIOD);
     }
 
     @Override
@@ -124,8 +162,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         }
-
-
     }
-
 }

@@ -52,48 +52,26 @@ public class SzelektAkos extends Application {
         return String.valueOf(points);
     }
 
-    public static void decreaseEnergy (int minusEnergy) {
-        energy = (energy-minusEnergy >= 0 ? energy-minusEnergy: 0);
-//        if(energy-minusEnergy>=0) {
-//            energy -= minusEnergy;
-//        }
-//        else {
-//            energy = 0;
-//        }
+    public static void changeEnergy (int deltaValue) {
+
+        if ( deltaValue <= 0) {
+            energy = (energy + deltaValue <= 0 ? 0 : energy + deltaValue);
+        }
+        else {
+            energy = (energy + deltaValue <= 100 ? energy+deltaValue: 100);
+        }
         updateProgressBar(MainActivity.MSG_UPDATE_ENERGY);
     }
 
-    public static void increaseEnergy (int plusEnergy) {
-        energy = (energy+plusEnergy<= 100 ? energy+plusEnergy: 100);
-//        if (energy+plusenergy <= 100) {
-//            energy = energy + plusenergy;
-//        }
-//        else {
-//            energy = 100;
-//        }
-        updateProgressBar(MainActivity.MSG_UPDATE_ENERGY);
-    }
+    public static void changeLifeValue(int deltaValue) {
 
-    public static void decreaseLife (int minusLife) {
-        life = (life-minusLife >= 0 ? life-minusLife : 0);
-//        if(life-minusLife >= 0) {
-//            life -= minusLife;
-//        }
-//        else {
-//            life = 0;
-//        }
-        updateProgressBar(MainActivity.MSG_UPDATE_LIFE);
+        if (deltaValue <= 0) {
+            life = (life + deltaValue >= 0 ? life + deltaValue : 0);
+        }
+        else {
+            life = (life + deltaValue >= 100 ? 100 : life+deltaValue);
+        }
 
-    }
-
-    public static void increaseLife(int plusLife) {
-        life = (life+plusLife<= 100 ? life+plusLife : 100);
-//        if (life+plusLife <= 100){
-//            life = life+plusLife;
-//        }
-//        else {
-//            life = 100;
-//        }
         updateProgressBar(MainActivity.MSG_UPDATE_LIFE);
     }
 
@@ -114,7 +92,6 @@ public class SzelektAkos extends Application {
                 msgToMainActivity.obj = (Integer) energy; // Küldendő érték beállítása
                 break;
         }
-
 
         MainActivity.uiHandler.sendMessage(msgToMainActivity); // Üzenet küldése
     }
@@ -175,8 +152,8 @@ public class SzelektAkos extends Application {
     public static void getAllPrefs () {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
         points = 500;//mSharedPref.getInt("points", 0);
-        life = 25;//mSharedPref.getInt("life", 100);
-        energy = mSharedPref.getInt("life", 100);
+        life = 100;//mSharedPref.getInt("life", 100);
+        energy = 100; // mSharedPref.getInt("life", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants00);
     }
 
