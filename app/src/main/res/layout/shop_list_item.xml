@@ -2,18 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@mipmap/shop_item_back">
+    android:background="@mipmap/shop_item_back"
+    android:id="@+id/shop_list_header">
 
     <ImageView
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="110dp"
         android:id="@+id/shop_item_picture"
         android:src="@mipmap/shopitem01"
         android:layout_centerInParent="true"/>
 
     <ImageView
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@mipmap/buy_button"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"/>
@@ -25,45 +26,53 @@
         android:text="megvesz"
         android:gravity="center_vertical"
         android:textAllCaps="true"
-        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="7dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/shop_item_name"
-        android:text="Répa"
-        android:textColor="@color/colorPrimary"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_toLeftOf="@id/shop_item_picture"
+    <LinearLayout
+        android:layout_width="130dp"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"/>
+        android:gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/shop_item_price"
-        android:text="96"
-        android:textColor="@android:color/white"
-        android:textSize="22sp"
-        android:layout_toLeftOf="@id/shop_item_picture"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="60dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shop_item_name"
+            android:text="Energia+Étel"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/shop_item_life_value"
-        android:text="12 %"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:layout_toLeftOf="@id/shop_item_picture"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="50dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shop_item_price"
+            android:text="96"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"
+            android:layout_toLeftOf="@id/shop_item_picture"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shop_item_life_value"
+            android:text="12 %"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/shop_item_picture"/>
+
+    </LinearLayout>
 </RelativeLayout>

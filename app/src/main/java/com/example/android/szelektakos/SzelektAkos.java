@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;

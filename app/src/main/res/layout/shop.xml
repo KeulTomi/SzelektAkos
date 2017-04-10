@@ -35,54 +35,6 @@
         android:layout_height="1dp"
         android:background="@android:color/black"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/shop_food_topic"
-            android:text="@string/shop_title_food"
-            android:textColor="#d7d7d7"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/shop_trousers_topic"
-            android:textColor="#d7d7d7"
-            android:text="@string/shop_title_trousers"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="25dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/shop_plus_topic"
-            android:textColor="#d7d7d7"
-            android:text="@string/shop_title_plus"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="10dp" />
-
-    </LinearLayout>
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

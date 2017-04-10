@@ -11,11 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class LivingRoom extends Fragment {
 
-    private TextView fragmentTitle;
 
     @Nullable
     @Override
@@ -29,9 +27,6 @@ public class LivingRoom extends Fragment {
 
     @Override
     public void onResume() {
-
-        fragmentTitle = MainActivity.recentlyPlace;
-        fragmentTitle.setText("nappali");
 
         if (SzelektAkos.getTrouserToWearRes() == 0) {
             MainActivity.currentTrouser.setImageResource(R.mipmap.pants00);

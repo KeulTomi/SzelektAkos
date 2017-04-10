@@ -16,10 +16,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static ImageView currentTrouser;
     public static TextView userPointsText;
-    public static TextView recentlyPlace;
+    public static TextView recentlyPlaceTitle;
     public static ProgressBar life;
     public static ProgressBar energy;
     public static int currentFragmentPage;
+    private ViewPager pager;
+    private ImageView rightArrowOfTitle;
+    private ImageView leftArrowOfTitle;
 
     public static Handler uiHandler; // MainActivity üzenetkezelője (onCreate-ben van definiálva)
     final static int MSG_UPDATE_LIFE = 0; // Üzenetkód életerő progressbar frissítéséhez
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-
+        //A szükségés innicializálások a későbbi activity-k közti ugrálásokhoz
         SzelektAkos.innitApp(getApplicationContext());
 
         //Felső header inicializálása
@@ -63,15 +66,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         life.setProgress(SzelektAkos.getLife());
         energy.setProgress(SzelektAkos.getEnergy());
         userPointsText = (TextView) findViewById(R.id.user_points);
+        recentlyPlaceTitle = (TextView) findViewById(R.id.recently_place);
+        rightArrowOfTitle = (ImageView) findViewById(R.id.right_arrow);
+        leftArrowOfTitle = (ImageView) findViewById(R.id.left_arrow);
 
-        recentlyPlace = (TextView) findViewById(R.id.recently_place);
-
-        ViewPager pager = (ViewPager) findViewById(R.id.view_pager);
+        //A fő viewpager összeállítása
+        pager = (ViewPager) findViewById(R.id.view_pager);
         FragmentManager fm = getSupportFragmentManager();
         Fragment_pager pagerAdapter = new Fragment_pager(fm);
+
         // A masodik fragmentet tötljük be kezdésként
         pager.setAdapter(pagerAdapter);
         pager.setCurrentItem(1);
+
+        //A ViewPager_re pagecChangeListenert teszünk, hogy oldalváltásoknál cseréljük a recentlyPlaceTitle-t.
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                switch (position){
+                    case 0:
+                        recentlyPlaceTitle.setText("halószoba");
+                        leftArrowOfTitle.setVisibility(View.INVISIBLE);
+                        break;
+                    case 1:
+                        recentlyPlaceTitle.setText("nappali");
+                        leftArrowOfTitle.setVisibility(View.VISIBLE);
+                        rightArrowOfTitle.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        recentlyPlaceTitle.setText("konyha");
+                        rightArrowOfTitle.setVisibility(View.INVISIBLE);
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         //Menubar itemek inicializálása
         ImageView thgWEB = (ImageView) findViewById(R.id.thg_web);
@@ -87,6 +127,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         trashGame.setOnClickListener(this);
         wordsGame.setOnClickListener(this);
         jumpingGame.setOnClickListener(this);
+
+        rightArrowOfTitle.setOnClickListener(this);
+        leftArrowOfTitle.setOnClickListener(this);
 
         // Energiaszint időzítő futtatható kódja, ez fut le minden időzítés után
         Runnable energyTimer = new Runnable() {
@@ -145,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.thg_web:
                 Intent openTHGWeb = new Intent(this, THG_Web.class);
                 startActivity(openTHGWeb);
+                break;
 
             case R.id.shop:
                 Intent openShop = new Intent(this, ShopActivity.class);
@@ -159,7 +203,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.jumping_game:
 
+            case R.id.left_arrow:
+                int currentPageLEFT = pager.getCurrentItem();
+                pager.setCurrentItem(currentPageLEFT - 1);
+                break;
 
+            case R.id.right_arrow:
+                int currentPageRIGHT = pager.getCurrentItem();
+                pager.setCurrentItem(currentPageRIGHT + 1);
+                break;
 
         }
     }

@@ -1,5 +1,7 @@
 package com.example.android.szelektakos;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,7 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
 
     ArrayList<Items> fridgeItems;
     FridgeItemsAdapter listAdapter;
+    SharedPreferences mSharedPref;
     private TextView fragmentTitle;
 
     @Nullable
@@ -64,13 +67,19 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public void onItemClick(AdapterView<?> adapterView, View view, int selectedPosition, long l) {
 
         int selectedPosition = i;
         Items item = new Items();
         //TODO Itt kell hozzá adni az életéhez a changeLifeValue() metódussal!!
         SzelektAkos.changeLifeValue(item.getLifeValue());
+        mSharedPref = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+        Items items = Items.innitItem(selectedPosition);
+        //TODO Itt kell hozzá adni az életéhez a increaseLife() metódussal!!
+        SzelektAkos.increaseLife(items.getLifeValue());
         fridgeItems.remove(selectedPosition);
+        mSharedPref.edit().remove(items.getName());
+        mSharedPref.edit().apply();
         listAdapter.notifyDataSetChanged();
     }
 

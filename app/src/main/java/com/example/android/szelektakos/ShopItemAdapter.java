@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Tomi on 2017. 03. 26..
@@ -19,7 +18,6 @@ import java.util.List;
 public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClickListener {
 
     private Activity activity;
-    static private List<Integer> boughtItems = new ArrayList<Integer>();
 
     ShopItemAdapter(Activity context, ArrayList<Items> items) {
         super(context, 0, items);
@@ -72,9 +70,5 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
             SzelektAkos.saveAnInteger(itemName, SzelektAkos.getAnInteger(itemName)+1);
         }
 
-    }
-
-    static public List<Integer> getBoughtItems() {
-        return boughtItems;
     }
 }

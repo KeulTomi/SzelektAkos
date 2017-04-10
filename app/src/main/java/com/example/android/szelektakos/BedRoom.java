@@ -6,15 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 /**
  * Created by Tomi on 2017. 03. 23..
  */
 
 public class BedRoom extends Fragment {
-
-    private TextView fragmentTitle;
 
     @Nullable
     @Override
@@ -25,8 +22,6 @@ public class BedRoom extends Fragment {
 
     @Override
     public void onResume() {
-        fragmentTitle = MainActivity.recentlyPlace;
-        fragmentTitle.setText("hálószoba");
         super.onResume();
     }
 }
