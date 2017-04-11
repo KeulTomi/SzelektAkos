@@ -170,7 +170,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/user_points"
         android:text="86"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:textColor="@android:color/white"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"

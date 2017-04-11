@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.szelektakos">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".SzelektAkos"
         android:allowBackup="true"
@@ -18,7 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ShopActivity" />
-        <activity android:name=".THG_Web"></activity>
+        <activity android:name=".THG_Web" />
+        <activity android:name=".PickOneGame">
+
+        </activity>
     </application>
 
 </manifest>

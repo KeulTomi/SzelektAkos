@@ -24,6 +24,7 @@ public class SzelektAkos extends Application {
     private static SharedPreferences mSharedPref;
     private static Context appContext;
     private static Handler progressBarHandler = new Handler();
+    public static int gameTime;
 
 
 
@@ -95,6 +96,18 @@ public class SzelektAkos extends Application {
         MainActivity.uiHandler.sendMessage(msgToMainActivity); // Üzenet küldése
     }
 
+    private static void updateGameTime() {
+        Message msgToPickOneGame = new Message();
+        msgToPickOneGame.what = PickOneGame.MSG_GAME_TIME; //Üzenetkód beállítása
+        msgToPickOneGame.obj = (Integer) gameTime;
+        PickOneGame.uiHandlerPOG.sendMessage(msgToPickOneGame);
+    }
+
+    public static void increaseGameTime () {
+        gameTime++;
+        updateGameTime();
+    }
+
     public static int getLife() {
         return life;
     }
@@ -150,9 +163,9 @@ public class SzelektAkos extends Application {
 
     public static void getAllPrefs () {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
-        points = 500;//mSharedPref.getInt("points", 0);
-        life = 100;//mSharedPref.getInt("life", 100);
-        energy = 100; // mSharedPref.getInt("life", 100);
+        points = mSharedPref.getInt("points", 0);
+        life = mSharedPref.getInt("life", 100);
+        energy = mSharedPref.getInt("life", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants00);
     }
 

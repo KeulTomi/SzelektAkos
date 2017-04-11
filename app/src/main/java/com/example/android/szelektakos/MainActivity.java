@@ -196,6 +196,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.pick_one_game:
+                Intent playPOG = new Intent(this, PickOneGame.class);
+                startActivity(playPOG);
+                break;
 
             case R.id.trash_game:
 
