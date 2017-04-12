@@ -21,9 +21,9 @@
         </activity>
         <activity android:name=".ShopActivity" />
         <activity android:name=".THG_Web" />
-        <activity android:name=".PickOneGame">
-
-        </activity>
+        <activity android:name=".PickOneGame"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".TrueFalseGame"></activity>
     </application>
 
 </manifest>

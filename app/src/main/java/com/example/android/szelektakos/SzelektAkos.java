@@ -96,16 +96,34 @@ public class SzelektAkos extends Application {
         MainActivity.uiHandler.sendMessage(msgToMainActivity); // Üzenet küldése
     }
 
-    private static void updateGameTime() {
+    private static void updateGameTime(int msg) {
         Message msgToPickOneGame = new Message();
-        msgToPickOneGame.what = PickOneGame.MSG_GAME_TIME; //Üzenetkód beállítása
-        msgToPickOneGame.obj = (Integer) gameTime;
-        PickOneGame.uiHandlerPOG.sendMessage(msgToPickOneGame);
+
+        switch (msg) {
+            case PickOneGame.MSG_GAME_TIME_START:
+
+                msgToPickOneGame.what = PickOneGame.MSG_GAME_TIME_START; //Üzenetkód beállítása
+                msgToPickOneGame.obj = (Integer) gameTime;
+                PickOneGame.uiHandlerPOG.sendMessage(msgToPickOneGame);
+                break;
+
+            case PickOneGame.MSG_GAME_TIME_NULL:
+
+                msgToPickOneGame.what = PickOneGame.MSG_GAME_TIME_NULL;
+                msgToPickOneGame.obj = (Integer) gameTime;
+                PickOneGame.uiHandlerPOG.sendMessage(msgToPickOneGame);
+                break;
+        }
     }
 
     public static void increaseGameTime () {
         gameTime++;
-        updateGameTime();
+        updateGameTime(PickOneGame.MSG_GAME_TIME_START);
+    }
+
+    public static void setGameTimeNull () {
+        gameTime = 0;
+        updateGameTime(PickOneGame.MSG_GAME_TIME_NULL);
     }
 
     public static int getLife() {
