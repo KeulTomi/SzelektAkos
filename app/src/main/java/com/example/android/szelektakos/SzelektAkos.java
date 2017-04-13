@@ -97,33 +97,45 @@ public class SzelektAkos extends Application {
     }
 
     private static void updateGameTime(int msg) {
-        Message msgToPickOneGame = new Message();
+        Message msgToAGame = new Message();
 
         switch (msg) {
             case PickOneGame.MSG_GAME_TIME_START:
 
-                msgToPickOneGame.what = PickOneGame.MSG_GAME_TIME_START; //Üzenetkód beállítása
-                msgToPickOneGame.obj = (Integer) gameTime;
-                PickOneGame.uiHandlerPOG.sendMessage(msgToPickOneGame);
+                msgToAGame.what = PickOneGame.MSG_GAME_TIME_START; //Üzenetkód beállítása
+                msgToAGame.obj = (Integer) gameTime;
+                PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
 
             case PickOneGame.MSG_GAME_TIME_NULL:
 
-                msgToPickOneGame.what = PickOneGame.MSG_GAME_TIME_NULL;
-                msgToPickOneGame.obj = (Integer) gameTime;
-                PickOneGame.uiHandlerPOG.sendMessage(msgToPickOneGame);
+                msgToAGame.what = PickOneGame.MSG_GAME_TIME_NULL;
+                msgToAGame.obj = (Integer) gameTime;
+                PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
+                break;
+
+            case TrueFalseGame.MSG_GAME_TIME_NULL:
+                msgToAGame.what = TrueFalseGame.MSG_GAME_TIME_NULL;
+                msgToAGame.obj = (Integer) gameTime;
+                TrueFalseGame.uiHandlerTF.sendMessage(msgToAGame);
+                break;
+
+            case TrueFalseGame.MSG_GAME_TIME_START:
+                msgToAGame.what = TrueFalseGame.MSG_GAME_TIME_START;
+                msgToAGame.obj = (Integer) gameTime;
+                TrueFalseGame.uiHandlerTF.sendMessage(msgToAGame);
                 break;
         }
     }
 
-    public static void increaseGameTime () {
+    public static void increaseGameTime (int msg) {
         gameTime++;
-        updateGameTime(PickOneGame.MSG_GAME_TIME_START);
+        updateGameTime(msg);
     }
 
-    public static void setGameTimeNull () {
+    public static void setGameTimeNull (int msg) {
         gameTime = 0;
-        updateGameTime(PickOneGame.MSG_GAME_TIME_NULL);
+        updateGameTime(msg);
     }
 
     public static int getLife() {
@@ -181,9 +193,9 @@ public class SzelektAkos extends Application {
 
     public static void getAllPrefs () {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
-        points = mSharedPref.getInt("points", 0);
-        life = mSharedPref.getInt("life", 100);
-        energy = mSharedPref.getInt("life", 100);
+        points = 500;//mSharedPref.getInt("points", 0);
+        life = 100;//mSharedPref.getInt("life", 100);
+        energy = 100;//mSharedPref.getInt("life", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants00);
     }
 

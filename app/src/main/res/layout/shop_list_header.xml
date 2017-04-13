@@ -15,7 +15,7 @@
             android:layout_weight="1"
             android:id="@+id/shop_food_topic"
             android:text="@string/shop_title_food"
-            android:textColor="#c2c2c2"
+            android:textColor="@android:color/white"
             android:textAllCaps="true"
             android:textSize="20sp"
             android:layout_marginTop="10dp"

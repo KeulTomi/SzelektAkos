@@ -118,12 +118,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageView shop = (ImageView) findViewById(R.id.shop);
         ImageView pickOneGame = (ImageView) findViewById(R.id.pick_one_game);
         ImageView trashGame = (ImageView) findViewById(R.id.trash_game);
+        ImageView trueFalseGame = (ImageView) findViewById(R.id.true_false_game);
         ImageView wordsGame = (ImageView) findViewById(R.id.words_game);
         ImageView jumpingGame = (ImageView) findViewById(R.id.jumping_game);
 
         thgWEB.setOnClickListener(this);
         shop.setOnClickListener(this);
         pickOneGame.setOnClickListener(this);
+        trueFalseGame.setOnClickListener(this);
         trashGame.setOnClickListener(this);
         wordsGame.setOnClickListener(this);
         jumpingGame.setOnClickListener(this);
@@ -131,41 +133,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rightArrowOfTitle.setOnClickListener(this);
         leftArrowOfTitle.setOnClickListener(this);
 
-        // Energiaszint időzítő futtatható kódja, ez fut le minden időzítés után
-        Runnable energyTimer = new Runnable() {
-            @Override
-            public void run() {
-                switch (currentFragmentPage) {
-                    case 0:
-                        // Hálószobára lapozott, energiaszint növekszik
-                        SzelektAkos.changeEnergy(1);
-                        break;
-                    case 1:
-                    case 2:
-                        // Konyhára vagy nappalira lapozott, energiaszint csökken
-                        SzelektAkos.changeEnergy(-1);
-                        break;
-                }
-                // Saját magát hívja késleltetés után
-                uiHandler.postDelayed(this, ENERGY_REFRESH_PERIOD);
-            }
-        };
+//        // Energiaszint időzítő futtatható kódja, ez fut le minden időzítés után
+//        Runnable energyTimer = new Runnable() {
+//            @Override
+//            public void run() {
+//                switch (currentFragmentPage) {
+//                    case 0:
+//                        // Hálószobára lapozott, energiaszint növekszik
+//                        SzelektAkos.changeEnergy(1);
+//                        break;
+//                    case 1:
+//                    case 2:
+//                        // Konyhára vagy nappalira lapozott, energiaszint csökken
+//                        SzelektAkos.changeEnergy(-1);
+//                        break;
+//                }
+//                // Saját magát hívja késleltetés után
+//                uiHandler.postDelayed(this, ENERGY_REFRESH_PERIOD);
+//            }
+//        };
 
-        // Életerő időzítő futtatható kódja, ez fut le minden időzítés után
-        final Runnable lifeTimer = new Runnable() {
-            @Override
-            public void run() {
-                // Életerő csökkentése
-                SzelektAkos.changeLifeValue(-1);
-                // Saját magát hívja késleltetés után
-                uiHandler.postDelayed(this, LIFE_REFRESH_PERIOD);
-            }
-        };
-
-        // Időzítők beindítása (első futtatás)
-        uiHandler.postDelayed(energyTimer, ENERGY_REFRESH_PERIOD);
-        uiHandler.postDelayed(lifeTimer, LIFE_REFRESH_PERIOD);
-    }
+//        // Életerő időzítő futtatható kódja, ez fut le minden időzítés után
+//        final Runnable lifeTimer = new Runnable() {
+//            @Override
+//            public void run() {
+//                // Életerő csökkentése
+//                SzelektAkos.changeLifeValue(-1);
+//                // Saját magát hívja késleltetés után
+//                uiHandler.postDelayed(this, LIFE_REFRESH_PERIOD);
+//            }
+//        };
+//
+//        // Időzítők beindítása (első futtatás)
+//        uiHandler.postDelayed(energyTimer, ENERGY_REFRESH_PERIOD);
+//        uiHandler.postDelayed(lifeTimer, LIFE_REFRESH_PERIOD);
+   }
 
     @Override
     protected void onResume() {
@@ -198,6 +200,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.pick_one_game:
                 Intent playPOG = new Intent(this, PickOneGame.class);
                 startActivity(playPOG);
+                break;
+
+            case R.id.true_false_game:
+                Intent playTFG = new Intent(this, TrueFalseGame.class);
+                startActivity(playTFG);
                 break;
 
             case R.id.trash_game:

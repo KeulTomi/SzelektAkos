@@ -1,5 +1,6 @@
 package com.example.android.szelektakos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,6 +14,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class PickOneGame extends AppCompatActivity implements View.OnTouchListener {
 
@@ -29,12 +34,13 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     public ImageView secondAnswerImg;
     private ImageView thirdAnswerImg;
     private ImageView closeTheGame;
-    private int reachedPoints;
+    private int reachedPointsPOG;
     private Vibrator mVibrator;
     final static int MSG_GAME_TIME_START = 0;
     final static int MSG_GAME_TIME_NULL = 1;
     final int GAME_TIME_REFRESHED_TIME = 100;
     public static Handler uiHandlerPOG;
+    private Future gameTimeStopper;
 
 
     @Override
@@ -98,7 +104,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
         };
 
         //Nullázzuk a gameTime-ot
-        SzelektAkos.setGameTimeNull();
+        SzelektAkos.setGameTimeNull(MSG_GAME_TIME_NULL);
 
         // A játékidő időzítő futtatható kódja, ez fut le minden időzítés után
 
@@ -106,26 +112,34 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                 @Override
                 public void run() {
                     // Saját magát hívja késleltetés után
-                    SzelektAkos.increaseGameTime();
+                    SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
                     if (SzelektAkos.gameTime <= 500) {
                         uiHandlerPOG.postDelayed(this, GAME_TIME_REFRESHED_TIME);
                     }
                     else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(PickOneGame.this);
-                    builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPoints) + " pontot szereztél")
-                            .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    //Kilép az activity-ből
-                                    SzelektAkos.increasePoints(reachedPoints);
-                                    finish();
-                                }
-                            });
-                    AlertDialog alert = builder.create();
+                        if(!((Activity) PickOneGame.this).isFinishing())
+                        {
+                            //show dialog
+                            AlertDialog.Builder builder = new AlertDialog.Builder(PickOneGame.this);
+                            builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsPOG) + " pontot szereztél")
+                                    .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            //Kilép az activity-ből
+                                            SzelektAkos.increasePoints(reachedPointsPOG);
+                                            gameTimeStopper.cancel(true);
+                                            finish();
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
 
-                    alert.show();
+                            alert.show();
+                        }
                     }
                 }
             };
+            //Képessé tesszük a runnable-t stoppolásra
+            ExecutorService threadPoolExecutor = Executors.newSingleThreadExecutor();
+            gameTimeStopper = threadPoolExecutor.submit(gameTimer);
 
             // Időzítők beindítása (első futtatás)
             uiHandlerPOG.postDelayed(gameTimer, GAME_TIME_REFRESHED_TIME);
@@ -154,8 +168,8 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
             case R.id.first_answer_txt:
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     if (QuizQuestionFactory.getmCorrectAnswer() == 1) {
-                        reachedPoints += 1;
-                        reachedPointsTxt.setText(String.valueOf(reachedPoints));
+                        reachedPointsPOG += 1;
+                        reachedPointsTxt.setText(String.valueOf(reachedPointsPOG));
                         getTheCurrentQuestion();
                     } else {
                         mVibrator.vibrate(300);
@@ -170,8 +184,8 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
 
 
                     if (QuizQuestionFactory.getmCorrectAnswer() == 2) {
-                        reachedPoints += 1;
-                        reachedPointsTxt.setText(String.valueOf(reachedPoints));
+                        reachedPointsPOG += 1;
+                        reachedPointsTxt.setText(String.valueOf(reachedPointsPOG));
                         getTheCurrentQuestion();
                     } else {
                         mVibrator.vibrate(300);
@@ -185,8 +199,8 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
 
 
                     if (QuizQuestionFactory.getmCorrectAnswer() == 3) {
-                        reachedPoints += 1;
-                        reachedPointsTxt.setText(String.valueOf(reachedPoints));
+                        reachedPointsPOG += 1;
+                        reachedPointsTxt.setText(String.valueOf(reachedPointsPOG));
                         getTheCurrentQuestion();
                     } else {
                         mVibrator.vibrate(300);
@@ -197,9 +211,8 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
 
             case R.id.close_POG:
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-
-
-                    SzelektAkos.increasePoints(reachedPoints);
+                    SzelektAkos.increasePoints(reachedPointsPOG);
+                    gameTimeStopper.cancel(true);
                     finish();
                     break;
                 }

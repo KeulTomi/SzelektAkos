@@ -10,20 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/thg_web"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="40dp">
     </WebView>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/head"
+        android:src="@mipmap/head_crop"
         android:scaleType="centerCrop"/>
 
     <ImageView
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:id="@+id/close_THG"
-        android:layout_margin="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="10dp"
         android:src="@drawable/ic_close"/>
 
     <TextView
@@ -34,6 +35,6 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="5dp"/>
 
 </RelativeLayout>

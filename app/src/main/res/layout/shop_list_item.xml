@@ -19,19 +19,27 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="100dp"
         android:layout_height="60dp"
-        android:id="@+id/shop_item_buy_title"
-        android:text="megvesz"
-        android:gravity="center_vertical"
-        android:textAllCaps="true"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="7dp"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:id="@+id/shop_item_buy_title"
+            android:text="megvesz"
+            android:gravity="center_vertical"
+            android:textAllCaps="true"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginRight="0dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="130dp"
