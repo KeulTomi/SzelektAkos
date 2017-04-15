@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.Shop;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -9,18 +9,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.SzelektAkos;
+
 import java.util.ArrayList;
 
 /**
- * Created by Tomi on 2017. 03. 29..
+ * Created by Tomi on 2017. 03. 26..
  */
 
-public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements View.OnClickListener {
+public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClickListener {
 
     private Activity activity;
-    TextView buyItem;
 
-    TrouserAdapter(Activity context, ArrayList<ItemsForTrouser> items) {
+    ShopItemAdapter(Activity context, ArrayList<Items> items) {
         super(context, 0, items);
         activity = context;
     }
@@ -33,29 +35,24 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.shop_list_item, parent, false);
-            buyItem = (TextView) listItemView.findViewById(R.id.shop_item_buy_title);
-            TextView lifeValue = (TextView) listItemView.findViewById(R.id.shop_item_life_value);
+            TextView buyItem = (TextView) listItemView.findViewById(R.id.shop_item_buy_title);
 
-            ItemsForTrouser currentItem = getItem(position);
-
-            if (SzelektAkos.getABoolean(currentItem.getName())) {
-                buyItem.setText("hord");
-            }
-
-            lifeValue.setVisibility(View.INVISIBLE);
             buyItem.setTag(position);
             buyItem.setOnClickListener(this);
             itemView = listItemView;
 
         }
 
-        ItemsForTrouser currentItem = getItem(position);
+        Items currentItem = getItem(position);
 
         TextView foodName = (TextView) listItemView.findViewById(R.id.shop_item_name);
         foodName.setText(currentItem.getName());
 
         TextView foodPrice = (TextView) listItemView.findViewById(R.id.shop_item_price);
         foodPrice.setText(String.valueOf(currentItem.getPrice()));
+
+        TextView foodLifeValue = (TextView) listItemView.findViewById(R.id.shop_item_life_value);
+        foodLifeValue.setText(String.valueOf(currentItem.getLifeValue()) + " %");
 
         ImageView foodPicture = (ImageView) listItemView.findViewById(R.id.shop_item_picture);
         foodPicture.setImageResource(currentItem.getPicture());
@@ -65,20 +62,16 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
 
     @Override
     public void onClick(View view) {
-
         int position = (Integer) view.getTag();
-        ItemsForTrouser currentItem = getItem(position);
+        Items currentItem = getItem(position);
 
-        if (buyItem.getText() == "megvesz") {
+        int itemPrice = currentItem.getPrice();
+        String itemName = currentItem.getName();
 
-            int itemPrice = currentItem.getPrice();
-            String itemName = currentItem.getName();
+        if (SzelektAkos.decreasePoints(itemPrice)) {
 
-            if (SzelektAkos.decreasePoints(itemPrice)) {
-
-                SzelektAkos.saveABoolean(itemName, true);
-            }
+            SzelektAkos.saveAnInteger(itemName, SzelektAkos.getAnInteger(itemName)+1);
         }
-        else SzelektAkos.changeTrouser(currentItem.getPicture());
+
     }
 }

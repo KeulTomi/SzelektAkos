@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.MainScreen;
 
 /**
  * Created by Tomi on 2017. 03. 23..

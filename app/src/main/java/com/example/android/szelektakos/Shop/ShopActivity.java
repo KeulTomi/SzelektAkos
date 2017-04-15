@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.Shop;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.android.szelektakos.R;
 
 import java.util.ArrayList;
 import java.util.List;

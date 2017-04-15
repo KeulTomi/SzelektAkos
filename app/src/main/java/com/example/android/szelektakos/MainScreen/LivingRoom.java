@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.MainScreen;
 
 /**
  * Created by Tomi on 2017. 03. 23..
@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.SzelektAkos;
 
 public class LivingRoom extends Fragment {
 

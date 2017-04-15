@@ -1,10 +1,13 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.Shop;
+
+import com.example.android.szelektakos.ListInterface;
+import com.example.android.szelektakos.R;
 
 /**
  * Created by Tomi on 2017. 03. 26..
  */
 
-public class Items implements ListInterface{
+public class Items implements ListInterface {
 
     private String name;
     private int price;

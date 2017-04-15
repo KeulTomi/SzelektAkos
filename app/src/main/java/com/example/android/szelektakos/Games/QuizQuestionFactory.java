@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.Games;
 
 import java.util.ArrayList;
 import java.util.Arrays;

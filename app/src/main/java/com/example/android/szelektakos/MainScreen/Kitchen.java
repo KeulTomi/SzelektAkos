@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.MainScreen;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.android.szelektakos.Shop.Items;
+import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.SzelektAkos;
 
 import java.util.ArrayList;
 

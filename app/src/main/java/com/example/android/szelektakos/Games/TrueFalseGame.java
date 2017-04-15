@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.Games;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.SzelektAkos;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -91,6 +94,9 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
         gameTimer = new Runnable() {
             @Override
             public void run() {
+
+                if(!((Activity) TrueFalseGame.this).isFinishing())
+                {
                 // Saját magát hívja késleltetés után
                 SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
 
@@ -98,8 +104,6 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
                     uiHandlerTF.postDelayed(this, GAME_TIME_REFRESHED_TIME);
                 }
                 else {
-                    if(!((Activity) TrueFalseGame.this).isFinishing())
-                    {
                         //show dialog
                         AlertDialog.Builder builder = new AlertDialog.Builder(TrueFalseGame.this);
                         builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsTF) + " pontot szereztél")

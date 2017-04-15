@@ -7,6 +7,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import com.example.android.szelektakos.Games.PickOneGame;
+import com.example.android.szelektakos.Games.TrueFalseGame;
+import com.example.android.szelektakos.MainScreen.MainActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 

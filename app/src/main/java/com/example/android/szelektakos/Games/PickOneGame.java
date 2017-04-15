@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.Games;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.android.szelektakos.MainScreen.MainActivity;
+import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.SzelektAkos;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -111,14 +115,14 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
             final Runnable gameTimer = new Runnable() {
                 @Override
                 public void run() {
+                    if(!((Activity) PickOneGame.this).isFinishing())
+                    {
                     // Saját magát hívja késleltetés után
                     SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
                     if (SzelektAkos.gameTime <= 500) {
                         uiHandlerPOG.postDelayed(this, GAME_TIME_REFRESHED_TIME);
                     }
                     else {
-                        if(!((Activity) PickOneGame.this).isFinishing())
-                        {
                             //show dialog
                             AlertDialog.Builder builder = new AlertDialog.Builder(PickOneGame.this);
                             builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsPOG) + " pontot szereztél")

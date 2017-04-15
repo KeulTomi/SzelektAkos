@@ -1,4 +1,4 @@
-package com.example.android.szelektakos;
+package com.example.android.szelektakos.MainScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.android.szelektakos.Games.PickOneGame;
+import com.example.android.szelektakos.Games.TrueFalseGame;
+import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.Shop.ShopActivity;
+import com.example.android.szelektakos.SzelektAkos;
+import com.example.android.szelektakos.THG_Web;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
