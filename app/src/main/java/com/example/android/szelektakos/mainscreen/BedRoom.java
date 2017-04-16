@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.MainScreen;
+package com.example.android.szelektakos.mainscreen;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

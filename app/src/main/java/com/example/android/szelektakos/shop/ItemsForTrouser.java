@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.Shop;
+package com.example.android.szelektakos.shop;
 
 import com.example.android.szelektakos.ListInterface;
 import com.example.android.szelektakos.R;
@@ -10,17 +10,14 @@ import com.example.android.szelektakos.SzelektAkos;
 
 public class ItemsForTrouser implements ListInterface {
 
-    private String name;
-    private int price;
-    private int lifeValue;
-    private int picture;
-
     private static String[] names = {"THG", "Kék", "Bordó", "Sárga", "Neon", "Kockás", "Csíkos"} ;
     private static int[] prices = {0, 77, 165, 213, 562, 788, 802,};
     private static int[] pictures = {R.mipmap.pants00, R.mipmap.pants01, R.mipmap.pants02, R.mipmap.pants03, R.mipmap.pants04,
             R.mipmap.pants05, R.mipmap.pants06};
-
-
+    private String name;
+    private int price;
+    private int lifeValue;
+    private int picture;
 
     public static ItemsForTrouser innitItem(int position) {
         ItemsForTrouser items = new ItemsForTrouser();

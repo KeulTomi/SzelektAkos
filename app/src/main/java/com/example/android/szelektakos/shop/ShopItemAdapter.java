@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.Shop;
+package com.example.android.szelektakos.shop;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -13,18 +13,16 @@ import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by Tomi on 2017. 03. 30..
+ * Created by Tomi on 2017. 03. 26..
  */
 
-public class PlusAdapter extends ArrayAdapter<ItemsForPlus> implements View.OnClickListener {
+public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClickListener {
 
     private Activity activity;
-    static private List<Integer> boughtItems = new ArrayList<Integer>();
 
-    PlusAdapter(Activity context, ArrayList<ItemsForPlus> items) {
+    ShopItemAdapter(Activity context, ArrayList<Items> items) {
         super(context, 0, items);
         activity = context;
     }
@@ -45,7 +43,7 @@ public class PlusAdapter extends ArrayAdapter<ItemsForPlus> implements View.OnCl
 
         }
 
-        ItemsForPlus currentItem = getItem(position);
+        Items currentItem = getItem(position);
 
         TextView foodName = (TextView) listItemView.findViewById(R.id.shop_item_name);
         foodName.setText(currentItem.getName());
@@ -65,7 +63,7 @@ public class PlusAdapter extends ArrayAdapter<ItemsForPlus> implements View.OnCl
     @Override
     public void onClick(View view) {
         int position = (Integer) view.getTag();
-        ItemsForPlus currentItem = getItem(position);
+        Items currentItem = getItem(position);
 
         int itemPrice = currentItem.getPrice();
         String itemName = currentItem.getName();
@@ -76,9 +74,4 @@ public class PlusAdapter extends ArrayAdapter<ItemsForPlus> implements View.OnCl
         }
 
     }
-
-    static public List<Integer> getBoughtItems() {
-        return boughtItems;
-    }
 }
-

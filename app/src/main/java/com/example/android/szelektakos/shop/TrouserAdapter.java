@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.Shop;
+package com.example.android.szelektakos.shop;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements View.OnClickListener {
 
-    private Activity activity;
     TextView buyItem;
+    private Activity activity;
 
     TrouserAdapter(Activity context, ArrayList<ItemsForTrouser> items) {
         super(context, 0, items);

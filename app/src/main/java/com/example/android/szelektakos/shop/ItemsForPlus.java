@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.Shop;
+package com.example.android.szelektakos.shop;
 
 import com.example.android.szelektakos.ListInterface;
 import com.example.android.szelektakos.R;
@@ -9,18 +9,15 @@ import com.example.android.szelektakos.R;
 
 public class ItemsForPlus implements ListInterface {
 
-    private String name;
-    private int price;
-    private int lifeValue;
-    private int picture;
-
     private static String[] names = {"Energia", "Étel", "Energia+Étel"} ;
     private static int[] prices = {762, 865, 1472};
     private static int[] lifeValues = {100, 100, 100};
     //TODO A harmadik elemet nem tölti be!!
     private static int[] pictures = {R.mipmap.plusenergy, R.mipmap.plusfood, R.mipmap.plusfoodenergy};
-
-
+    private String name;
+    private int price;
+    private int lifeValue;
+    private int picture;
 
     public static ItemsForPlus innitItem(int position) {
         ItemsForPlus items = new ItemsForPlus();

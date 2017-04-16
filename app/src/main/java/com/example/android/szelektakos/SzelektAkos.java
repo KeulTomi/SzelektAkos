@@ -7,9 +7,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
-import com.example.android.szelektakos.Games.PickOneGame;
-import com.example.android.szelektakos.Games.TrueFalseGame;
-import com.example.android.szelektakos.MainScreen.MainActivity;
+import com.example.android.szelektakos.games.PickOneGame;
+import com.example.android.szelektakos.games.TrueFalseGame;
+import com.example.android.szelektakos.mainscreen.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,7 @@ import java.util.List;
 
 public class SzelektAkos extends Application {
 
+    public static int gameTime;
     private static int points;
     private static int energy;
     private static int life;
@@ -28,9 +29,6 @@ public class SzelektAkos extends Application {
     private static SharedPreferences mSharedPref;
     private static Context appContext;
     private static Handler progressBarHandler = new Handler();
-    public static int gameTime;
-
-
 
     public static void innitApp(Context context) {
         appContext = context;

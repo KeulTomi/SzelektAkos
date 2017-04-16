@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.Games;
+package com.example.android.szelektakos.games;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,9 +15,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.android.szelektakos.MainScreen.MainActivity;
 import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
+import com.example.android.szelektakos.mainscreen.MainActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,6 +25,13 @@ import java.util.concurrent.Future;
 
 public class PickOneGame extends AppCompatActivity implements View.OnTouchListener {
 
+    public final static int MSG_GAME_TIME_START = 0;
+    public final static int MSG_GAME_TIME_NULL = 1;
+    public static Handler uiHandlerPOG;
+    public final int GAME_TIME_REFRESHED_TIME = 100;
+    //TODO A gombnyomásra ki kell cserélni a képeket.
+    public ImageView firstAnswerImg;
+    public ImageView secondAnswerImg;
     private TextView questionTxt;
     private TextView firstAnswerTxt;
     private TextView secondAnswerTxt;
@@ -33,17 +40,10 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     private ProgressBar gameTimeProgress;
     private ProgressBar lifeProgress;
     private ProgressBar energyProgress;
-    //TODO A gombnyomásra ki kell cserélni a képeket.
-    public ImageView firstAnswerImg;
-    public ImageView secondAnswerImg;
     private ImageView thirdAnswerImg;
     private ImageView closeTheGame;
     private int reachedPointsPOG;
     private Vibrator mVibrator;
-    final static int MSG_GAME_TIME_START = 0;
-    final static int MSG_GAME_TIME_NULL = 1;
-    final int GAME_TIME_REFRESHED_TIME = 100;
-    public static Handler uiHandlerPOG;
     private Future gameTimeStopper;
 
 

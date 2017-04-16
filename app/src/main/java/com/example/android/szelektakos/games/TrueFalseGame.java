@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.Games;
+package com.example.android.szelektakos.games;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,19 +24,19 @@ import java.util.concurrent.Future;
 
 public class TrueFalseGame extends AppCompatActivity implements View.OnClickListener {
 
+    public final static int MSG_GAME_TIME_START = 2;
+    public final static int MSG_GAME_TIME_NULL = 3;
+    public static Handler uiHandlerTF;
     private static LinearLayout mTrue;
     private static LinearLayout mFalse;
-    private Vibrator mVibrator;
-    public static Handler uiHandlerTF;
-    final static int MSG_GAME_TIME_START = 2;
-    final static int MSG_GAME_TIME_NULL = 3;
     private static ProgressBar gameTimeProgressTF;
-    private final int GAME_TIME_REFRESHED_TIME = 100;
-    private int reachedPointsTF;
     private static TextView reachedPointsTxtTF;
     private static TextView questionTxtTF;
     private static ImageView closeTFG;
     private static Future<?> gameTimeStopper;
+    private final int GAME_TIME_REFRESHED_TIME = 100;
+    private Vibrator mVibrator;
+    private int reachedPointsTF;
     private Runnable gameTimer;
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.MainScreen;
+package com.example.android.szelektakos.mainscreen;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -9,8 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.szelektakos.Shop.Items;
 import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.shop.Items;
 
 import java.util.ArrayList;
 

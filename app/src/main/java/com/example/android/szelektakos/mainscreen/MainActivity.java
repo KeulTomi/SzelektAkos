@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.MainScreen;
+package com.example.android.szelektakos.mainscreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,31 +12,30 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.android.szelektakos.Games.PickOneGame;
-import com.example.android.szelektakos.Games.TrueFalseGame;
 import com.example.android.szelektakos.R;
-import com.example.android.szelektakos.Shop.ShopActivity;
 import com.example.android.szelektakos.SzelektAkos;
 import com.example.android.szelektakos.THG_Web;
+import com.example.android.szelektakos.games.JumpGameActivity;
+import com.example.android.szelektakos.games.PickOneGame;
+import com.example.android.szelektakos.games.TrueFalseGame;
+import com.example.android.szelektakos.shop.ShopActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public final static int MSG_UPDATE_LIFE = 0; // Üzenetkód életerő progressbar frissítéséhez
+    public final static int MSG_UPDATE_ENERGY = 1; // Üzenetkód energia progressbar frissítéséhez
     public static ImageView currentTrouser;
     public static TextView userPointsText;
     public static TextView recentlyPlaceTitle;
     public static ProgressBar life;
     public static ProgressBar energy;
     public static int currentFragmentPage;
+    public static Handler uiHandler; // MainActivity üzenetkezelője (onCreate-ben van definiálva)
+    public final int ENERGY_REFRESH_PERIOD = 500; // Energiaszint frissítési periódusa ezredmásodpercben
+    public final int LIFE_REFRESH_PERIOD = 30 * 1000; // Életerő frissítési periódusa ezredmásodpercben
     private ViewPager pager;
     private ImageView rightArrowOfTitle;
     private ImageView leftArrowOfTitle;
-
-    public static Handler uiHandler; // MainActivity üzenetkezelője (onCreate-ben van definiálva)
-    final static int MSG_UPDATE_LIFE = 0; // Üzenetkód életerő progressbar frissítéséhez
-    final static int MSG_UPDATE_ENERGY = 1; // Üzenetkód energia progressbar frissítéséhez
-    final int ENERGY_REFRESH_PERIOD = 500; // Energiaszint frissítési periódusa ezredmásodpercben
-    final int LIFE_REFRESH_PERIOD = 30 * 1000; // Életerő frissítési periódusa ezredmásodpercben
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,6 +218,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.words_game:
 
             case R.id.jumping_game:
+                Intent playJump = new Intent(this, JumpGameActivity.class);
+                startActivity(playJump);
+                break;
 
             case R.id.left_arrow:
                 int currentPageLEFT = pager.getCurrentItem();

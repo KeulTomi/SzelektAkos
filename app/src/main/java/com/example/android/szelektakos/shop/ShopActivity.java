@@ -1,4 +1,4 @@
-package com.example.android.szelektakos.Shop;
+package com.example.android.szelektakos.shop;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,14 +22,14 @@ import java.util.List;
 
 public class ShopActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
-    //TODO Megvett elemek vizsgálata és bele töltése a hűtőbe
-    private List<Integer> boughtItems = new ArrayList<>();
     ListView itemList;
     ImageView closeShop;
     TextView foodTopic;
     TextView trousersTopic;
     TextView plusTopic;
     View headerView;
+    //TODO Megvett elemek vizsgálata és bele töltése a hűtőbe
+    private List<Integer> boughtItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

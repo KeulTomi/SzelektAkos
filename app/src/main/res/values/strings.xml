@@ -4,4 +4,8 @@
     <string name="shop_title_food">táplálék</string>
     <string name="shop_title_trousers">nadrág</string>
     <string name="shop_title_plus">plusz</string>
+
+    <string name="title_activity_jump_game">JumpGameActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
