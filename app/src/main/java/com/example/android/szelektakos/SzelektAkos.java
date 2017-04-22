@@ -8,6 +8,7 @@ import android.os.Message;
 import android.widget.Toast;
 
 import com.example.android.szelektakos.games.PickOneGame;
+import com.example.android.szelektakos.games.TrashesGame;
 import com.example.android.szelektakos.games.TrueFalseGame;
 import com.example.android.szelektakos.mainscreen.MainActivity;
 
@@ -98,18 +99,18 @@ public class SzelektAkos extends Application {
         MainActivity.uiHandler.sendMessage(msgToMainActivity); // Üzenet küldése
     }
 
-    private static void updateGameTime(int msg) {
+    public static void updateGameTime(int msg) {
         Message msgToAGame = new Message();
 
         switch (msg) {
-            case PickOneGame.MSG_GAME_TIME_START:
+            case PickOneGame.MSG_GAME_TIME_NULL:
 
                 msgToAGame.what = PickOneGame.MSG_GAME_TIME_START; //Üzenetkód beállítása
                 msgToAGame.obj = (Integer) gameTime;
                 PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
 
-            case PickOneGame.MSG_GAME_TIME_NULL:
+            case PickOneGame.MSG_GAME_TIME_START:
 
                 msgToAGame.what = PickOneGame.MSG_GAME_TIME_NULL;
                 msgToAGame.obj = (Integer) gameTime;
@@ -126,6 +127,23 @@ public class SzelektAkos extends Application {
                 msgToAGame.what = TrueFalseGame.MSG_GAME_TIME_START;
                 msgToAGame.obj = (Integer) gameTime;
                 TrueFalseGame.uiHandlerTF.sendMessage(msgToAGame);
+                break;
+
+            case TrashesGame.MSG_GAME_TIME_NULL:
+                msgToAGame.what = TrashesGame.MSG_GAME_TIME_START;
+                msgToAGame.obj = (Integer) gameTime;
+                TrashesGame.uiHandlerTG.sendMessage(msgToAGame);
+                break;
+
+            case TrashesGame.MSG_GAME_TIME_START:
+                msgToAGame.what = TrashesGame.MSG_GAME_TIME_START;
+                msgToAGame.obj = (Integer) gameTime;
+                TrashesGame.uiHandlerTG.sendMessage(msgToAGame);
+                break;
+
+            case TrashesGame.MSG_REPLACE:
+                msgToAGame.what = TrashesGame.MSG_GAME_TIME_START;
+                TrashesGame.uiHandlerTG.sendMessage(msgToAGame);
                 break;
         }
     }

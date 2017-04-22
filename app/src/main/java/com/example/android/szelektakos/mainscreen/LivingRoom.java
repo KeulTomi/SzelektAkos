@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
 
+import static com.example.android.szelektakos.mainscreen.MainActivity.*;
+
 public class LivingRoom extends Fragment {
 
 
@@ -23,7 +25,7 @@ public class LivingRoom extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.livingroom, container, false);
 
-        MainActivity.currentTrouser = (ImageView) view.findViewById(R.id.trouser);
+        currentTrouser = (ImageView) view.findViewById(R.id.trouser);
 
         return view;
     }
@@ -32,10 +34,10 @@ public class LivingRoom extends Fragment {
     public void onResume() {
 
         if (SzelektAkos.getTrouserToWearRes() == 0) {
-            MainActivity.currentTrouser.setImageResource(R.mipmap.pants00);
+            currentTrouser.setImageResource(R.mipmap.pants00);
         }
         else {
-            MainActivity.currentTrouser.setImageResource(SzelektAkos.getTrouserToWearRes());
+            currentTrouser.setImageResource(SzelektAkos.getTrouserToWearRes());
         }
         super.onResume();
     }

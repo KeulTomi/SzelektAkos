@@ -21,6 +21,8 @@
         <activity android:name=".THG_Web" />
         <activity android:name=".games.PickOneGame" />
         <activity android:name=".games.TrueFalseGame" />
+        <activity android:name=".games.TrashesGame"
+            android:configChanges="orientation|screenSize"/>
         <activity android:name=".games.JumpGameActivity" />
     </application>
 

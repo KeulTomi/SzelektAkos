@@ -3,11 +3,14 @@ package com.example.android.szelektakos.mainscreen;
 /**
  * Created by Tomi on 2017. 03. 23..
  */
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-class Fragment_pager extends FragmentPagerAdapter {
+import static com.example.android.szelektakos.mainscreen.MainActivity.currentFragmentPage;
+
+public class Fragment_pager extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;
 
@@ -19,7 +22,7 @@ class Fragment_pager extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         // MainActivity-ben tároljuk, hogy melyik oldalon áll a felhasználó
-        MainActivity.currentFragmentPage = position;
+        currentFragmentPage = position;
 
         switch (position) {
             case 0:
