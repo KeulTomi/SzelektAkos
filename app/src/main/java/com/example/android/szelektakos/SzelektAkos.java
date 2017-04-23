@@ -21,6 +21,9 @@ import java.util.List;
 public class SzelektAkos extends Application {
 
     public static int gameTime;
+    public static float displayDensity;
+    public static int displayHeight;
+    public static int displayWidth;
     private static int points;
     private static int energy;
     private static int life;
@@ -32,6 +35,9 @@ public class SzelektAkos extends Application {
 
     public static void innitApp(Context context) {
         appContext = context;
+        displayDensity = context.getResources().getDisplayMetrics().density;
+        displayHeight = context.getResources().getDisplayMetrics().heightPixels;
+        displayWidth = context.getResources().getDisplayMetrics().widthPixels;
         getAllPrefs();
     }
 

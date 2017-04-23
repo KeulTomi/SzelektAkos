@@ -21,7 +21,7 @@
         <activity android:name=".THG_Web" />
         <activity android:name=".games.PickOneGame" />
         <activity android:name=".games.TrueFalseGame" />
-        <activity android:name=".games.JumpGameActivity" />
+        <activity android:name=".games.jumpgame.JumpGameActivity" />
     </application>
 
 </manifest>

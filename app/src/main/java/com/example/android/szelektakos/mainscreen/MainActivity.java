@@ -15,9 +15,9 @@ import android.widget.TextView;
 import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
 import com.example.android.szelektakos.THG_Web;
-import com.example.android.szelektakos.games.JumpGameActivity;
 import com.example.android.szelektakos.games.PickOneGame;
 import com.example.android.szelektakos.games.TrueFalseGame;
+import com.example.android.szelektakos.games.jumpgame.JumpGameActivity;
 import com.example.android.szelektakos.shop.ShopActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
