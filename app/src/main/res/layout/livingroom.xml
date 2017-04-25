@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/bed_room"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/bed_room">
+    android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="0dp"
-        android:src="@mipmap/livingroom"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@mipmap/livingroom" />
 
     <ImageView
         android:layout_width="120dp"
         android:layout_height="100dp"
-        android:layout_marginTop="91dp"
-        android:layout_marginRight="39dp"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="39dp"
+        android:layout_marginTop="91dp"
         android:src="@mipmap/thgkft"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/rigthhand"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="120dp"
+        android:src="@mipmap/rigthhand" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/lefthand"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="120dp"
+        android:src="@mipmap/lefthand" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/foot"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="120dp"
+        android:src="@mipmap/foot" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/szelektakosbody"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="120dp"
+        android:src="@mipmap/szelektakosbody" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/trouser"
-        android:src="@mipmap/pants_thg"
-        android:layout_marginTop="120dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:src="@mipmap/pants00" />
 
 
 </RelativeLayout>

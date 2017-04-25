@@ -15,10 +15,10 @@ import android.widget.TextView;
 import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
 import com.example.android.szelektakos.THG_Web;
-import com.example.android.szelektakos.games.JumpGameActivity;
 import com.example.android.szelektakos.games.PickOneGame;
 import com.example.android.szelektakos.games.TrashesGame;
 import com.example.android.szelektakos.games.TrueFalseGame;
+import com.example.android.szelektakos.games.jumpgame.JumpGameActivity;
 import com.example.android.szelektakos.games.WordPuzzle;
 import com.example.android.szelektakos.shop.ShopActivity;
 
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case MSG_UPDATE_ENERGY:
                         energy.setProgress((Integer) msg.obj); // Energia frissítése msg.obj-ben küldött értékkel
-                        energy.getProgress();
                         break;
                     default:
                         // Ha valamilyen más üzenet érkezik, itt lehet lekezelni
