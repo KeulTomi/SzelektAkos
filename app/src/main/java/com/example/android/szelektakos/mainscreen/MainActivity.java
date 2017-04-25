@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Beállítás az elmentett értékekre
         life.setProgress(SzelektAkos.life);
         energy.setProgress(SzelektAkos.energy);
+        energy.getProgress();
 
         //A fő viewpager összeállítása
         pager = (ViewPager) findViewById(R.id.view_pager);
