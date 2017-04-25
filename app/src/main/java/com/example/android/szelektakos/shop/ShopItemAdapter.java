@@ -1,7 +1,9 @@
 package com.example.android.szelektakos.shop;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,17 +63,35 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
     }
 
     @Override
-    public void onClick(View view) {
-        int position = (Integer) view.getTag();
-        Items currentItem = getItem(position);
+    public void onClick(final View view) {
 
-        int itemPrice = currentItem.getPrice();
-        String itemName = currentItem.getName();
+        //show dialog
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Biztosan meg szeretnéd venni?")
+                .setPositiveButton("Megveszem", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-        if (SzelektAkos.decreasePoints(itemPrice)) {
+                        final AlertDialog alert = builder.create();
+                        alert.show();
 
-            SzelektAkos.saveAnInteger(itemName, SzelektAkos.getAnInteger(itemName)+1);
-        }
+                        int position = (Integer) view.getTag();
+                        Items currentItem = getItem(position);
+
+                        int itemPrice = currentItem.getPrice();
+                        String itemName = currentItem.getName();
+
+                        if (SzelektAkos.decreasePoints(itemPrice)) {
+
+                            SzelektAkos.saveAnInteger(itemName, SzelektAkos.getAnInteger(itemName)+1);
+                        }
+                    }
+                });
+
+        builder.setNegativeButton("Mégse", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
 
     }
 }

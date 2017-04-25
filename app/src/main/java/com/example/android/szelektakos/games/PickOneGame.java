@@ -27,6 +27,8 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
 
     public final static int MSG_GAME_TIME_START = 0;
     public final static int MSG_GAME_TIME_NULL = 1;
+    public final static int MSG_PROOGRESS_LIFE = 9;
+    public final static int MSG_PROOGRESS_ENERGY = 10;
     public static Handler uiHandlerPOG;
     public final int GAME_TIME_REFRESHED_TIME = 100;
     //TODO A gombnyomásra ki kell cserélni a képeket.
@@ -100,6 +102,14 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                         gameTimeProgress.setProgress((Integer) msg.obj);
                         break;
 
+                    case MSG_PROOGRESS_LIFE:
+                        lifeProgress.setProgress((Integer) msg.obj);
+                        break;
+
+                    case MSG_PROOGRESS_ENERGY:
+                        energyProgress.setProgress((Integer) msg.obj);
+                        break;
+
                     default:
                         // Ha valamilyen más üzenet érkezik, itt lehet lekezelni
                         break;
@@ -130,6 +140,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                                         public void onClick(DialogInterface dialog, int id) {
                                             //Kilép az activity-ből
                                             SzelektAkos.increasePoints(reachedPointsPOG);
+                                            SzelektAkos.comeBackFromGame = true;
                                             gameTimeStopper.cancel(true);
                                             finish();
                                         }
@@ -141,11 +152,28 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                     }
                 }
             };
+
+            final Runnable lifeProgresser = new Runnable() {
+                @Override
+                public void run() {
+                    SzelektAkos.decreaseInGameProgress(MSG_PROOGRESS_LIFE, "life");
+                }
+            };
+
+            final Runnable energyProgresser = new Runnable() {
+                @Override
+                public void run() {
+                    SzelektAkos.decreaseInGameProgress(MSG_PROOGRESS_ENERGY, "energy");
+                }
+            };
+
             //Képessé tesszük a runnable-t stoppolásra
             ExecutorService threadPoolExecutor = Executors.newSingleThreadExecutor();
             gameTimeStopper = threadPoolExecutor.submit(gameTimer);
 
             // Időzítők beindítása (első futtatás)
+            uiHandlerPOG.post(lifeProgresser);
+            uiHandlerPOG.post(energyProgresser);
             uiHandlerPOG.postDelayed(gameTimer, GAME_TIME_REFRESHED_TIME);
     }
 
@@ -216,6 +244,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
             case R.id.close_POG:
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     SzelektAkos.increasePoints(reachedPointsPOG);
+                    SzelektAkos.comeBackFromGame = true;
                     gameTimeStopper.cancel(true);
                     finish();
                     break;

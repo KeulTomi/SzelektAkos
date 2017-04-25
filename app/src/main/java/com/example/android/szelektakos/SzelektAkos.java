@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.android.szelektakos.games.PickOneGame;
 import com.example.android.szelektakos.games.TrashesGame;
 import com.example.android.szelektakos.games.TrueFalseGame;
+import com.example.android.szelektakos.games.WordPuzzle;
 import com.example.android.szelektakos.mainscreen.MainActivity;
 
 import java.util.ArrayList;
@@ -22,14 +23,17 @@ import java.util.List;
 public class SzelektAkos extends Application {
 
     public static int gameTime;
+    public static int inGameProgress;
+    public static boolean comeBackFromGame = false;
     private static int points;
-    private static int energy;
-    private static int life;
+    public static int energy;
+    public static int life;
     private static int trouserToWear;
     private static List<Integer> avaiableTrousers = new ArrayList<>();
     private static SharedPreferences mSharedPref;
     private static Context appContext;
     private static Handler progressBarHandler = new Handler();
+    public static boolean[] mainBoughtTrousersList = new boolean[6];
 
     public static void innitApp(Context context) {
         appContext = context;
@@ -58,7 +62,7 @@ public class SzelektAkos extends Application {
     public static void changeEnergy (int deltaValue) {
 
         if ( deltaValue <= 0) {
-            energy = (energy + deltaValue <= 0 ? 0 : energy + deltaValue);
+            energy = (energy - deltaValue <= 0 ? 0 : energy + deltaValue);
         }
         else {
             energy = (energy + deltaValue <= 100 ? energy+deltaValue: 100);
@@ -69,7 +73,7 @@ public class SzelektAkos extends Application {
     public static void changeLifeValue(int deltaValue) {
 
         if (deltaValue <= 0) {
-            life = (life + deltaValue >= 0 ? life + deltaValue : 0);
+            life = (life - deltaValue >= 0 ? life + deltaValue : 0);
         }
         else {
             life = (life + deltaValue >= 100 ? 100 : life+deltaValue);
@@ -91,12 +95,32 @@ public class SzelektAkos extends Application {
                 break;
             case MainActivity.MSG_UPDATE_ENERGY:
                 // Üzenet előkészítése energia frissítéséhez
-                msgToMainActivity.what = MainActivity.MSG_UPDATE_LIFE; // Üzenetkód beállítása
+                msgToMainActivity.what = MainActivity.MSG_UPDATE_ENERGY; // Üzenetkód beállítása
                 msgToMainActivity.obj = (Integer) energy; // Küldendő érték beállítása
                 break;
         }
 
         MainActivity.uiHandler.sendMessage(msgToMainActivity); // Üzenet küldése
+    }
+
+    public static void updateProgresbarsInGame (int msg){
+        Message msgToAGame = new Message();
+
+        switch (msg) {
+            case PickOneGame.MSG_PROOGRESS_LIFE:
+
+                msgToAGame.what = PickOneGame.MSG_PROOGRESS_LIFE; //Üzenetkód beállítása
+                msgToAGame.obj = (Integer) inGameProgress;
+                PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
+                break;
+
+            case PickOneGame.MSG_PROOGRESS_ENERGY:
+
+                msgToAGame.what = PickOneGame.MSG_PROOGRESS_ENERGY; //Üzenetkód beállítása
+                msgToAGame.obj = (Integer) inGameProgress;
+                PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
+                break;
+        }
     }
 
     public static void updateGameTime(int msg) {
@@ -141,10 +165,18 @@ public class SzelektAkos extends Application {
                 TrashesGame.uiHandlerTG.sendMessage(msgToAGame);
                 break;
 
-            case TrashesGame.MSG_REPLACE:
-                msgToAGame.what = TrashesGame.MSG_GAME_TIME_START;
-                TrashesGame.uiHandlerTG.sendMessage(msgToAGame);
+            case WordPuzzle.MSG_GAME_TIME_START:
+                msgToAGame.what = WordPuzzle.MSG_GAME_TIME_START;
+                msgToAGame.obj = (Integer) gameTime;
+                WordPuzzle.uiHandlerWP.sendMessage(msgToAGame);
                 break;
+
+            case WordPuzzle.MSG_GAME_TIME_NULL:
+                msgToAGame.what = WordPuzzle.MSG_GAME_TIME_NULL;
+                msgToAGame.obj = (Integer) gameTime;
+                WordPuzzle.uiHandlerWP.sendMessage(msgToAGame);
+                break;
+
         }
     }
 
@@ -156,6 +188,20 @@ public class SzelektAkos extends Application {
     public static void setGameTimeNull (int msg) {
         gameTime = 0;
         updateGameTime(msg);
+    }
+
+    public static void decreaseInGameProgress (int msg, String progressName) {
+        switch (progressName){
+            case "energy":
+                inGameProgress = MainActivity.energy.getProgress() - 5;
+                updateProgresbarsInGame(msg);
+                break;
+            case "life":
+                inGameProgress = MainActivity.life.getProgress() - 5;
+                updateProgresbarsInGame(msg);
+                break;
+        }
+
     }
 
     public static int getLife() {
@@ -178,14 +224,14 @@ public class SzelektAkos extends Application {
     public static void saveABoolean (String key, boolean value) {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = mSharedPref.edit();
-        editor.putBoolean(key, value);
+        editor.putString(key, "hord");
         editor.apply();
     }
 
-    public static boolean getABoolean (String key) {
+    public static String getABoolean (String key) {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
-        boolean returnInt = mSharedPref.getBoolean(key, false);
-        return returnInt;
+        String returnStr = mSharedPref.getString(key, null);
+        return returnStr;
     }
 
     public static void saveAnInteger (String key, int value) {
@@ -214,9 +260,13 @@ public class SzelektAkos extends Application {
     public static void getAllPrefs () {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
         points = 500;//mSharedPref.getInt("points", 0);
-        life = 100;//mSharedPref.getInt("life", 100);
-        energy = 100;//mSharedPref.getInt("life", 100);
-        trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants00);
+        life = mSharedPref.getInt("life", 100);
+        energy = mSharedPref.getInt("life", 100);
+        trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants_thg);
+    }
+
+    public static void saveTroousersToMainData (boolean[] classBoughtTrousersList){
+        mainBoughtTrousersList = classBoughtTrousersList;
     }
 
 
@@ -232,4 +282,5 @@ public class SzelektAkos extends Application {
 //        ArrayAdapter<E> listAdapter = new ArrayAdapter<E>(this,listItems);
 //        return listAdapter;
 //    }
+
 }

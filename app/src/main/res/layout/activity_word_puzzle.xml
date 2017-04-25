@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.szelektakos.games.WordPuzzle">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@mipmap/quiz_back" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"/>
+
+    <ProgressBar
+        android:id="@+id/progress_energy_WP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="110dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="100"
+        android:progressBackgroundTint="@android:color/white"
+        android:progressDrawable="@drawable/progress_bar"
+        android:progressTint="@color/colorPrimary" />
+
+    <ProgressBar
+        android:id="@+id/progress_life_WP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="110dp"
+        android:layout_height="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="100"
+        android:progressBackgroundTint="@android:color/white"
+        android:progressDrawable="@drawable/progress_bar" />
+
+    <ImageView
+        android:id="@+id/header_WP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitStart"
+        android:src="@mipmap/head2_crop" />
+
+    <TextView
+        android:id="@+id/reached_points_txt_WP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="0"
+        android:textColor="@android:color/white"
+        android:textSize="22sp" />
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/energy_picto" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="21dp"
+        android:src="@mipmap/food_picto" />
+
+    <TextView
+        android:id="@+id/question_txt_WP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="Kik használták először a papírt?"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:id="@+id/game_time_progress_WP"
+        android:layout_alignParentBottom="true"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/game_time_progress"
+        android:progress="500"
+        android:max="500"/>
+
+    <ImageView
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:id="@+id/close_WP"
+        android:src="@drawable/ic_close"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/backs_layout_third_line"
+        android:layout_above="@id/game_time_progress_WP"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/seventh_letter_back"
+            android:src="@mipmap/letters_back" />
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/eighth_letter_back"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/ninth_letter_back"
+            android:src="@mipmap/letters_back"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/letters_layout_third_line"
+        android:layout_above="@id/game_time_progress_WP"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/seventh_letter"
+            android:text="a"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/eighth_letter"
+            android:text="b"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/ninth_letter"
+            android:text="c"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/backs_layout_second_line"
+        android:layout_above="@id/backs_layout_third_line"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/fourth_letter_back"
+            android:src="@mipmap/letters_back" />
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/fifth_letter_back"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/sixth_letter_back"
+            android:src="@mipmap/letters_back"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/letters_layout_second_line"
+        android:layout_above="@id/letters_layout_third_line"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/fourth_letter"
+            android:text="a"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/fifth_letter"
+            android:text="b"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/sixth_letter"
+            android:text="c"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/backs_layout_first_line"
+        android:layout_above="@id/backs_layout_second_line"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/first_letter_back"
+            android:src="@mipmap/letters_back" />
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/second_letter_back"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:id="@+id/third_letter_back"
+            android:src="@mipmap/letters_back"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/letters_layout_first_line"
+        android:layout_above="@id/letters_layout_second_line"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/first_letter"
+            android:text="a"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/second_letter"
+            android:text="b"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="85dp"
+            android:id="@+id/third_letter"
+            android:text="c"
+            android:textAlignment="center"
+            android:textSize="50sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:id="@+id/guess_letters_layout_back"
+        android:gravity="center"
+        android:layout_above="@id/backs_layout_first_line">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_first_letter_back"
+            android:visibility="invisible"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_second_letter_back"
+            android:visibility="invisible"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_third_letter_back"
+            android:visibility="invisible"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_fourth_letter_back"
+            android:visibility="invisible"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_fifth_letter_back"
+            android:visibility="invisible"
+            android:src="@mipmap/letters_back"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_sixth_letter_back"
+            android:visibility="invisible"
+            android:src="@mipmap/letters_back"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="45dp"
+        android:gravity="center_vertical"
+        android:id="@+id/guess_letters_layout_plc"
+        android:layout_above="@id/backs_layout_first_line">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:id="@+id/guess_first_letter_plc"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible"
+            android:layout_marginLeft="50dp"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:id="@+id/guess_second_letter_plc"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible"
+            android:layout_marginLeft="40dp"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:id="@+id/guess_third_letter_plc"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible"
+            android:layout_marginLeft="40dp"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:id="@+id/guess_fourth_letter_plc"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible"
+            android:layout_marginLeft="40dp"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:id="@+id/guess_fifth_letter_plc"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible"
+            android:layout_marginLeft="40dp"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:id="@+id/guess_sixth_letter_plc"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible"
+            android:layout_marginLeft="40dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="45dp"
+        android:gravity="center_vertical"
+        android:id="@+id/guess_letters_layout"
+        android:layout_above="@id/backs_layout_first_line">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_first_letter"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_second_letter"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_third_letter"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_fourth_letter"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_fifth_letter"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:id="@+id/guess_sixth_letter"
+            android:textAlignment="center"
+            android:textSize="35sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

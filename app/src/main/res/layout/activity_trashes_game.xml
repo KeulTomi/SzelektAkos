@@ -4,34 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.szelektakos.Games.TrashesGame">
-
-    <ProgressBar
-        android:layout_width="121dp"
-        android:layout_height="25dp"
-        android:id="@+id/progress_energy_TG"
-        android:progressDrawable="@drawable/progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progressTint="@color/colorPrimary"
-        android:progressBackgroundTint="@android:color/white"
-        android:progress="100"
-        android:max="100"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="35dp"/>
-
-    <ProgressBar
-        android:layout_width="121dp"
-        android:layout_height="25dp"
-        android:id="@+id/progress_life_TG"
-        android:layout_alignParentRight="true"
-        android:progressDrawable="@drawable/progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progressTint="@color/colorPrimary"
-        android:progressBackgroundTint="@android:color/white"
-        android:progress="100"
-        android:max="100"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="35dp"/>
+    tools:context="com.example.android.szelektakos.games.TrashesGame">
 
     <ImageView
         android:layout_width="match_parent"
@@ -44,6 +17,33 @@
         android:layout_height="35dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/white"/>
+
+    <ProgressBar
+        android:layout_width="110dp"
+        android:layout_height="25dp"
+        android:id="@+id/progress_energy_TG"
+        android:progressDrawable="@drawable/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressTint="@color/colorPrimary"
+        android:progressBackgroundTint="@android:color/white"
+        android:progress="100"
+        android:max="100"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"/>
+
+    <ProgressBar
+        android:layout_width="110dp"
+        android:layout_height="25dp"
+        android:id="@+id/progress_life_TG"
+        android:layout_alignParentRight="true"
+        android:progressDrawable="@drawable/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressTint="@color/colorPrimary"
+        android:progressBackgroundTint="@android:color/white"
+        android:progress="100"
+        android:max="100"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"/>
 
     <ImageView
         android:layout_width="wrap_content"

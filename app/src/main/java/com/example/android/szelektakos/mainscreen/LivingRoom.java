@@ -34,7 +34,7 @@ public class LivingRoom extends Fragment {
     public void onResume() {
 
         if (SzelektAkos.getTrouserToWearRes() == 0) {
-            currentTrouser.setImageResource(R.mipmap.pants00);
+            currentTrouser.setImageResource(R.mipmap.pants_thg);
         }
         else {
             currentTrouser.setImageResource(SzelektAkos.getTrouserToWearRes());

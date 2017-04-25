@@ -1,7 +1,9 @@
 package com.example.android.szelektakos.shop;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,9 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
 
     TextView buyItem;
     private Activity activity;
+    ItemsForTrouser currentItem;
+    public static boolean[] isBoughtTrouser;
+    public int positionManual;
 
     TrouserAdapter(Activity context, ArrayList<ItemsForTrouser> items) {
         super(context, 0, items);
@@ -41,9 +46,19 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
 
             ItemsForTrouser currentItem = getItem(position);
 
-            if (SzelektAkos.getABoolean(currentItem.getName())) {
-                buyItem.setText("hord");
+            ItemsForTrouser.innitItem(position);
+
+            positionManual = position;
+
+
+            isBoughtTrouser = SzelektAkos.mainBoughtTrousersList;
+            isBoughtTrouser[0] = true;
+
+            if(isBoughtTrouser[position] == false) {
+                buyItem.setText("megvesz");
             }
+
+            findTheBought(position, buyItem);
 
             lifeValue.setVisibility(View.INVISIBLE);
             buyItem.setTag(position);
@@ -52,7 +67,8 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
 
         }
 
-        ItemsForTrouser currentItem = getItem(position);
+        currentItem = getItem(position);
+
 
         TextView foodName = (TextView) listItemView.findViewById(R.id.shop_item_name);
         foodName.setText(currentItem.getName());
@@ -67,21 +83,67 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
 
-        int position = (Integer) view.getTag();
-        ItemsForTrouser currentItem = getItem(position);
+        if (isBoughtTrouser[positionManual] == false) {
+            //show dialog
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Biztosan meg szeretnéd venni?")
+                    .setPositiveButton("Megveszem", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
-        if (buyItem.getText() == "megvesz") {
+                            int position = (Integer) view.getTag();
+                            final ItemsForTrouser currentItem = getItem(position);
 
-            int itemPrice = currentItem.getPrice();
-            String itemName = currentItem.getName();
+                            int itemPrice = currentItem.getPrice();
+                            String itemName = currentItem.getName();
 
-            if (SzelektAkos.decreasePoints(itemPrice)) {
+                            if (SzelektAkos.decreasePoints(itemPrice)) {
 
-                SzelektAkos.saveABoolean(itemName, true);
-            }
+                                isBoughtTrouser[position] = true;
+                                buyItem.setText("hord");
+                            }
+                            return;
+
+
+                        }
+                    });
+
+            builder.setNegativeButton("Mégse", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            final AlertDialog alert = builder.create();
+            alert.show();
         }
-        else SzelektAkos.changeTrouser(currentItem.getPicture());
+        else{
+            //show dialog
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Biztosan fel szeretnéd venni ezt a nadrágot?")
+                    .setPositiveButton("Felveszem", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            SzelektAkos.changeTrouser(currentItem.getPicture());
+                        }
+                    });
+
+            builder.setNegativeButton("Mégse", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            final AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
+
+    public void findTheBought (int position, TextView buyItem1){
+
+        if (isBoughtTrouser[position] == true) {
+            buyItem1.setText("hord");
+        }
+    }
+
 }

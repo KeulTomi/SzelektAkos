@@ -16,11 +16,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
+import com.example.android.szelektakos.mainscreen.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,11 +56,15 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
     public static ArrayList<Integer> dinamicTrashPlaceList = new ArrayList<>();
     public final static int MSG_GAME_TIME_START = 4;
     public final static int MSG_GAME_TIME_NULL = 5;
+    public final static int MSG_PROOGRESS_LIFE = 11;
+    public final static int MSG_PROOGRESS_ENERGY = 12;
     public final static int MSG_REPLACE = 6;
     final int GAME_TIME_REFRESHED_TIME = 100;
     public static Handler uiHandlerTG;
     private Future gameTimeStopper;
     private ProgressBar gameTimeProgress;
+    private ProgressBar lifeProgress;
+    private ProgressBar energyProgress;
 
 
     @Override
@@ -79,6 +83,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
         garbage = (ImageView) findViewById(R.id.garbage);
         reachedPointsTxt = (TextView) findViewById(R.id.reached_points_txt_TG);
         gameTimeProgress = (ProgressBar) findViewById(R.id.game_time_progress_TG);
+        lifeProgress = (ProgressBar) findViewById(R.id.progress_life_TG);
+        energyProgress = (ProgressBar) findViewById(R.id.progress_energy_TG);
 
         firstTrash.setOnClickListener(this);
         secondTrash.setOnClickListener(this);
@@ -88,11 +94,15 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
         sixthTrash.setOnClickListener(this);
         closeTg.setOnClickListener(this);
 
+        //A két progressbarból levonunk 5-öt
+        lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
+        energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
+
         //A telefon rezgetéséhez szükséges vibrátor
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         //Felépítjük a kukák helyét és hozzátartozó képeket plussz az innitTrashes()-ben kiszámítjuk a jó választ
-        refreshTrashPlaces(0,0);
+        refreshTrashPlaces();
 
         // Activity üzenetkezelője
         uiHandlerTG = new Handler() {
@@ -109,10 +119,13 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                         gameTimeProgress.setProgress((Integer) msg.obj);
                         break;
 
-                    case MSG_REPLACE:
-                        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) garbage.getLayoutParams();
-                        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
-                        garbage.setLayoutParams(lp);
+                    case MSG_PROOGRESS_LIFE:
+                        lifeProgress.setProgress((Integer) msg.obj);
+                        break;
+
+                    case MSG_PROOGRESS_ENERGY:
+                        energyProgress.setProgress((Integer) msg.obj);
+                        break;
 
                     default:
                         // Ha valamilyen más üzenet érkezik, itt lehet lekezelni
@@ -144,6 +157,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Kilép az activity-ből
                                         SzelektAkos.increasePoints(reachedPointsTG);
+                                        SzelektAkos.comeBackFromGame = true;
                                         gameTimeStopper.cancel(true);
                                         finish();
                                     }
@@ -155,11 +169,28 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                 }
             }
         };
+
+        final Runnable lifeProgresser = new Runnable() {
+            @Override
+            public void run() {
+                SzelektAkos.decreaseInGameProgress(MSG_PROOGRESS_LIFE, "life");
+            }
+        };
+
+        final Runnable energyProgresser = new Runnable() {
+            @Override
+            public void run() {
+                SzelektAkos.decreaseInGameProgress(MSG_PROOGRESS_ENERGY, "energy");
+            }
+        };
+
         //Képessé tesszük a runnable-t stoppolásra
         ExecutorService threadPoolExecutor = Executors.newSingleThreadExecutor();
         gameTimeStopper = threadPoolExecutor.submit(gameTimer);
 
         // Időzítők beindítása (első futtatás)
+        uiHandlerTG.post(lifeProgresser);
+        uiHandlerTG.post(energyProgresser);
         uiHandlerTG.postDelayed(gameTimer, GAME_TIME_REFRESHED_TIME);
     }
 
@@ -169,128 +200,130 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
         switch (view.getId()){
 
             case R.id.first_trash:
-                float correctTrashX = firstTrash.getX();
-                float correctTrashY = firstTrash.getY();
 
                     if (dinamicTrashPlaceList.get(0) == mCorrectPicture) {
                         reachedPointsTG += 1;
                         reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                         dinamicTrashPlaceList.clear();
 
+                        float correctTrashX = firstTrash.getX();
+                        float correctTrashY = firstTrash.getY();
 
                         //Animáció indítása
                         garbageAnimator(correctTrashX,correctTrashY);
                     } else {
                         mVibrator.vibrate(300);
                         dinamicTrashPlaceList.clear();
-                        refreshTrashPlaces(correctTrashX, correctTrashY);
+                        refreshTrashPlaces();
                     }
                 break;
 
             case R.id.second_trash:
-                float correctTrash2X = secondTrash.getX();
-                float correctTrash2Y = secondTrash.getY();
 
                 if (dinamicTrashPlaceList.get(1) == mCorrectPicture) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
-                    dinamicTrashPlaceList.clear();
+                    float correctTrashX = secondTrash.getX();
+                    float correctTrashY = secondTrash.getY();
 
                     //Animáció indítása
-                    garbageAnimator(correctTrash2X,correctTrash2Y);
+                    garbageAnimator(correctTrashX,correctTrashY);
                 }
                 else {
                     mVibrator.vibrate(300);
                     dinamicTrashPlaceList.clear();
-                    refreshTrashPlaces(correctTrash2X, correctTrash2Y);
+                    refreshTrashPlaces();
                 }
                 break;
 
             case R.id.third_trash:
-                float correctTrash3X = secondTrash.getX();
-                float correctTrash3Y = secondTrash.getY();
 
                 if (dinamicTrashPlaceList.get(2) == mCorrectPicture) {
                     //Plussz pont hozzáadása az elért pontokhoz
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
+                    dinamicTrashPlaceList.clear();
+                    float correctTrashX = thirdTrash.getX();
+                    float correctTrashY = thirdTrash.getY();
 
                     //Animáció indítása
-                    garbageAnimator(correctTrash3X,correctTrash3Y);
+                    garbageAnimator(correctTrashX,correctTrashY);
                 }
                 else {
                     mVibrator.vibrate(300);
                     dinamicTrashPlaceList.clear();
-                    refreshTrashPlaces(correctTrash3X, correctTrash3Y);
+                    refreshTrashPlaces();
                 }
                 break;
 
             case R.id.fourth_trash:
-                float correctTrash4X = fourthTrash.getX();
-                float correctTrash4Y = fourthTrash.getY();
 
                 if (dinamicTrashPlaceList.get(3) == mCorrectPicture) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
+                    float correctTrashX = fourthTrash.getX();
+                    float correctTrashY = fourthTrash.getY();
+
 
                     //Animáció indítása
-                    garbageAnimator(correctTrash4X,correctTrash4Y);
+                    garbageAnimator(correctTrashX,correctTrashY);
                 }
                 else {
                     mVibrator.vibrate(300);
                     dinamicTrashPlaceList.clear();
-                    refreshTrashPlaces(correctTrash4X, correctTrash4Y);
+                    refreshTrashPlaces();
                 }
                 break;
 
             case R.id.fifth_trash:
-                float correctTrash5X = fifthTrash.getX();
-                float correctTrash5Y = fifthTrash.getY();
 
                 if (dinamicTrashPlaceList.get(4) == mCorrectPicture) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
+                    float correctTrashX = fifthTrash.getX();
+                    float correctTrashY = fifthTrash.getY();
 
                     //Animáció indítása
-                    garbageAnimator(correctTrash5X,correctTrash5Y);
+                    garbageAnimator(correctTrashX,correctTrashY);
                 }
                 else {
                     mVibrator.vibrate(300);
                     dinamicTrashPlaceList.clear();
-                    refreshTrashPlaces(correctTrash5X, correctTrash5Y);
+                    refreshTrashPlaces();
                 }
                 break;
 
             case R.id.sixth_trash:
-                float correctTrash6X = sixthTrash.getX();
-                float correctTrash6Y = sixthTrash.getY();
 
                 if (dinamicTrashPlaceList.get(5) == mCorrectPicture) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
+                    float correctTrashX = sixthTrash.getX();
+                    float correctTrashY = sixthTrash.getY();
 
                     //Animáció indítása
-                    garbageAnimator(correctTrash6X,correctTrash6Y);
+                    garbageAnimator(correctTrashX,correctTrashY);
                 }
                 else {
                     mVibrator.vibrate(300);
                     dinamicTrashPlaceList.clear();
-                    refreshTrashPlaces(correctTrash6X, correctTrash6Y);
+                    refreshTrashPlaces();
                 }
                 break;
 
             case R.id.close_TG:
                 SzelektAkos.increasePoints(reachedPointsTG);
+                SzelektAkos.comeBackFromGame = true;
                 gameTimeStopper.cancel(true);
                 finish();
         }
     }
 
-    public void refreshTrashPlaces (float replaceX, float replaceY) {
+    public void refreshTrashPlaces () {
         Random r = new Random();
         trashList = new ImageView[]{firstTrash, secondTrash, thirdTrash, fourthTrash, fifthTrash, sixthTrash};
         dinamicMipMapList = new ArrayList<Integer>(Arrays.asList(mipmapList));
@@ -310,26 +343,12 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
         innitTrashes();
         //Beallítjuk a követező szemetet és az ImageView-t visszarakjuk középre
         garbage.setImageResource(mCurrentGarbage);
-        final Runnable replacer = new Runnable() {
-            @Override
-            public void run() {
-                if(!((Activity) TrashesGame.this).isFinishing())
-                {
-                    SzelektAkos.updateGameTime(MSG_REPLACE);
-                }
-            }
-        };
-        if (replaceX!=0) uiHandlerTG.postDelayed(replacer, 1);
-//        if (replaceX != 0 || replaceY !=0) {
-//            ObjectAnimator animationX = ObjectAnimator.ofFloat(garbage, "x", 200);
-//            ObjectAnimator animationY = ObjectAnimator.ofFloat(garbage, "y", 200);
-//            animationX.setDuration(1000);
-//            animationY.setDuration(1000);
-//            animationX.setRepeatMode(ValueAnimator.REVERSE);
-//            animationY.setRepeatMode(ValueAnimator.REVERSE);
-//            animationX.start();
-//            animationY.start();
-//        }
+
+        if (reachedPointsTG > 0) {
+            garbage.setX(250);
+            garbage.setY(500);
+        }
+
     }
 
     public void garbageAnimator(final float correctTrashX, final float correctTrashY) {
@@ -342,7 +361,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onAnimationEnd(Animator animation) {
                 // Újra felállítása a layoutnak
-                refreshTrashPlaces(correctTrashX , correctTrashY );
+                refreshTrashPlaces();
             }
         });
         animationX.setRepeatMode(ValueAnimator.REVERSE);

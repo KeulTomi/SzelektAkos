@@ -19,6 +19,7 @@ import com.example.android.szelektakos.games.JumpGameActivity;
 import com.example.android.szelektakos.games.PickOneGame;
 import com.example.android.szelektakos.games.TrashesGame;
 import com.example.android.szelektakos.games.TrueFalseGame;
+import com.example.android.szelektakos.games.WordPuzzle;
 import com.example.android.szelektakos.shop.ShopActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ProgressBar energy;
     public static int currentFragmentPage;
     public static Handler uiHandler; // MainActivity üzenetkezelője (onCreate-ben van definiálva)
-    public final int ENERGY_REFRESH_PERIOD = 500; // Energiaszint frissítési periódusa ezredmásodpercben
+    public final int ENERGY_REFRESH_PERIOD = 30 * 1000; // Energiaszint frissítési periódusa ezredmásodpercben
     public final int LIFE_REFRESH_PERIOD = 30 * 1000; // Életerő frissítési periódusa ezredmásodpercben
     private ViewPager pager;
     private ImageView rightArrowOfTitle;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case MSG_UPDATE_ENERGY:
                         energy.setProgress((Integer) msg.obj); // Energia frissítése msg.obj-ben küldött értékkel
+                        energy.getProgress();
                         break;
                     default:
                         // Ha valamilyen más üzenet érkezik, itt lehet lekezelni
@@ -76,6 +78,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recentlyPlaceTitle = (TextView) findViewById(R.id.recently_place);
         rightArrowOfTitle = (ImageView) findViewById(R.id.right_arrow);
         leftArrowOfTitle = (ImageView) findViewById(R.id.left_arrow);
+
+        //A kezdő oldalt a lapszámláló egyesként jelzo ezért hogy ne nullával számoljon be kell állíani 1-re
+        currentFragmentPage = 1;
+
+        //Beállítás az elmentett értékekre
+        life.setProgress(SzelektAkos.life);
+        energy.setProgress(SzelektAkos.energy);
 
         //A fő viewpager összeállítása
         pager = (ViewPager) findViewById(R.id.view_pager);
@@ -98,15 +107,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 switch (position){
                     case 0:
+                        currentFragmentPage = position;
                         recentlyPlaceTitle.setText("halószoba");
                         leftArrowOfTitle.setVisibility(View.INVISIBLE);
                         break;
                     case 1:
+                        currentFragmentPage = position;
                         recentlyPlaceTitle.setText("nappali");
                         leftArrowOfTitle.setVisibility(View.VISIBLE);
                         rightArrowOfTitle.setVisibility(View.VISIBLE);
                         break;
                     case 2:
+                        currentFragmentPage = position;
                         recentlyPlaceTitle.setText("konyha");
                         rightArrowOfTitle.setVisibility(View.INVISIBLE);
                         break;
@@ -140,51 +152,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rightArrowOfTitle.setOnClickListener(this);
         leftArrowOfTitle.setOnClickListener(this);
 
-//        // Energiaszint időzítő futtatható kódja, ez fut le minden időzítés után
-//        Runnable energyTimer = new Runnable() {
-//            @Override
-//            public void run() {
-//                switch (currentFragmentPage) {
-//                    case 0:
-//                        // Hálószobára lapozott, energiaszint növekszik
-//                        SzelektAkos.changeEnergy(1);
-//                        break;
-//                    case 1:
-//                    case 2:
-//                        // Konyhára vagy nappalira lapozott, energiaszint csökken
-//                        SzelektAkos.changeEnergy(-1);
-//                        break;
-//                }
-//                // Saját magát hívja késleltetés után
-//                uiHandler.postDelayed(this, ENERGY_REFRESH_PERIOD);
-//            }
-//        };
+        // Energiaszint időzítő futtatható kódja, ez fut le minden időzítés után
+        Runnable energyTimer = new Runnable() {
+            @Override
+            public void run() {
+                switch (currentFragmentPage) {
+                    case 0:
+                        // Hálószobára lapozott, energiaszint növekszik
+                        SzelektAkos.changeEnergy(1);
+                        break;
+                    case 1:
+                        // Nappalira lapozott, energiaszint csökken
+                        SzelektAkos.changeEnergy(-1);
+                    case 2:
+                        // Konyhára lapozott, energiaszint csökken
+                        SzelektAkos.changeEnergy(-1);
+                        break;
+                }
+                // Saját magát hívja késleltetés után
+                uiHandler.postDelayed(this, ENERGY_REFRESH_PERIOD);
+            }
+        };
 
-//        // Életerő időzítő futtatható kódja, ez fut le minden időzítés után
-//        final Runnable lifeTimer = new Runnable() {
-//            @Override
-//            public void run() {
-//                // Életerő csökkentése
-//                SzelektAkos.changeLifeValue(-1);
-//                // Saját magát hívja késleltetés után
-//                uiHandler.postDelayed(this, LIFE_REFRESH_PERIOD);
-//            }
-//        };
-//
-//        // Időzítők beindítása (első futtatás)
-//        uiHandler.postDelayed(energyTimer, ENERGY_REFRESH_PERIOD);
-//        uiHandler.postDelayed(lifeTimer, LIFE_REFRESH_PERIOD);
+        // Életerő időzítő futtatható kódja, ez fut le minden időzítés után
+        final Runnable lifeTimer = new Runnable() {
+            @Override
+            public void run() {
+                // Életerő csökkentése
+                SzelektAkos.changeLifeValue(-1);
+                // Saját magát hívja késleltetés után
+                uiHandler.postDelayed(this, LIFE_REFRESH_PERIOD);
+            }
+        };
+
+        // Időzítők beindítása (első futtatás)
+        uiHandler.postDelayed(energyTimer, ENERGY_REFRESH_PERIOD);
+        uiHandler.postDelayed(lifeTimer, LIFE_REFRESH_PERIOD);
    }
 
     @Override
     protected void onResume() {
         userPointsText.setText(SzelektAkos.getPoints());
+
+        if (SzelektAkos.comeBackFromGame == true) {
+            SzelektAkos.changeLifeValue(-5);
+            SzelektAkos.changeEnergy(-5);
+            SzelektAkos.comeBackFromGame = false;
+        }
         super.onResume();
     }
 
     @Override
     protected void onDestroy() {
         //TODO Le kell menteni a pontot itt a shop tartalmát azt a shopban.
+        SzelektAkos.energy = energy.getProgress();
+        SzelektAkos.life = life.getProgress();
         SzelektAkos.saveAllPrefs();
         super.onDestroy();
     }
@@ -220,6 +242,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.words_game:
+                Intent playWP = new Intent(this, WordPuzzle.class);
+                startActivity(playWP);
+                break;
 
             case R.id.jumping_game:
                 Intent playJump = new Intent(this, JumpGameActivity.class);

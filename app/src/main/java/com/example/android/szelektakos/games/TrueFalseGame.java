@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
+import com.example.android.szelektakos.mainscreen.MainActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,10 +27,14 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
 
     public final static int MSG_GAME_TIME_START = 2;
     public final static int MSG_GAME_TIME_NULL = 3;
+    public final static int MSG_PROOGRESS_LIFE = 13;
+    public final static int MSG_PROOGRESS_ENERGY = 14;
     public static Handler uiHandlerTF;
     private static LinearLayout mTrue;
     private static LinearLayout mFalse;
     private static ProgressBar gameTimeProgressTF;
+    private ProgressBar lifeProgress;
+    private ProgressBar energyProgress;
     private static TextView reachedPointsTxtTF;
     private static TextView questionTxtTF;
     private static ImageView closeTFG;
@@ -51,11 +56,17 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
         reachedPointsTxtTF = (TextView) findViewById(R.id.reached_points_txt_TFG);
         questionTxtTF = (TextView) findViewById(R.id.question_txt_TFG);
         closeTFG = (ImageView) findViewById(R.id.close_TFG);
+        lifeProgress = (ProgressBar) findViewById(R.id.progress_life_TFG);
+        energyProgress = (ProgressBar) findViewById(R.id.progress_energy_TFG);
 
         //OnClickListener a két igaz - hamis layout-ra
         mTrue.setOnClickListener(this);
         mFalse.setOnClickListener(this);
         closeTFG.setOnClickListener(this);
+
+        //A két progressbarokból levonunk 5-öt
+        lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
+        energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
 
         //Megkapjuk a kérdést és kiíratjuk
         getTheCurrentQuestion();
@@ -76,6 +87,14 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
 
                     case MSG_GAME_TIME_NULL:
                         gameTimeProgressTF.setProgress((Integer) msg.obj);
+                        break;
+
+                    case MSG_PROOGRESS_LIFE:
+                        lifeProgress.setProgress((Integer) msg.obj);
+                        break;
+
+                    case MSG_PROOGRESS_ENERGY:
+                        energyProgress.setProgress((Integer) msg.obj);
                         break;
 
                     default:
@@ -111,7 +130,8 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Kilép az activity-ből
                                         SzelektAkos.increasePoints(reachedPointsTF);
-                                    gameTimeStopper.cancel(true);
+                                        SzelektAkos.comeBackFromGame = true;
+                                        gameTimeStopper.cancel(true);
                                         uiHandlerTF.removeCallbacksAndMessages(gameTimer);
                                         finish();
                                     }
@@ -123,11 +143,28 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
                 }
             }
         };
+
+        final Runnable lifeProgresser = new Runnable() {
+            @Override
+            public void run() {
+                SzelektAkos.decreaseInGameProgress(MSG_PROOGRESS_LIFE, "life");
+            }
+        };
+
+        final Runnable energyProgresser = new Runnable() {
+            @Override
+            public void run() {
+                SzelektAkos.decreaseInGameProgress(MSG_PROOGRESS_ENERGY, "energy");
+            }
+        };
+
         //Képessé tesszük a runnable-t stoppolásra
         ExecutorService threadPoolExecutor = Executors.newSingleThreadExecutor();
         gameTimeStopper = threadPoolExecutor.submit(gameTimer);
 
         // Időzítők beindítása (első futtatás)
+        uiHandlerTF.post(lifeProgresser);
+        uiHandlerTF.post(energyProgresser);
         uiHandlerTF.postDelayed(gameTimer, GAME_TIME_REFRESHED_TIME);
     }
 
@@ -164,6 +201,7 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
 
             case R.id.close_TFG:
                     SzelektAkos.increasePoints(reachedPointsTF);
+                    SzelektAkos.comeBackFromGame = true;
                     gameTimeStopper.cancel(true);
                     uiHandlerTF.removeCallbacksAndMessages(gameTimer);
                     finish();

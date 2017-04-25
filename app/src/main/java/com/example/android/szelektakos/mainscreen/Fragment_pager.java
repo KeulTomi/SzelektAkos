@@ -8,8 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import static com.example.android.szelektakos.mainscreen.MainActivity.currentFragmentPage;
-
 public class Fragment_pager extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;
@@ -21,8 +19,6 @@ public class Fragment_pager extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // MainActivity-ben tároljuk, hogy melyik oldalon áll a felhasználó
-        currentFragmentPage = position;
 
         switch (position) {
             case 0:
@@ -38,7 +34,6 @@ public class Fragment_pager extends FragmentPagerAdapter {
                 return null;
 
         }
-
     }
 
     @Override

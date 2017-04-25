@@ -91,7 +91,7 @@
     <ProgressBar
         android:id="@+id/progress_energy"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="121dp"
+        android:layout_width="110dp"
         android:layout_height="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
@@ -104,7 +104,7 @@
     <ProgressBar
         android:id="@+id/progress_life"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="121dp"
+        android:layout_width="110dp"
         android:layout_height="25dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="70dp">
 
         <ImageView
             android:id="@+id/left_arrow"

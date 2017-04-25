@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.szelektakos.R;
+import com.example.android.szelektakos.SzelektAkos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +71,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
 
             case R.id.close_shop:
+                SzelektAkos.saveTroousersToMainData(TrouserAdapter.isBoughtTrouser);
                 finish();
                 break;
 
