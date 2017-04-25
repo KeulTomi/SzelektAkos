@@ -434,7 +434,7 @@ class GameThread extends Thread {
                 JUMPMAN_XPOS,
                 BASE_PLATFORM_YPOS - mJumpMan.getHeight());
 
-        JUMPMAN_UPPER_LIMIT_YPOS = UPPER_PLATFORM_YPOS - mJumpMan.getHeight() - 3 * mUpperPlatform.getHeight();
+        JUMPMAN_UPPER_LIMIT_YPOS = 0; //UPPER_PLATFORM_YPOS - mJumpMan.getHeight() - 3 * mUpperPlatform.getHeight();
         JUMPMAN_BOTTOM_LIMIT_YPOS = (int) (BASE_PLATFORM_YPOS - mJumpMan.getHeight());
         mJumpMan.setPosBottomLimit(JUMPMAN_BOTTOM_LIMIT_YPOS);
         mJumpMan.setPosUpperLimit(JUMPMAN_UPPER_LIMIT_YPOS);

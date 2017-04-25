@@ -12,9 +12,10 @@ import android.os.Handler;
 
 public class JumpMan {
 
-    private final int JUMPMAN_ANIMATION_CYCLE = 25; // Az ugró ember animációjának frissítési ciklusa
-    private final int JUMPMAN_JUMP_SPEED = 10; // Az ugró ember animációjának frissítési ciklusa
-    private final int JUMPMAN_ELEVATION_STEP = 20; // Egy frissítési ciklusban hány pixelt emelkedjen vagy csökkenjen
+    private final int FOOT_ANIMATION_CYCLE = 25; // Lábmozgás animáció frissítési ciklusa
+    private final int JUMP_REFRESH_CYCLE = 10; // Az ugró ember animációjának frissítési ciklusa
+    private final int GRAVITY_STEP = 20; // Egy frissítési ciklusban hány pixelt emelkedjen vagy csökkenjen
+
     private Handler viewHandler;
     private Context mContext;
     private Point pos = new Point(0, 0);
@@ -24,8 +25,12 @@ public class JumpMan {
     private int posUpperLimit;
     private int posBottomLimit;
     private boolean isGravityOn;
+    private int v0; // Ugrás induló sebessége
+    private int jumpCycleCount; // Ugrás mozzanatok számlálója (hanyadik mozzanat)
+    private int y0; // Ugrás induló y pozíciója
+    private int y1; // Ugrás menet közbeni pozíciója
 
-    public JumpMan(Integer[] resArray, int targetHeight, Handler handler, Context context) {
+    JumpMan(Integer[] resArray, int targetHeight, Handler handler, Context context) {
         // Kapott paraméterek mentése
         this.mContext = context;
         this.mResourceArray = new Integer[resArray.length];
@@ -51,8 +56,7 @@ public class JumpMan {
         isGravityOn = true;
     }
 
-
-    public void startAnimation() {
+    void startAnimation() {
 
         // Lábmozgás animációja
         viewHandler.post(new Runnable() {
@@ -63,7 +67,7 @@ public class JumpMan {
                 } else
                     mCurrrentBmpIndex++;
 
-                viewHandler.postDelayed(this, JUMPMAN_ANIMATION_CYCLE);
+                viewHandler.postDelayed(this, FOOT_ANIMATION_CYCLE);
             }
         });
 
@@ -73,39 +77,43 @@ public class JumpMan {
             public void run() {
                 if (isGravityOn) {
                     if (posBottomLimit > (getPos().y))
-                        setPos(null, getPos().y + JUMPMAN_ELEVATION_STEP);
+                        setPos(null, getPos().y + GRAVITY_STEP);
                     else
                         setPos(null, posBottomLimit); // Nem zuhan tovább, beállítás pontosan a limitre
                 }
-                viewHandler.postDelayed(this, JUMPMAN_JUMP_SPEED);
+                viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
             }
         });
     }
 
-    public void setPos(Integer x, Integer y) {
+    void setPos(Integer x, Integer y) {
         if (x != null)
             this.pos.x = x;
         if (y != null)
             this.pos.y = y;
     }
 
-    public Point getPos() {
+    Point getPos() {
         return pos;
     }
 
-    public Bitmap getBmp() {
+    Bitmap getBmp() {
         return mBitmapArray[mCurrrentBmpIndex];
     }
 
-    public int getHeight() {
+    int getHeight() {
         return mBitmapArray[mCurrrentBmpIndex].getHeight();
     }
 
-    public int getWidth() {
+    int getWidth() {
         return mBitmapArray[mCurrrentBmpIndex].getWidth();
     }
 
-    public void jump() {
+    void jump() {
+
+        v0 = 40; // Kezdő sebesség beállítása
+        jumpCycleCount = 1; // Idő inicializlása (első "másodperc")
+        y0 = getPos().y; // Ugrás induló pozíciójának tárolása
 
         // Ugrás animációja
         if (getPos().y == posBottomLimit) {
@@ -114,11 +122,14 @@ public class JumpMan {
                 public void run() {
 
                     isGravityOn = false;
-                    if (posUpperLimit <= (getPos().y)) {
-                        setPos(null, getPos().y - JUMPMAN_ELEVATION_STEP);
-                        viewHandler.postDelayed(this, JUMPMAN_JUMP_SPEED);
-                    } else
+                    y1 = v0 * jumpCycleCount - 1 * jumpCycleCount * jumpCycleCount;
+                    if ((getPos().y <= posBottomLimit) && (getPos().y >= posUpperLimit)) {
+                        setPos(null, y0 - y1);
+                        jumpCycleCount++; // idő növelése
+                        viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
+                    } else {
                         isGravityOn = true;
+                    }
 
                 }
             });
