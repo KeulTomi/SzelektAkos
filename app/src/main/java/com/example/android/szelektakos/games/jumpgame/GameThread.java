@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.os.Message;
+import android.os.Vibrator;
 import android.view.SurfaceHolder;
 
 import com.example.android.szelektakos.R;
@@ -41,6 +43,8 @@ class GameThread extends Thread {
     private int JUMPMAN_UPPER_LIMIT_YPOS; // Ugráló figura legmagasabb megengedet felső y pozíciója
     private int JUMPMAN_BOTTOM_LIMIT_YPOS; // Ugráló figura legalacsonyabb megengedet alsó y pozíciója
     private int JUMPMAN_XPOS; // Ugráló figura x pozíciója
+    private int goodItemsCollected;
+    private int badItemsCollected;
 
 
     GameThread(Context context, Handler viewHandler, SurfaceHolder surfaceHolder) {
@@ -72,6 +76,7 @@ class GameThread extends Thread {
         mUpperPlatform.startAnimation();
         mBottomPlatform.startAnimation();
 
+
         while (isGameRunning) {
             if (!mSurfaceHolder.getSurface().isValid())
                 continue;
@@ -87,9 +92,8 @@ class GameThread extends Thread {
                 jumpRequest = false;
             }
 
-            //
             // Felső járda alatti téglalap vizsgálata, hogy benne van-e a figura
-            //
+            // ha alatta van a figura akkor a felugrást kell korlátozni
             rectUndrerPlatform.set(
                     mUpperPlatform.getPos().x,
                     mUpperPlatform.getPos().y,
@@ -102,9 +106,8 @@ class GameThread extends Thread {
                 isUpperPosLimited = true;
             }
 
-            //
             // Alsó járda alatti téglalap vizsgálata, hogy benne van-e a figura
-            //
+            // ha alatta van a figura akkor a felugrást kell korlátozni
             rectUndrerPlatform.set(
                     mBottomPlatform.getPos().x,
                     mBottomPlatform.getPos().y,
@@ -121,9 +124,8 @@ class GameThread extends Thread {
                 // Nincs a figura fölött járda ugrásmagasságot nem kell korlátozni
                 mJumpMan.setPosUpperLimit(JUMPMAN_UPPER_LIMIT_YPOS);
 
-            //
             // Alsó járda fölötti téglalap vizsgálata, hogy benne van-e a figura
-            //
+            // ha fölötte van a figura akkor az alső (leesési) limitet kell a járda szintre állítani
             rectUndrerPlatform.set(
                     mBottomPlatform.getPos().x,
                     0,
@@ -138,6 +140,7 @@ class GameThread extends Thread {
 
             //
             // Felső járda fölötti téglalap vizsgálata, hogy benne van-e a figura
+            // ha fölötte van a figura akkor az alső (leesési) limitet kell a járda szintre állítani
             //
             rectUndrerPlatform.set(
                     mUpperPlatform.getPos().x,
@@ -159,149 +162,128 @@ class GameThread extends Thread {
             if (mBackgroundPic != null)
                 canvas.drawBitmap(mBackgroundPic, 0, 0, null);
 
-            //
-            // Alapjárdák egymás után rajzolása
-            //
-            if (mBasePlatform[0] != null) {
-                if (mBasePlatform[0].getPos().x <= (-1 * mBasePlatform[0].getWidth())) {
-                    // Az első járda már nem látszik, mehet a végére
-                    mBasePlatform[0].setPos(
-                            mBasePlatform[2].getPos().x +
-                                    mBasePlatform[2].getWidth() +
-                                    GAP_BETWEEN_BASE_PLATFORMS, null);
+            // Padlók kezelése
+            for (int num = 0; num < 3; num++) {
 
-                    // Újabb elemeket lehet rádobni
-                    mBasePlatform[0].dropItems(2);
+                if (mBasePlatform[num] != null) {
+
+                    // Figura és Item találkozásának ellenőrzése
+                    checkInterference(mBasePlatform[num], jumpManPos);
+
+                    // Járda balra eltűnésének ellenőrzése
+                    if (mBasePlatform[num].getPos().x <= (-1 * mBasePlatform[num].getWidth())) {
+
+                        // Ha a járda már nem látszik a képernyőn újra lehet hasznosítani,
+                        // pozícionálás véletlenszerűen a képernyő szélességen túlra
+                        switch (num) {
+                            case 0:
+                                // Az első járda már nem látszik, mehet a végére
+                                mBasePlatform[0].setPos(
+                                        mBasePlatform[2].getPos().x +
+                                                mBasePlatform[2].getWidth() +
+                                                GAP_BETWEEN_BASE_PLATFORMS, null);
+                                break;
+
+                            case 1:
+                                // A második járda már nem látszik, mehet a végére
+                                mBasePlatform[1].setPos(
+                                        mBasePlatform[0].getPos().x +
+                                                mBasePlatform[0].getWidth() +
+                                                GAP_BETWEEN_BASE_PLATFORMS, null);
+                                break;
+                            case 2:
+                                // A harmadik járda már nem látszik, mehet a végére
+                                mBasePlatform[2].setPos(
+                                        mBasePlatform[1].getPos().x +
+                                                mBasePlatform[1].getWidth() +
+                                                GAP_BETWEEN_BASE_PLATFORMS, null);
+                                break;
+                        }
+
+                        // Újabb elemeket lehet rádobni
+                        mBasePlatform[num].dropItems(2);
+                    }
+
+                    // Járda rajzolása
+                    canvas.drawBitmap(mBasePlatform[num].getBmp(), mBasePlatform[num].getPos().x, mBasePlatform[num].getPos().y, null);
+
+                    // Item-ek rajzolása
+                    for (int i = 0; i < 2; i++) {
+                        if (mBasePlatform[num].isItemValid(i)) {
+                            canvas.drawBitmap(
+                                    mBasePlatform[num].getItemBmp(i),
+                                    mBasePlatform[num].getPos().x + mBasePlatform[num].getItemXpos(i),
+                                    mBasePlatform[num].getPos().y - mBasePlatform[num].getItemHeight(i),
+                                    null);
+                        }
+                    }
                 }
 
-                canvas.drawBitmap(mBasePlatform[0].getBmp(), mBasePlatform[0].getPos().x, mBasePlatform[0].getPos().y, null);
-
-                if (mBasePlatform[0].isItemValid(0))
-                    canvas.drawBitmap(
-                            mBasePlatform[0].getItemBmp(0),
-                            mBasePlatform[0].getPos().x + mBasePlatform[0].getItemXpos(0),
-                            mBasePlatform[0].getPos().y - mBasePlatform[0].getItemHeight(0),
-                            null);
-
-                if (mBasePlatform[0].isItemValid(1))
-                    canvas.drawBitmap(
-                            mBasePlatform[0].getItemBmp(1),
-                            mBasePlatform[0].getPos().x + mBasePlatform[0].getItemXpos(1),
-                            mBasePlatform[0].getPos().y - mBasePlatform[0].getItemHeight(1),
-                            null);
             }
 
-            if (mBasePlatform[1] != null) {
-                if (mBasePlatform[1].getPos().x <= (-1 * mBasePlatform[1].getWidth())) {
-                    // A második járda már nem látszik, mehet a végére
-                    mBasePlatform[1].setPos(
-                            mBasePlatform[0].getPos().x +
-                                    mBasePlatform[0].getWidth() +
-                                    GAP_BETWEEN_BASE_PLATFORMS, null);
-
-                    // Újabb elemeket lehet rádobni
-                    mBasePlatform[1].dropItems(2);
-                }
-
-                canvas.drawBitmap(mBasePlatform[1].getBmp(), mBasePlatform[1].getPos().x, mBasePlatform[1].getPos().y, null);
-
-                if (mBasePlatform[1].isItemValid(0))
-                    canvas.drawBitmap(
-                            mBasePlatform[1].getItemBmp(0),
-                            mBasePlatform[1].getPos().x + mBasePlatform[1].getItemXpos(0),
-                            mBasePlatform[1].getPos().y - mBasePlatform[1].getItemHeight(0),
-                            null);
-
-                if (mBasePlatform[1].isItemValid(1))
-                    canvas.drawBitmap(
-                            mBasePlatform[1].getItemBmp(1),
-                            mBasePlatform[1].getPos().x + mBasePlatform[1].getItemXpos(1),
-                            mBasePlatform[1].getPos().y - mBasePlatform[1].getItemHeight(1),
-                            null);
-            }
-
-            if (mBasePlatform[2] != null) {
-                if (mBasePlatform[2].getPos().x <= (-1 * mBasePlatform[2].getWidth())) {
-                    // A harmadik járda már nem látszik, mehet a végére
-                    mBasePlatform[2].setPos(
-                            mBasePlatform[1].getPos().x +
-                                    mBasePlatform[1].getWidth() +
-                                    GAP_BETWEEN_BASE_PLATFORMS, null);
-
-                    // Újabb elemeket lehet rádobni
-                    mBasePlatform[2].dropItems(2);
-                }
-
-                canvas.drawBitmap(mBasePlatform[2].getBmp(), mBasePlatform[2].getPos().x, mBasePlatform[2].getPos().y, null);
-
-                if (mBasePlatform[2].isItemValid(0))
-                    canvas.drawBitmap(
-                            mBasePlatform[2].getItemBmp(0),
-                            mBasePlatform[2].getPos().x + mBasePlatform[2].getItemXpos(0),
-                            mBasePlatform[2].getPos().y - mBasePlatform[2].getItemHeight(0),
-                            null);
-
-                if (mBasePlatform[2].isItemValid(1))
-                    canvas.drawBitmap(
-                            mBasePlatform[2].getItemBmp(1),
-                            mBasePlatform[2].getPos().x + mBasePlatform[2].getItemXpos(1),
-                            mBasePlatform[2].getPos().y - mBasePlatform[2].getItemHeight(1),
-                            null);
-            }
-
-            //
-            // Felső járda kirajzolása
-            //
+            // Felső járda kezelése
             if (mUpperPlatform != null) {
 
+                // Figura és Item találkozásának ellenőrzése
+                checkInterference(mUpperPlatform, jumpManPos);
+
+                // Járda balra eltűnésének ellenőrzése
                 if (mUpperPlatform.getPos().x <= (-1 * mUpperPlatform.getWidth())) {
+
+                    // Ha a járda már nem látszik a képernyőn újra lehet hasznosítani,
+                    // pozícionálás véletlenszerűen a képernyő szélességen túlra
                     mUpperPlatform.setPos(getNextRandomPos(mDisplayWidth, mDisplayWidth), null);
 
                     // Újabb elemeket lehet rádobni
                     mUpperPlatform.dropItems(2);
                 }
 
+                // Járda rajzolása
                 canvas.drawBitmap(mUpperPlatform.getBmp(), mUpperPlatform.getPos().x, mUpperPlatform.getPos().y, null);
 
-                if (mUpperPlatform.isItemValid(0))
-                    canvas.drawBitmap(
-                            mUpperPlatform.getItemBmp(0),
-                            mUpperPlatform.getPos().x + mUpperPlatform.getItemXpos(0),
-                            mUpperPlatform.getPos().y - mUpperPlatform.getItemHeight(0),
-                            null);
-
-                if (mUpperPlatform.isItemValid(1))
-                    canvas.drawBitmap(
-                            mUpperPlatform.getItemBmp(1),
-                            mUpperPlatform.getPos().x + mUpperPlatform.getItemXpos(1),
-                            mUpperPlatform.getPos().y - mUpperPlatform.getItemHeight(1),
-                            null);
-
+                // Item-ek rajzolása
+                for (int i = 0; i < 2; i++) {
+                    if (mUpperPlatform.isItemValid(i)) {
+                        canvas.drawBitmap(
+                                mUpperPlatform.getItemBmp(i),
+                                mUpperPlatform.getPos().x + mUpperPlatform.getItemXpos(i),
+                                mUpperPlatform.getPos().y - mUpperPlatform.getItemHeight(i),
+                                null);
+                    }
+                }
             }
 
+            // Alsó járda kezelése
             if (mBottomPlatform != null) {
+
+                // Figura és Item találkozásának ellenőrzése
+                checkInterference(mBottomPlatform, jumpManPos);
+
+                // Járda balra eltűnésének ellenőrzése
                 if (mBottomPlatform.getPos().x <= (-1 * mBottomPlatform.getWidth())) {
+
+                    // Ha a járda már nem látszik a képernyőn újra lehet hasznosítani,
+                    // pozícionálás véletlenszerűen a képernyő szélességen túlra
                     mBottomPlatform.setPos(getNextRandomPos(mDisplayWidth, mDisplayWidth), null);
 
                     // Újabb elemeket lehet rádobni
                     mBottomPlatform.dropItems(2);
                 }
 
+                // Járda rajzolása
                 canvas.drawBitmap(mBottomPlatform.getBmp(), mBottomPlatform.getPos().x, mBottomPlatform.getPos().y, null);
 
-                if (mBottomPlatform.isItemValid(0))
-                    canvas.drawBitmap(
-                            mBottomPlatform.getItemBmp(0),
-                            mBottomPlatform.getPos().x + mBottomPlatform.getItemXpos(0),
-                            mBottomPlatform.getPos().y - mBottomPlatform.getItemHeight(0),
-                            null);
+                // Item-ek rajzolása
+                for (int i = 0; i < 2; i++) {
+                    if (mBottomPlatform.isItemValid(i)) {
+                        canvas.drawBitmap(
+                                mBottomPlatform.getItemBmp(i),
+                                mBottomPlatform.getPos().x + mBottomPlatform.getItemXpos(i),
+                                mBottomPlatform.getPos().y - mBottomPlatform.getItemHeight(i),
+                                null);
+                    }
+                }
 
-                if (mBottomPlatform.isItemValid(1))
-                    canvas.drawBitmap(
-                            mBottomPlatform.getItemBmp(1),
-                            mBottomPlatform.getPos().x + mBottomPlatform.getItemXpos(1),
-                            mBottomPlatform.getPos().y - mBottomPlatform.getItemHeight(1),
-                            null);
             }
 
             if (mJumpMan != null)
@@ -317,16 +299,68 @@ class GameThread extends Thread {
         mBottomPlatform = null;
     }
 
+    private void checkInterference(Platform platform, Point jumpManPos) {
+
+        Point itemPos = new Point(0, 0);
+
+        // Mindkét elem ellenőrzése
+        for (int i = 0; i < 2; i++) {
+
+            if (platform.isItemValid(i)) {
+
+                itemPos.x = platform.getPos().x + platform.getItemXpos(i);
+                itemPos.y = platform.getPos().y - platform.getItemHeight(i);
+
+                // Együttállás ellenőrzése
+                if (itemPos.y >= jumpManPos.y && itemPos.y <= (jumpManPos.y + mJumpMan.getHeight()))
+                    if (itemPos.x >= jumpManPos.x && itemPos.x <= (jumpManPos.x + mJumpMan.getWidth())) {
+                        // Item-et talált
+                        processItemFound(platform, i);
+                    }
+            }
+        }
+
+    }
+
+    private void processItemFound(Platform platform, int itemPos) {
+
+        Vibrator vibrator = (Vibrator) mViewContext.getSystemService(Context.VIBRATOR_SERVICE);
+        Message msgToActivity = new Message();
+
+        if (platform.isItemBad(itemPos)) {
+            vibrator.vibrate(100);
+            badItemsCollected++;
+            if (badItemsCollected >= 5) {
+                isGameRunning = false;
+                msgToActivity.what = JumpGameActivity.MSG_GAME_OVER;
+                msgToActivity.arg1 = goodItemsCollected;
+                JumpGameActivity.uiHandlerJG.sendMessage(msgToActivity);
+            }
+        } else {
+            goodItemsCollected++;
+            msgToActivity.what = JumpGameActivity.MSG_POINTS_COLLECTED;
+            msgToActivity.arg1 = goodItemsCollected;
+            JumpGameActivity.uiHandlerJG.sendMessage(msgToActivity);
+        }
+
+        platform.invalidateItem(itemPos);
+    }
+
     private void initGame() {
 
         mDisplayWidth = SzelektAkos.displayWidth;
         mDisplayHeight = SzelektAkos.displayHeight;
+
         UPPER_PLATFORM_YPOS = (int) (0.4762 * mDisplayHeight); // Felső járda y pozíciója
         BOTTOM_PLATFORM_YPOS = (int) (0.599 * mDisplayHeight); // Alsó járda y pozíciója
         BASE_PLATFORM_YPOS = (int) (0.819 * mDisplayHeight); // Alapjárda (padló) y pozíciója
         PLATFORM_HEIGHT = (int) (0.0572 * mDisplayHeight); // Járda magassága
         JUMPMAN_HEIGHT = (int) (0.1523 * mDisplayHeight); // Ugráló figura magassága
         JUMPMAN_XPOS = (int) (0.1 * mDisplayWidth); // Ugráló figura x pozíciója
+
+        // Pontok inicializálása
+        goodItemsCollected = 0;
+        badItemsCollected = 0;
 
         // Háttér inicializálása és méretezése
         Bitmap bitmap = BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_background);

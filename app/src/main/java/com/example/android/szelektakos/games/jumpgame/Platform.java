@@ -49,7 +49,7 @@ public class Platform implements Runnable {
         sourceItems[1].isBadItem = true;
 
         sourceItems[2] = new Item();
-        sourceItems[2].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_01);
+        sourceItems[2].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_03);
         sourceItems[2].isBadItem = true;
 
         sourceItems[3] = new Item();
@@ -61,7 +61,7 @@ public class Platform implements Runnable {
         sourceItems[4].isBadItem = false;
 
         sourceItems[5] = new Item();
-        sourceItems[5].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_02);
+        sourceItems[5].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_03);
         sourceItems[5].isBadItem = false;
 
     }
@@ -103,8 +103,16 @@ public class Platform implements Runnable {
             return false;
     }
 
+    public void invalidateItem(int num) {
+        carriedItems[num].bmp = null;
+    }
+
     public int getItemHeight(int num) {
         return carriedItems[num].bmp.getHeight();
+    }
+
+    public boolean isItemBad(int num) {
+        return carriedItems[num].isBadItem;
     }
 
     public void setPos(Integer x, Integer y) {
