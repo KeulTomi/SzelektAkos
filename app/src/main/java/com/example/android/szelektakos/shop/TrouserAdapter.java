@@ -117,6 +117,7 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
             final AlertDialog alert = builder.create();
             alert.show();
         }
+
         else{
             //show dialog
             final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

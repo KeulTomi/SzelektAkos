@@ -23,12 +23,14 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/right_hand"
         android:layout_marginTop="120dp"
         android:src="@mipmap/rigthhand" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/left_hand"
         android:layout_marginTop="120dp"
         android:src="@mipmap/lefthand" />
 
@@ -41,6 +43,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/akos_body"
         android:layout_marginTop="120dp"
         android:src="@mipmap/szelektakosbody" />
 
@@ -49,7 +52,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:src="@mipmap/pants00" />
+        android:src="@mipmap/pants_thg" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:id="@+id/love_animation_place"
+        android:visibility="gone"
+        android:src="@drawable/love_01"/>
 
 </RelativeLayout>

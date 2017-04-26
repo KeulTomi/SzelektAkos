@@ -1,0 +1,15 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/love_animation" android:oneshot="false">
+    <item android:drawable="@drawable/love_01" android:duration="500" />
+    <item android:drawable="@drawable/love_02" android:duration="500" />
+    <item android:drawable="@drawable/love_03" android:duration="500" />
+    <item android:drawable="@drawable/love_04" android:duration="500" />
+    <item android:drawable="@drawable/love_06" android:duration="500" />
+    <item android:drawable="@drawable/love_07" android:duration="500" />
+    <item android:drawable="@drawable/love_08" android:duration="500" />
+    <item android:drawable="@drawable/love_09" android:duration="500" />
+    <item android:drawable="@drawable/love_10" android:duration="500" />
+    <item android:drawable="@drawable/love_11" android:duration="500" />
+    <item android:drawable="@drawable/love_12" android:duration="500" />
+    <item android:drawable="@drawable/love_13" android:duration="500" />
+</animation-list>

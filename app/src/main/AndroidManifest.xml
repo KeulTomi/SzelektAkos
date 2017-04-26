@@ -7,6 +7,8 @@
     <application
         android:name=".SzelektAkos"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:icon="@mipmap/launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -25,7 +27,7 @@
         <activity
             android:name=".games.TrashesGame"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".games.JumpGameActivity" />
+        <activity android:name=".games.jumpgame.JumpGameActivity" />
         <activity android:name=".games.WordPuzzle"></activity>
     </application>
 

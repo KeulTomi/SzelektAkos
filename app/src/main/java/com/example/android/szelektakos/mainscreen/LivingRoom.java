@@ -15,10 +15,15 @@ import android.widget.ImageView;
 import com.example.android.szelektakos.R;
 import com.example.android.szelektakos.SzelektAkos;
 
-import static com.example.android.szelektakos.mainscreen.MainActivity.*;
+import static com.example.android.szelektakos.mainscreen.MainActivity.currentTrouser;
 
-public class LivingRoom extends Fragment {
+public class LivingRoom extends Fragment implements View.OnClickListener {
 
+    private ImageView akosBody;
+    private ImageView akosLeftHand;
+    private ImageView akosRightHand;
+    private ImageView loveAnimationPlace;
+    private int animationNumber;
 
     @Nullable
     @Override
@@ -26,6 +31,15 @@ public class LivingRoom extends Fragment {
         View view = inflater.inflate(R.layout.livingroom, container, false);
 
         currentTrouser = (ImageView) view.findViewById(R.id.trouser);
+        akosBody = (ImageView) view.findViewById(R.id.akos_body);
+        akosLeftHand = (ImageView) view.findViewById(R.id.left_hand);
+        akosRightHand = (ImageView) view.findViewById(R.id.right_hand);
+
+        loveAnimationPlace = (ImageView) view.findViewById(R.id.love_animation_place);
+//        loveAnimationPlace.setBackgroundResource(R.drawable.akos_body_love_animation);
+//
+//        animationNumber = 0;
+//        akosBody.setOnClickListener(this);
 
         return view;
     }
@@ -42,4 +56,23 @@ public class LivingRoom extends Fragment {
         super.onResume();
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (animationNumber){
+            case 0:
+//                akosRightHand.setVisibility(View.GONE);
+//                akosLeftHand.setVisibility(View.GONE);
+//                loveAnimationPlace.setVisibility(View.VISIBLE);
+//                AnimationDrawable loveAnimation = (AnimationDrawable) loveAnimationPlace.getBackground();
+//                loveAnimation.start();
+//
+//                while (loveAnimation.isRunning() == false){
+//
+//                }
+//
+//                akosRightHand.setVisibility(View.VISIBLE);
+//                akosLeftHand.setVisibility(View.VISIBLE);
+//                loveAnimationPlace.setVisibility(View.GONE);
+        }
+    }
 }
