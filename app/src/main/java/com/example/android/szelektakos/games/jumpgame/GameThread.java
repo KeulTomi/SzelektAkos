@@ -32,6 +32,7 @@ class GameThread extends Thread {
     private Platform[] mBasePlatform; // Alapjárda objektuma
     private Platform mUpperPlatform; // Felső járda objektuma
     private Platform mBottomPlatform; // Alsó járda objektuma
+    private Platform mBluePlatform; // Kék színű ugrójárda objektuma
     private Bitmap mBackgroundPic; // Játék háttérképe
     private int mDisplayWidth;
     private int mDisplayHeight;
@@ -120,6 +121,20 @@ class GameThread extends Thread {
                 isUpperPosLimited = true;
             }
 
+            // Kék ugró járda alatti téglalap vizsgálata, hogy benne van-e a figura
+            // ha alatta van a figura akkor a felugrást kell korlátozni
+            rectUndrerPlatform.set(
+                    mBluePlatform.getPos().x,
+                    mBluePlatform.getPos().y,
+                    mBluePlatform.getPos().x + mBluePlatform.getWidth(),
+                    BASE_PLATFORM_YPOS);
+
+            if (rectUndrerPlatform.contains(jumpManPos.x + mJumpMan.getWidth(), jumpManPos.y)) {
+                // Ugrásmagasság korlátozása felülről, mert járda van felette
+                mJumpMan.setPosUpperLimit(mBluePlatform.getPos().y + PLATFORM_HEIGHT);
+                isUpperPosLimited = true;
+            }
+
             if (!isUpperPosLimited)
                 // Nincs a figura fölött járda ugrásmagasságot nem kell korlátozni
                 mJumpMan.setPosUpperLimit(JUMPMAN_UPPER_LIMIT_YPOS);
@@ -131,6 +146,20 @@ class GameThread extends Thread {
                     0,
                     mBottomPlatform.getPos().x + mBottomPlatform.getWidth() + mJumpMan.getWidth() / 2,
                     mBottomPlatform.getPos().y);
+
+            if (rectUndrerPlatform.contains(jumpManPos.x + mJumpMan.getWidth(), jumpManPos.y)) {
+                // Alsó (leesési) limit beállítása a járdaszintre, mert mozgó járda van alatta
+                mJumpMan.setPosBottomLimit(BOTTOM_PLATFORM_YPOS - JUMPMAN_HEIGHT);
+                isBottomPosLimited = true;
+            }
+
+            // Kék ugró járda fölötti téglalap vizsgálata, hogy benne van-e a figura
+            // ha fölötte van a figura akkor az alső (leesési) limitet kell a járda szintre állítani
+            rectUndrerPlatform.set(
+                    mBluePlatform.getPos().x,
+                    0,
+                    mBluePlatform.getPos().x + mBluePlatform.getWidth() + mJumpMan.getWidth() / 2,
+                    mBluePlatform.getPos().y);
 
             if (rectUndrerPlatform.contains(jumpManPos.x + mJumpMan.getWidth(), jumpManPos.y)) {
                 // Alsó (leesési) limit beállítása a járdaszintre, mert mozgó járda van alatta
@@ -158,11 +187,15 @@ class GameThread extends Thread {
                 // Nincs alatta járda, alsó (leesési) limit beállítása a padlószintre
                 mJumpMan.setPosBottomLimit(JUMPMAN_BOTTOM_LIMIT_YPOS);
 
+            //
             // Háttérkép kirajzolása
+            //
             if (mBackgroundPic != null)
                 canvas.drawBitmap(mBackgroundPic, 0, 0, null);
 
+            //
             // Padlók kezelése
+            //
             for (int num = 0; num < 3; num++) {
 
                 if (mBasePlatform[num] != null) {
@@ -221,7 +254,9 @@ class GameThread extends Thread {
 
             }
 
+            //
             // Felső járda kezelése
+            //
             if (mUpperPlatform != null) {
 
                 // Figura és Item találkozásának ellenőrzése
@@ -253,7 +288,9 @@ class GameThread extends Thread {
                 }
             }
 
+            //
             // Alsó járda kezelése
+            //
             if (mBottomPlatform != null) {
 
                 // Figura és Item találkozásának ellenőrzése
@@ -283,6 +320,25 @@ class GameThread extends Thread {
                                 null);
                     }
                 }
+
+            }
+
+
+            //
+            // Kék ugró járda kezelése
+            //
+            if (mBluePlatform != null) {
+
+                // Járda balra eltűnésének ellenőrzése
+                if (mBluePlatform.getPos().x <= (-1 * mBluePlatform.getWidth())) {
+
+                    // Ha a járda már nem látszik a képernyőn újra lehet hasznosítani,
+                    // pozícionálás véletlenszerűen a képernyő szélességen túlra
+                    mBluePlatform.setPos(getNextRandomPos(2 * mDisplayWidth, mDisplayWidth), null);
+                }
+
+                // Járda rajzolása
+                canvas.drawBitmap(mBluePlatform.getBmp(), mBluePlatform.getPos().x, mBluePlatform.getPos().y, null);
 
             }
 
@@ -405,7 +461,23 @@ class GameThread extends Thread {
         mBottomPlatform.dropItems(2);
 
         //
-        // Legalsó (folyamatos) járda példányainak inicializálása és méretezése
+        // Kék színű ugró járda
+        //
+
+        Bitmap bluePlatform = BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_blue_platform);
+
+        mBluePlatform = new Platform(
+                bluePlatform,
+                PLATFORM_HEIGHT,
+                mViewHandler);
+
+        mBluePlatform.setPos(
+                getNextRandomPos(2 * mDisplayWidth, (int) (mDisplayWidth * 1.5)),
+                BOTTOM_PLATFORM_YPOS);
+
+
+        //
+        // Padló járda példányainak inicializálása és méretezése
         //
         mBasePlatform = new Platform[3];
 
@@ -441,6 +513,7 @@ class GameThread extends Thread {
                 BASE_PLATFORM_YPOS);
 
         mBasePlatform[2].dropItems(2);
+
 
         //
         // Ugró figura inicializálása és méretezése
