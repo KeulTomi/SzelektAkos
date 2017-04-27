@@ -25,6 +25,7 @@ public class JumpMan {
     private int posUpperLimit;
     private int posBottomLimit;
     private boolean isGravityOn;
+    private boolean isJumping;
     private int v0; // Ugrás induló sebessége
     private int jumpCycleCount; // Ugrás mozzanatok számlálója (hanyadik mozzanat)
     private int y0; // Ugrás induló y pozíciója
@@ -54,6 +55,7 @@ public class JumpMan {
         }
 
         isGravityOn = true;
+        isJumping = false;
     }
 
     void startAnimation() {
@@ -117,22 +119,26 @@ public class JumpMan {
 
         // Ugrás animációja
         if (getPos().y == posBottomLimit) {
-            viewHandler.post(new Runnable() {
-                @Override
-                public void run() {
+            // Ha már ugrásban van akkor nem indítható még egy ugrás
+            if (!isJumping) {
+                isJumping = true;
+                viewHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        isGravityOn = false;
+                        y1 = v0 * jumpCycleCount - 1 * jumpCycleCount * jumpCycleCount;
+                        if ((getPos().y <= posBottomLimit) && (getPos().y >= posUpperLimit)) {
+                            setPos(null, y0 - y1);
+                            jumpCycleCount++; // idő növelése
+                            viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
+                        } else {
+                            isGravityOn = true;
+                            isJumping = false;
+                        }
 
-                    isGravityOn = false;
-                    y1 = v0 * jumpCycleCount - 1 * jumpCycleCount * jumpCycleCount;
-                    if ((getPos().y <= posBottomLimit) && (getPos().y >= posUpperLimit)) {
-                        setPos(null, y0 - y1);
-                        jumpCycleCount++; // idő növelése
-                        viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
-                    } else {
-                        isGravityOn = true;
                     }
-
-                }
-            });
+                });
+            }
         }
     }
 
