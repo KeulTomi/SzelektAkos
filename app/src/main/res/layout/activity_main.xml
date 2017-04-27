@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.example.android.szelektakos.mainscreen.MainActivity">
+    tools:context="com.example.android.szelektakos.hu.example.android.szelektakos.mainscreen.MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

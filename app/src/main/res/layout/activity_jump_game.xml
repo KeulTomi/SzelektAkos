@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.android.szelektakos.games.jumpgame.JumpGameView
+    <hu.foxplan.keult.szelektakos.games.jumpgame.JumpGameView
         android:id="@+id/jump_game_surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

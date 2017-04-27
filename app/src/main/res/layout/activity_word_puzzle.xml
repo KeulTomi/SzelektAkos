@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.szelektakos.games.WordPuzzle">
+    tools:context="com.example.android.szelektakos.hu.example.android.szelektakos.games.WordPuzzle">
 
     <ImageView
         android:layout_width="match_parent"
@@ -92,417 +91,417 @@
         android:textSize="20sp" />
 
     <ProgressBar
+        android:id="@+id/game_time_progress_WP"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:id="@+id/game_time_progress_WP"
         android:layout_alignParentBottom="true"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progressDrawable="@drawable/game_time_progress"
+        android:max="500"
         android:progress="500"
-        android:max="500"/>
+        android:progressDrawable="@drawable/game_time_progress" />
 
     <ImageView
+        android:id="@+id/close_WP"
         android:layout_width="44dp"
         android:layout_height="45dp"
-        android:id="@+id/close_WP"
-        android:src="@drawable/ic_close"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
+        android:paddingRight="10dp"
+        android:src="@drawable/ic_close" />
 
 
     <LinearLayout
+        android:id="@+id/backs_layout_third_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/backs_layout_third_line"
         android:layout_above="@id/game_time_progress_WP"
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/seventh_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/seventh_letter_back"
             android:src="@mipmap/letters_back" />
 
         <ImageView
+            android:id="@+id/eighth_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/eighth_letter_back"
             android:src="@mipmap/letters_back"/>
 
         <ImageView
+            android:id="@+id/ninth_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/ninth_letter_back"
             android:src="@mipmap/letters_back"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/letters_layout_third_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/letters_layout_third_line"
         android:layout_above="@id/game_time_progress_WP"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/seventh_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/seventh_letter"
-            android:text="a"
-            android:textAlignment="center"
-            android:textSize="50sp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black" />
+            android:text="a"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
         <TextView
+            android:id="@+id/eighth_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/eighth_letter"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="b"
             android:textAlignment="center"
-            android:textSize="50sp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
         <TextView
+            android:id="@+id/ninth_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/ninth_letter"
-            android:text="c"
-            android:textAlignment="center"
-            android:textSize="50sp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black"/>
+            android:text="c"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/backs_layout_second_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/backs_layout_second_line"
         android:layout_above="@id/backs_layout_third_line"
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/fourth_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/fourth_letter_back"
             android:src="@mipmap/letters_back" />
 
         <ImageView
+            android:id="@+id/fifth_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/fifth_letter_back"
             android:src="@mipmap/letters_back"/>
 
         <ImageView
+            android:id="@+id/sixth_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/sixth_letter_back"
             android:src="@mipmap/letters_back"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/letters_layout_second_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/letters_layout_second_line"
         android:layout_above="@id/letters_layout_third_line"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/fourth_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/fourth_letter"
-            android:text="a"
-            android:textAlignment="center"
-            android:textSize="50sp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black" />
+            android:text="a"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
         <TextView
+            android:id="@+id/fifth_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/fifth_letter"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="b"
             android:textAlignment="center"
-            android:textSize="50sp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
         <TextView
+            android:id="@+id/sixth_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/sixth_letter"
-            android:text="c"
-            android:textAlignment="center"
-            android:textSize="50sp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black"/>
+            android:text="c"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/backs_layout_first_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/backs_layout_first_line"
         android:layout_above="@id/backs_layout_second_line"
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/first_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/first_letter_back"
             android:src="@mipmap/letters_back" />
 
         <ImageView
+            android:id="@+id/second_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/second_letter_back"
             android:src="@mipmap/letters_back"/>
 
         <ImageView
+            android:id="@+id/third_letter_back"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:id="@+id/third_letter_back"
             android:src="@mipmap/letters_back"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/letters_layout_first_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/letters_layout_first_line"
         android:layout_above="@id/letters_layout_second_line"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/first_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/first_letter"
-            android:text="a"
-            android:textAlignment="center"
-            android:textSize="50sp"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black" />
+            android:text="a"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
         <TextView
+            android:id="@+id/second_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/second_letter"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:text="b"
             android:textAlignment="center"
-            android:textSize="50sp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
         <TextView
+            android:id="@+id/third_letter"
             android:layout_width="60dp"
             android:layout_height="85dp"
-            android:id="@+id/third_letter"
-            android:text="c"
-            android:textAlignment="center"
-            android:textSize="50sp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/black"/>
+            android:text="c"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="50sp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/guess_letters_layout_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/backs_layout_first_line"
         android:layout_marginBottom="45dp"
-        android:id="@+id/guess_letters_layout_back"
-        android:gravity="center"
-        android:layout_above="@id/backs_layout_first_line">
+        android:gravity="center">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="60dp"
             android:id="@+id/guess_first_letter_back"
-            android:visibility="invisible"
-            android:src="@mipmap/letters_back"/>
-
-        <ImageView
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:src="@mipmap/letters_back"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_second_letter_back"
-            android:visibility="invisible"
-            android:src="@mipmap/letters_back"/>
-
-        <ImageView
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:src="@mipmap/letters_back"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_third_letter_back"
-            android:visibility="invisible"
-            android:src="@mipmap/letters_back"/>
-
-        <ImageView
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:src="@mipmap/letters_back"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_fourth_letter_back"
-            android:visibility="invisible"
-            android:src="@mipmap/letters_back"/>
-
-        <ImageView
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:src="@mipmap/letters_back"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_fifth_letter_back"
-            android:visibility="invisible"
-            android:src="@mipmap/letters_back"/>
-
-        <ImageView
             android:layout_width="50dp"
             android:layout_height="60dp"
+            android:src="@mipmap/letters_back"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_sixth_letter_back"
-            android:visibility="invisible"
-            android:src="@mipmap/letters_back"/>
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/letters_back"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="45dp"
-        android:gravity="center_vertical"
         android:id="@+id/guess_letters_layout_plc"
-        android:layout_above="@id/backs_layout_first_line">
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_above="@id/backs_layout_first_line"
+        android:layout_marginBottom="45dp"
+        android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
             android:id="@+id/guess_first_letter_plc"
-            android:src="@drawable/ic_point"
-            android:visibility="invisible"
-            android:layout_marginLeft="50dp"/>
-
-        <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_second_letter_plc"
-            android:src="@drawable/ic_point"
-            android:visibility="invisible"
-            android:layout_marginLeft="40dp"/>
-
-        <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_third_letter_plc"
-            android:src="@drawable/ic_point"
-            android:visibility="invisible"
-            android:layout_marginLeft="40dp"/>
-
-        <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_fourth_letter_plc"
-            android:src="@drawable/ic_point"
-            android:visibility="invisible"
-            android:layout_marginLeft="40dp"/>
-
-        <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible" />
+
+        <ImageView
             android:id="@+id/guess_fifth_letter_plc"
-            android:src="@drawable/ic_point"
-            android:visibility="invisible"
-            android:layout_marginLeft="40dp"/>
-
-        <ImageView
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:id="@+id/guess_sixth_letter_plc"
+            android:layout_marginLeft="40dp"
             android:src="@drawable/ic_point"
-            android:visibility="invisible"
-            android:layout_marginLeft="40dp"/>
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/guess_sixth_letter_plc"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/ic_point"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/guess_letters_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_above="@id/backs_layout_first_line"
         android:layout_marginBottom="45dp"
-        android:gravity="center_vertical"
-        android:id="@+id/guess_letters_layout"
-        android:layout_above="@id/backs_layout_first_line">
+        android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="40dp"
-            android:layout_height="60dp"
             android:id="@+id/guess_first_letter"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:textColor="@android:color/black"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
             android:layout_marginLeft="35dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
 
         <TextView
-            android:layout_width="40dp"
-            android:layout_height="60dp"
             android:id="@+id/guess_second_letter"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"/>
-
-        <TextView
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
+
+        <TextView
             android:id="@+id/guess_third_letter"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"/>
-
-        <TextView
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
+
+        <TextView
             android:id="@+id/guess_fourth_letter"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"/>
-
-        <TextView
             android:layout_width="40dp"
             android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
+
+        <TextView
             android:id="@+id/guess_fifth_letter"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"/>
-
-        <TextView
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:id="@+id/guess_sixth_letter"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:textColor="@android:color/black"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/guess_sixth_letter"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
 
     </LinearLayout>
 
