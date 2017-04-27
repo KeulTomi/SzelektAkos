@@ -1,0 +1,28 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/love_animation" android:oneshot="true">
+    <item android:drawable="@drawable/photo_01" android:duration="80" />
+    <item android:drawable="@drawable/photo_02" android:duration="80" />
+    <item android:drawable="@drawable/photo_03" android:duration="80" />
+    <item android:drawable="@drawable/photo_04" android:duration="80" />
+    <item android:drawable="@drawable/photo_05" android:duration="80" />
+    <item android:drawable="@drawable/photo_06" android:duration="80" />
+    <item android:drawable="@drawable/photo_07" android:duration="80" />
+    <item android:drawable="@drawable/photo_06" android:duration="80" />
+    <item android:drawable="@drawable/photo_05" android:duration="80" />
+    <item android:drawable="@drawable/photo_04" android:duration="80" />
+    <item android:drawable="@drawable/photo_03" android:duration="80" />
+    <item android:drawable="@drawable/photo_02" android:duration="80" />
+    <item android:drawable="@drawable/photo_01" android:duration="80" />
+    <item android:drawable="@drawable/photo_02" android:duration="80" />
+    <item android:drawable="@drawable/photo_03" android:duration="80" />
+    <item android:drawable="@drawable/photo_04" android:duration="80" />
+    <item android:drawable="@drawable/photo_05" android:duration="80" />
+    <item android:drawable="@drawable/photo_06" android:duration="80" />
+    <item android:drawable="@drawable/photo_07" android:duration="80" />
+    <item android:drawable="@drawable/photo_06" android:duration="80" />
+    <item android:drawable="@drawable/photo_05" android:duration="80" />
+    <item android:drawable="@drawable/photo_04" android:duration="80" />
+    <item android:drawable="@drawable/photo_03" android:duration="80" />
+    <item android:drawable="@drawable/photo_02" android:duration="80" />
+    <item android:drawable="@drawable/photo_01" android:duration="80" />
+</animation-list>

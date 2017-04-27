@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClickListener {
 
     private Activity activity;
+    private TextView buyItem;
 
     ShopItemAdapter(Activity context, ArrayList<Items> items) {
         super(context, 0, items);
@@ -37,7 +38,7 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.shop_list_item, parent, false);
-            TextView buyItem = (TextView) listItemView.findViewById(R.id.shop_item_buy_title);
+            buyItem = (TextView) listItemView.findViewById(R.id.shop_item_buy_title);
 
             buyItem.setTag(position);
             buyItem.setOnClickListener(this);
@@ -64,15 +65,11 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
 
     @Override
     public void onClick(final View view) {
-
         //show dialog
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("Biztosan meg szeretnéd venni?")
                 .setPositiveButton("Megveszem", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
-                        final AlertDialog alert = builder.create();
-                        alert.show();
 
                         int position = (Integer) view.getTag();
                         Items currentItem = getItem(position);
@@ -92,6 +89,9 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
                 dialog.dismiss();
             }
         });
+
+        final AlertDialog alert = builder.create();
+        alert.show();
 
     }
 }

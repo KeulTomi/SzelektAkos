@@ -11,4 +11,12 @@
         android:src="@mipmap/haloszoba"
         android:scaleType="centerCrop"/>
 
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:id="@+id/sleeping_anim_place"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="215dp"/>
+
 </RelativeLayout>

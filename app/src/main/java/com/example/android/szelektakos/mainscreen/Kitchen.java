@@ -24,6 +24,7 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
     FridgeItemsAdapter listAdapter;
     SharedPreferences mSharedPref;
     private TextView fragmentTitle;
+    private ArrayList<String> ateItems = new ArrayList<String>();
 
     @Nullable
     @Override
@@ -51,6 +52,17 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
         super.onResume();
     }
 
+    @Override
+    public void onDestroyView() {
+//        int index = 0;
+//        while (index != ateItems.size() - 1){
+//            mSharedPref.edit().remove(ateItems.get(index));
+//            mSharedPref.edit().apply();
+//            listAdapter.notifyDataSetChanged();
+//            index++;
+//        }
+        super.onDestroyView();
+    }
 
     public void refreshItems ( ) {
         fridgeItems.clear();

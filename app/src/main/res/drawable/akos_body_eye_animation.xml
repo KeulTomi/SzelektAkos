@@ -1,0 +1,30 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/love_animation" android:oneshot="true">
+    <item android:drawable="@drawable/fe14" android:duration="1" />
+    <item android:drawable="@drawable/fe13" android:duration="1" />
+    <item android:drawable="@drawable/fe12" android:duration="1" />
+    <item android:drawable="@drawable/fe11" android:duration="1" />
+    <item android:drawable="@drawable/fe10" android:duration="1" />
+    <item android:drawable="@drawable/fe09" android:duration="1" />
+    <item android:drawable="@drawable/fe08" android:duration="1" />
+    <item android:drawable="@drawable/fe07" android:duration="1" />
+    <item android:drawable="@drawable/fe06" android:duration="1" />
+    <item android:drawable="@drawable/fe05" android:duration="1" />
+    <item android:drawable="@drawable/fe04" android:duration="1" />
+    <item android:drawable="@drawable/fe03" android:duration="1" />
+    <item android:drawable="@drawable/fe02" android:duration="1" />
+    <item android:drawable="@drawable/fe01" android:duration="1" />
+    <item android:drawable="@drawable/fe02" android:duration="1" />
+    <item android:drawable="@drawable/fe03" android:duration="1" />
+    <item android:drawable="@drawable/fe04" android:duration="1" />
+    <item android:drawable="@drawable/fe05" android:duration="1" />
+    <item android:drawable="@drawable/fe06" android:duration="1" />
+    <item android:drawable="@drawable/fe07" android:duration="1" />
+    <item android:drawable="@drawable/fe08" android:duration="1" />
+    <item android:drawable="@drawable/fe09" android:duration="1" />
+    <item android:drawable="@drawable/fe10" android:duration="1" />
+    <item android:drawable="@drawable/fe11" android:duration="1" />
+    <item android:drawable="@drawable/fe12" android:duration="1" />
+    <item android:drawable="@drawable/fe13" android:duration="1" />
+    <item android:drawable="@drawable/fe14" android:duration="1" />
+</animation-list>

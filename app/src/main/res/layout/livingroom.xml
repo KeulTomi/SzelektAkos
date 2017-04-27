@@ -48,6 +48,12 @@
         android:src="@mipmap/szelektakosbody" />
 
     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:id="@+id/eye_animation_place"/>
+
+    <ImageView
         android:id="@+id/trouser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +65,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:id="@+id/love_animation_place"
-        android:visibility="gone"
-        android:src="@drawable/love_01"/>
+        android:visibility="gone"/>
 
 </RelativeLayout>
