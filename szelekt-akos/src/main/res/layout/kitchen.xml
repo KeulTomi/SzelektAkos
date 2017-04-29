@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bed_room"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="0dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/kitchen" />
+
+    <ListView
+        android:id="@+id/fridge_items_list"
+        android:layout_width="125dp"
+        android:layout_height="360dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="90dp">
+
+    </ListView>
+
+</RelativeLayout>
