@@ -1,6 +1,7 @@
 package hu.foxplan.keult.szelektakos.mainscreen;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -188,6 +189,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Időzítők beindítása (első futtatás)
         uiHandler.postDelayed(energyTimer, ENERGY_REFRESH_PERIOD);
         uiHandler.postDelayed(lifeTimer, LIFE_REFRESH_PERIOD);
+
+        scaleImageItems();
+
    }
 
     @Override
@@ -262,5 +266,263 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
+    }
+
+    private void scaleImageItems() {
+
+        // Méretarány kiszámítása
+        float viewScaleX;
+        float viewScaleY;
+        float screenScaleX = SzelektAkos.displayWidth / 1300.0f;
+        float screenScaleY = SzelektAkos.displayHeight / 2558.0f;
+        float akosPosY;
+        int origWidth;
+        int origHeight;
+        int posX;
+        int posY;
+        ImageView imageView;
+
+        // Menü háttér átméretezése
+        imageView = (ImageView) findViewById(R.id.menu_bar);
+
+        akosPosY = 750;
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.menubar).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.menubar).getHeight();
+        viewScaleX = SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = 0.21f * SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+
+        // THG Web ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.thg_web);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_web).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_web).getHeight();
+        viewScaleX = 0.13f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 12;
+        posY = 2010;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Shop ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.shop);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_shop).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_shop).getHeight();
+        viewScaleX = 0.13f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 1100;
+        posY = 2010;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Pick One game ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.pick_one_game);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_valaszto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_valaszto).getHeight();
+        viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 12;
+        posY = 2280;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Trash game ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.trash_game);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_kuka).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_kuka).getHeight();
+        viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 275;
+        posY = 2280;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // True-False game ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.true_false_game);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_igaz_hamis).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_igaz_hamis).getHeight();
+        viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 538;
+        posY = 2280;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Words game ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.words_game);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_abc).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_abc).getHeight();
+        viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 801;
+        posY = 2280;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Jump game ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.jumping_game);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_ugralos).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_ugralos).getHeight();
+        viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 1064;
+        posY = 2280;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Balra nyíl pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.left_arrow);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow).getHeight();
+        viewScaleX = 0.1f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 80;
+        posY = 330;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Jobbra nyíl pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.right_arrow);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow2).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow2).getHeight();
+        viewScaleX = 0.1f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 1064;
+        posY = 330;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Energy ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.energy_picto);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.energy_picto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.energy_picto).getHeight();
+        viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 208;
+        posY = 95;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Food ikon pozícionálása és méretezése
+        imageView = (ImageView) findViewById(R.id.food_picto);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.food_picto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.food_picto).getHeight();
+        viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 1008;
+        posY = 105;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // User points szöveg pozícionálása (méretezésre nincs szükség)
+        TextView textView = (TextView) findViewById(R.id.user_points);
+        textView.setTextSize(0.8f * SzelektAkos.displayHeight / textView.getTextSize());
+
+        posX = 537;
+        posY = 92;
+        //textView.setX(posX * screenScaleX);
+        textView.setY(posY * screenScaleY);
+
+        // Pager szöveg pozícionálása (méretezésre nincs szükség)
+        textView = (TextView) findViewById(R.id.recently_place);
+        textView.setTextSize(0.8f * SzelektAkos.displayHeight / textView.getTextSize());
+
+        posX = 537;
+        posY = 345;
+        //textView.setX(posX * screenScaleX);
+        textView.setY(posY * screenScaleY);
+
+        // Energy progressbar pozícionálása és méretezése
+        ProgressBar progressBar;
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_energy);
+
+        origWidth = 400;
+        origHeight = 85;
+        viewScaleX = 0.305f * SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = 0.07f * SzelektAkos.displayHeight / (float) origHeight;
+
+        progressBar.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        progressBar.getLayoutParams().height = (int) (origHeight * viewScaleY);
+
+        posX = 52;
+        posY = 77;
+        progressBar.setX(posX * screenScaleX);
+        progressBar.setY(posY * screenScaleY);
+
+        // Life progressbar pozícionálása és méretezése
+        progressBar = (ProgressBar) findViewById(R.id.progress_life);
+
+        origWidth = 400;
+        origHeight = 85;
+        viewScaleX = 0.305f * SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = 0.07f * SzelektAkos.displayHeight / (float) origHeight;
+
+        progressBar.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        progressBar.getLayoutParams().height = (int) (origHeight * viewScaleY);
+
+        posX = 850;
+        posY = 77;
+        progressBar.setX(posX * screenScaleX);
+        progressBar.setY(posY * screenScaleY);
     }
 }

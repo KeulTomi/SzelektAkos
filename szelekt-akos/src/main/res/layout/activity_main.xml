@@ -9,92 +9,63 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="55dp"/>
+        android:layout_height="match_parent" />
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:id="@+id/menu_bar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitEnd"
-        android:src="@mipmap/menu_bar" />
+        android:src="@drawable/menubar" />
 
     <ImageView
         android:id="@+id/thg_web"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
-        android:layout_marginLeft="4dp"
         android:src="@mipmap/picto_web" />
 
     <ImageView
         android:id="@+id/shop"
-        android:layout_width="48dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="58dp"
-        android:layout_marginRight="4dp"
         android:src="@mipmap/picto_shop" />
 
     <ImageView
         android:id="@+id/pick_one_game"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitEnd"
         android:src="@mipmap/picto_valaszto" />
 
     <ImageView
         android:id="@+id/trash_game"
-        android:layout_width="75dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="70dp"
-        android:scaleType="fitEnd"
         android:src="@mipmap/picto_kuka" />
 
     <ImageView
         android:id="@+id/true_false_game"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:scaleType="fitEnd"
         android:src="@mipmap/picto_igaz_hamis" />
 
     <ImageView
         android:id="@+id/jumping_game"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:src="@mipmap/picto_ugralos" />
 
     <ImageView
         android:id="@+id/words_game"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="0dp"
-        android:layout_marginRight="73dp"
-        android:scaleType="fitEnd"
         android:src="@mipmap/picto_abc" />
 
     <ProgressBar
         android:id="@+id/progress_energy"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:max="100"
         android:progress="100"
         android:progressBackgroundTint="@android:color/white"
@@ -104,11 +75,8 @@
     <ProgressBar
         android:id="@+id/progress_life"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:max="100"
         android:progress="100"
         android:progressBackgroundTint="@android:color/white"
@@ -122,73 +90,48 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="466dp"
         android:scaleType="fitStart"
-        android:src="@mipmap/head2_crop" />
+        android:src="@drawable/head2_crop" />
 
-    <RelativeLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/left_arrow"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="70dp">
+        android:src="@mipmap/back_arrow" />
 
-        <ImageView
-            android:id="@+id/left_arrow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="15dp"
-            android:src="@mipmap/back_arrow"/>
+    <TextView
+        android:id="@+id/recently_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/livingroom"
+        android:textColor="@android:color/white"
+        android:textSize="25sp" />
 
-
-        <TextView
-            android:id="@+id/recently_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:text="@string/livingroom"
-            android:textColor="@android:color/white"
-            android:textSize="25sp"/>
-
-        <ImageView
-            android:id="@+id/right_arrow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:src="@mipmap/back_arrow2"/>
-
-
-
-
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/right_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/back_arrow2" />
 
     <TextView
         android:id="@+id/user_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
-        android:text="86"
+        android:layout_centerHorizontal="true"
         android:textColor="@android:color/white"
         android:textSize="22sp" />
 
 
     <ImageView
-        android:layout_width="20dp"
+        android:id="@+id/energy_picto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="20dp"
         android:src="@mipmap/energy_picto" />
 
     <ImageView
-        android:layout_width="20dp"
+        android:id="@+id/food_picto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="21dp"
         android:src="@mipmap/food_picto" />
 
 </RelativeLayout>

@@ -3,8 +3,10 @@ package hu.foxplan.keult.szelektakos;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -268,13 +270,32 @@ public class SzelektAkos extends Application {
         points = 500;//mSharedPref.getInt("points", 0);
         life = mSharedPref.getInt("life", 100);
         energy = mSharedPref.getInt("life", 100);
-        trouserToWear = mSharedPref.getInt("trouser", R.mipmap.pants_thg);
+        trouserToWear = mSharedPref.getInt("trouser", R.drawable.pants00);
     }
 
     public static void saveTroousersToMainData (boolean[] classBoughtTrousersList){
         mainBoughtTrousersList = classBoughtTrousersList;
     }
 
+
+    public static void scaleImageView(ImageView view, Rect imageRect, float scaleX, float scaleY) {
+
+        // ImageView méretezése
+        view.getLayoutParams().width = (int) (imageRect.right * scaleX);
+
+        view.getLayoutParams().height = (int) (imageRect.bottom * scaleY);
+
+        view.setScaleType(ImageView.ScaleType.FIT_XY);
+
+    }
+
+    public static void positionImageView(ImageView view, Rect imageRect, float scaleX, float scaleY) {
+
+        view.setX(imageRect.left * scaleX);
+        view.setY(imageRect.top * (scaleY == 0 ? scaleX : scaleY));
+
+
+    }
 
 //    public static <E> ArrayAdapter<E> setNewAdapter (E classToObject, ArrayAdapter adapter) {
 //

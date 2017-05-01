@@ -67,7 +67,9 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
                         // popup ablak megjelenítése
                         final int reachedPoints = msg.arg1;
                         AlertDialog.Builder builder = new AlertDialog.Builder(JumpGameActivity.this);
-                        builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPoints) + " pontot szereztél")
+                        builder
+                                .setCancelable(false)
+                                .setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPoints) + " pontot szereztél")
                                 .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Kilép az activity-ből

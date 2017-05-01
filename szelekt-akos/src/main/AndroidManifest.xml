@@ -16,22 +16,37 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="hu.foxplan.keult.szelektakos.mainscreen.MainActivity">
+        <activity
+            android:name="hu.foxplan.keult.szelektakos.mainscreen.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="hu.foxplan.keult.szelektakos.shop.ShopActivity" />
-        <activity android:name="hu.foxplan.keult.szelektakos.THG_Web" />
-        <activity android:name="hu.foxplan.keult.szelektakos.games.PickOneGame" />
-        <activity android:name="hu.foxplan.keult.szelektakos.games.TrueFalseGame" />
+        <activity
+            android:name="hu.foxplan.keult.szelektakos.shop.ShopActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="hu.foxplan.keult.szelektakos.THG_Web"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="hu.foxplan.keult.szelektakos.games.PickOneGame"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="hu.foxplan.keult.szelektakos.games.TrueFalseGame"
+            android:screenOrientation="portrait" />
         <activity
             android:name="hu.foxplan.keult.szelektakos.games.TrashesGame"
-            android:configChanges="orientation|screenSize" />
-        <activity android:name="hu.foxplan.keult.szelektakos.games.jumpgame.JumpGameActivity" />
-        <activity android:name="hu.foxplan.keult.szelektakos.games.WordPuzzle"></activity>
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="hu.foxplan.keult.szelektakos.games.jumpgame.JumpGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="hu.foxplan.keult.szelektakos.games.WordPuzzle"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

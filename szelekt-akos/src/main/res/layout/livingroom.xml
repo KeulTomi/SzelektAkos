@@ -6,62 +6,55 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/livingroom_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/livingroom" />
+        android:src="@drawable/livingroom" />
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="39dp"
-        android:layout_marginTop="91dp"
-        android:src="@mipmap/thgkft"/>
+        android:id="@+id/thgkft_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/thgkft" />
 
     <ImageView
         android:id="@+id/right_hand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:src="@mipmap/rigthhand" />
+        android:src="@drawable/rigthhand" />
 
     <ImageView
         android:id="@+id/left_hand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:src="@mipmap/lefthand" />
+        android:src="@drawable/lefthand" />
 
     <ImageView
+        android:id="@+id/akos_foot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:src="@mipmap/foot" />
+        android:src="@drawable/foot" />
 
     <ImageView
         android:id="@+id/akos_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:src="@mipmap/szelektakosbody" />
+        android:src="@drawable/szelektakosbody" />
 
     <ImageView
         android:id="@+id/eye_animation_place"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp" />
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/trouser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:src="@mipmap/pants_thg" />
+        android:src="@drawable/pants00" />
 
     <ImageView
-        android:id="@+id/love_animation_place"
+        android:id="@+id/animation_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
