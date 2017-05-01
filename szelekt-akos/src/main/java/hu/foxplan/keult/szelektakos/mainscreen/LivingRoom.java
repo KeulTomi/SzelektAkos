@@ -4,6 +4,7 @@ package hu.foxplan.keult.szelektakos.mainscreen;
  * Created by Tomi on 2017. 03. 23..
  */
 
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,7 +38,6 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
     private int animationNumber;
     private AnimationDrawable handAnimation;
     private AnimationDrawable eyeAnimation = new AnimationDrawable();
-    //private Runnable eyeAnimRunable;
 
     @Nullable
     @Override
@@ -45,18 +45,172 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.livingroom, container, false);
 
         animationNumber = 0;
-        currentTrouser = (ImageView) view.findViewById(R.id.trouser);
 
+        // Méretarány kiszámítása
+        float viewScaleX;
+        float viewScaleY;
+        float screenScaleX = SzelektAkos.displayWidth / 1300.0f;
+        float screenScaleY = SzelektAkos.displayHeight / 2558.0f;
+        float akosPosX;
+        float akosPosY;
+        int origWidth;
+        int origHeight;
+        int posX;
+        int posY;
+        ImageView imageView;
+
+        // Ákos alkotóelemeinek méretezése
         akosBody = (ImageView) view.findViewById(R.id.akos_body);
-        akosLeftHand = (ImageView) view.findViewById(R.id.left_hand);
-        akosRightHand = (ImageView) view.findViewById(R.id.right_hand);
+        akosBody.setOnClickListener(this); // Ákosra kattintás kezelése
 
+        akosPosY = 700;
+        akosPosX = 30;
+
+        imageView = akosBody;
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.szelektakosbody).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.szelektakosbody).getHeight();
+        viewScaleX = 0.95f * SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = (int) akosPosX;
+        posY = (int) akosPosY;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Pislogó szem méretezése
         akosEyePlace = (ImageView) view.findViewById(R.id.eye_animation_place);
-        animationPlace = (ImageView) view.findViewById(R.id.love_animation_place);
         akosEyePlace.setBackgroundResource(R.drawable.akos_body_eye_animation);
+
+        imageView = akosEyePlace;
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.fe01).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.fe01).getHeight();
+        // ** Itt nem kell állítani méretet, mert pont ugyanannyival kell méretezni, mint Ákos-t
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = (int) akosPosX + 435;
+        posY = (int) akosPosY + 122;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+
+        // Pislogó szem animációja
         eyeAnimation = (AnimationDrawable) akosEyePlace.getBackground();
 
-        akosBody.setOnClickListener(this);
+        // Láb méretezése
+
+        imageView = (ImageView) view.findViewById(R.id.akos_foot);
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.foot).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.foot).getHeight();
+        viewScaleX = 0.95f * SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = (int) akosPosX;
+        posY = (int) akosPosY;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Balkéz méretezése
+
+        akosLeftHand = (ImageView) view.findViewById(R.id.left_hand);
+        imageView = akosLeftHand;
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.lefthand).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.lefthand).getHeight();
+        viewScaleX = 0.95f * SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = (int) akosPosX;
+        posY = (int) akosPosY;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Jobbkéz méretezése
+
+        akosRightHand = (ImageView) view.findViewById(R.id.right_hand);
+        imageView = akosRightHand;
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.rigthhand).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.rigthhand).getHeight();
+        viewScaleX = 0.95f * SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = (int) akosPosX;
+        posY = (int) akosPosY;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Nadrág méretezése
+
+        currentTrouser = (ImageView) view.findViewById(R.id.trouser);
+
+        imageView = currentTrouser;
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.pants00).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.pants00).getHeight();
+        viewScaleX = 0.95f * SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = (int) akosPosX;
+        posY = (int) akosPosY;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Fényképező és szív animációjának placeholdere
+        animationPlace = (ImageView) view.findViewById(R.id.animation_place);
+
+        // Háttér méretezése
+        imageView = (ImageView) view.findViewById(R.id.livingroom_background);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.livingroom).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.livingroom).getHeight();
+        viewScaleX = SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 0;
+        posY = 0;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
+
+        // Fali kép méretezése
+
+        imageView = (ImageView) view.findViewById(R.id.thgkft_picture);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.thgkft).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.thgkft).getHeight();
+        // ** Itt nem kell állítani méretet, mert pont ugyanannyival kell méretezni, mint a hátteret
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 738;
+        posY = 505;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleY);
 
         return view;
 
@@ -66,7 +220,7 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
     public void onResume() {
 
         if (SzelektAkos.getTrouserToWearRes() == 0) {
-            currentTrouser.setImageResource(R.mipmap.pants_thg);
+            currentTrouser.setImageResource(R.drawable.pants00);
         }
         else {
             currentTrouser.setImageResource(SzelektAkos.getTrouserToWearRes());
@@ -74,51 +228,12 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
 
         eyeAnimation.start();
 
-        /*viewHandler.post(eyeAnimRunable = new Runnable() {
-            @Override
-            public void run() {
-                if(!((Activity) getContext()).isFinishing()) {
-                    eyeAnimation.setVisible(false, false);
-                    akosEyePlace.setVisibility(View.VISIBLE);
-                    eyeAnimation.start();
-
-                    viewHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(!((Activity) getContext()).isFinishing()) {
-                                if (durationOfEye == 1) {
-                                    akosEyePlace.setVisibility(View.INVISIBLE);
-                                    durationOfEye = 0;
-                                } else {
-                                    durationOfEye++;
-                                    viewHandler.postDelayed(this, 1500);
-                                }
-                            }
-                        }
-                    });
-
-                    viewHandler.postDelayed(eyeAnimRunable, 4000);
-                }
-            }
-        });*/
-
         super.onResume();
     }
 
     @Override
     public void onPause() {
         ExecutorService threadPoolExecutor = Executors.newSingleThreadExecutor();
-        //eyeAnimStopper = threadPoolExecutor.submit(eyeAnimRunable);
-        //eyeAnimStopper.cancel(true);
-
-        //viewHandler.removeCallbacksAndMessages(eyeAnimRunable);
-
-        /*eyeAnimRunable = new Runnable() {
-            @Override
-            public void run() {
-                return;
-            }
-        };*/
 
         super.onPause();
     }
