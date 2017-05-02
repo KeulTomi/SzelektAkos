@@ -6,11 +6,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Handler;
 
+import hu.foxplan.keult.szelektakos.SzelektAkos;
+
 /**
  * Bitmap objektum adatait tároló objektum
  */
 
-public class JumpMan {
+class JumpMan {
 
     private final int FOOT_ANIMATION_CYCLE = 25; // Lábmozgás animáció frissítési ciklusa
     private final int JUMP_REFRESH_CYCLE = 10; // Az ugró ember animációjának frissítési ciklusa
@@ -42,7 +44,7 @@ public class JumpMan {
             bmp = BitmapFactory.decodeResource(mContext.getResources(), resArray[i]);
             mBitmapArray[i] = Bitmap.createScaledBitmap(
                     bmp,
-                    (int) (bmp.getWidth() * targetHeight / bmp.getHeight()),
+                    (int) (bmp.getWidth() * targetHeight / (float) bmp.getHeight()),
                     targetHeight,
                     false);
         }
@@ -56,6 +58,7 @@ public class JumpMan {
 
         isGravityOn = true;
         isJumping = false;
+        v0 = 40 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
     }
 
     void startAnimation() {
@@ -116,7 +119,6 @@ public class JumpMan {
         if (isJumping)
             return; // Ha már ugrásban van akkor nem indítható még egy ugrás
 
-        v0 = 40; // Kezdő sebesség beállítása
         jumpCycleCount = 1; // Idő inicializlása (első "másodperc")
         y0 = getPos().y; // Ugrás induló pozíciójának tárolása
 
@@ -142,11 +144,11 @@ public class JumpMan {
         }
     }
 
-    public void setPosBottomLimit(int posBottomLimit) {
+    void setPosBottomLimit(int posBottomLimit) {
         this.posBottomLimit = posBottomLimit;
     }
 
-    public void setPosUpperLimit(int posUpperLimit) {
+    void setPosUpperLimit(int posUpperLimit) {
         this.posUpperLimit = posUpperLimit;
     }
 }

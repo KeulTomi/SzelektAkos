@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         userPointsText.setText(SzelektAkos.getPoints());
 
-        if (SzelektAkos.comeBackFromGame == true) {
+        if (SzelektAkos.comeBackFromGame) {
             SzelektAkos.changeLifeValue(-5);
             SzelektAkos.changeEnergy(-5);
             SzelektAkos.comeBackFromGame = false;
@@ -286,6 +286,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView = (ImageView) findViewById(R.id.menu_bar);
 
         akosPosY = 750;
+
 
         origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.menubar).getWidth();
         origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.menubar).getHeight();
