@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SzelektAkos.iml" filepath="$PROJECT_DIR$/SzelektAkos.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SzelektAkos.iml" filepath="$PROJECT_DIR$/SzelektAkos.iml" />
-      <module fileurl="file://$PROJECT_DIR$/szelekt-akos/szelekt-akos.iml" filepath="$PROJECT_DIR$/szelekt-akos/szelekt-akos.iml" />
       <module fileurl="file://$PROJECT_DIR$/szelekt-akos/szelekt-akos.iml" filepath="$PROJECT_DIR$/szelekt-akos/szelekt-akos.iml" />
     </modules>
   </component>
