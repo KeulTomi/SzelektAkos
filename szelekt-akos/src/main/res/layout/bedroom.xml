@@ -7,17 +7,14 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bed_room_background"
         android:layout_marginBottom="0dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/haloszoba" />
+        android:src="@drawable/haloszoba" />
 
     <ImageView
         android:id="@+id/sleeping_anim_place"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="215dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
