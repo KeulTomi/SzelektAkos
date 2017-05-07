@@ -1,6 +1,5 @@
 package hu.foxplan.keult.szelektakos.games;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.concurrent.ExecutorService;
@@ -40,6 +40,9 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     private TextView secondAnswerTxt;
     private TextView thirdAnswerTxt;
     private TextView reachedPointsTxt;
+    private RelativeLayout firstAnswerTxtLayout;
+    private RelativeLayout secondAnswerTxtLayout;
+    private RelativeLayout thirdAnswerTxtLayout;
     private ProgressBar gameTimeProgress;
     private ProgressBar lifeProgress;
     private ProgressBar energyProgress;
@@ -70,9 +73,13 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
         thirdAnswerImg = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.third_answer_img);
         closeTheGame = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.close_POG);
 
-        firstAnswerTxt.setOnTouchListener(this);
-        secondAnswerTxt.setOnTouchListener(this);
-        thirdAnswerTxt.setOnTouchListener(this);
+        firstAnswerTxtLayout = (RelativeLayout) findViewById(R.id.first_answer_txt_layout);
+        secondAnswerTxtLayout = (RelativeLayout) findViewById(R.id.second_answer_txt_layout);
+        thirdAnswerTxtLayout = (RelativeLayout) findViewById(R.id.third_answer_txt_layout);
+
+        firstAnswerTxtLayout.setOnTouchListener(this);
+        secondAnswerTxtLayout.setOnTouchListener(this);
+        thirdAnswerTxtLayout.setOnTouchListener(this);
         closeTheGame.setOnTouchListener(this);
 
         //A két progressbarokból levonunk 5-öt
@@ -126,7 +133,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
             final Runnable gameTimer = new Runnable() {
                 @Override
                 public void run() {
-                    if(!((Activity) PickOneGame.this).isFinishing())
+                    if (!PickOneGame.this.isFinishing())
                     {
                     // Saját magát hívja késleltetés után
                     SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
@@ -198,7 +205,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         switch (view.getId()) {
-            case hu.foxplan.keult.szelektakos.R.id.first_answer_txt:
+            case R.id.first_answer_txt_layout:
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     if (QuizQuestionFactory.getmCorrectAnswer() == 1) {
                         reachedPointsPOG += 1;
@@ -212,7 +219,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
 
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.second_answer_txt:
+            case R.id.second_answer_txt_layout:
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
 
 
@@ -227,7 +234,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                 }
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.third_answer_txt:
+            case R.id.third_answer_txt_layout:
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
 
 

@@ -23,6 +23,7 @@ public class TrashesFactory {
             R.drawable.plastic, R.drawable.cornflakes};
     public static Integer[] correctNumbersArray = {2, 2, 0, 3, 4, 5, 5, 5, 2, 2, 2, 2, 4, 1, 1, 1, 0, 0, 0, 2, 5, 5, 5, 5, 5};
     public static int mCorrectPicture;
+    public static int mCorrectPicture2;
     public static String mCorrectPictureString;
     public static int mCurrentGarbage;
     public static int mNumberOfCorrectPicture;
@@ -46,6 +47,18 @@ public class TrashesFactory {
 
             TrashesFactory.mCorrectPicture = picturesOfTrashes[TrashesFactory.mNumberOfCorrectPicture];
             TrashesFactory.mCorrectPictureString = stringsOfMipmaps[TrashesFactory.mNumberOfCorrectPicture];
+            TrashesFactory.mCorrectPicture2 = mCorrectPicture;
+
+            if (TrashesFactory.mNumberOfCorrectPicture == 0) {
+                //Ha kék a correctPicture, akkor a sárgát rakjuk a másikba
+                TrashesFactory.mCorrectPicture2 = picturesOfTrashes[5];
+            }
+
+            if (TrashesFactory.mNumberOfCorrectPicture == 5) {
+                //Ha sárga a correctPicture, akkor a kéket rakjuk a másikba
+                TrashesFactory.mCorrectPicture2 = picturesOfTrashes[0];
+            }
+
         } else {
             dinamicGarbagePicList = new ArrayList<Integer>(Arrays.asList(picturesOfGarbages));
             dinamicNumbersList = new ArrayList<Integer>(Arrays.asList(correctNumbersArray));

@@ -99,12 +99,12 @@ public class SzelektAkos extends Application {
             case MainActivity.MSG_UPDATE_LIFE:
                 // Üzenet előkészítése életerő frissítéséhez
                 msgToMainActivity.what = MainActivity.MSG_UPDATE_LIFE; // Üzenetkód beállítása
-                msgToMainActivity.obj = (Integer) life; // Küldendő érték beállítása
+                msgToMainActivity.obj = life; // Küldendő érték beállítása
                 break;
             case MainActivity.MSG_UPDATE_ENERGY:
                 // Üzenet előkészítése energia frissítéséhez
                 msgToMainActivity.what = MainActivity.MSG_UPDATE_ENERGY; // Üzenetkód beállítása
-                msgToMainActivity.obj = (Integer) energy; // Küldendő érték beállítása
+                msgToMainActivity.obj = energy; // Küldendő érték beállítása
                 break;
         }
 
@@ -118,14 +118,14 @@ public class SzelektAkos extends Application {
             case PickOneGame.MSG_PROOGRESS_LIFE:
 
                 msgToAGame.what = PickOneGame.MSG_PROOGRESS_LIFE; //Üzenetkód beállítása
-                msgToAGame.obj = (Integer) inGameProgress;
+                msgToAGame.obj = inGameProgress;
                 PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
 
             case PickOneGame.MSG_PROOGRESS_ENERGY:
 
                 msgToAGame.what = PickOneGame.MSG_PROOGRESS_ENERGY; //Üzenetkód beállítása
-                msgToAGame.obj = (Integer) inGameProgress;
+                msgToAGame.obj = inGameProgress;
                 PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
         }
@@ -138,50 +138,50 @@ public class SzelektAkos extends Application {
             case PickOneGame.MSG_GAME_TIME_NULL:
 
                 msgToAGame.what = PickOneGame.MSG_GAME_TIME_START; //Üzenetkód beállítása
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
 
             case PickOneGame.MSG_GAME_TIME_START:
 
                 msgToAGame.what = PickOneGame.MSG_GAME_TIME_NULL;
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
 
             case TrueFalseGame.MSG_GAME_TIME_NULL:
                 msgToAGame.what = TrueFalseGame.MSG_GAME_TIME_NULL;
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 TrueFalseGame.uiHandlerTF.sendMessage(msgToAGame);
                 break;
 
             case TrueFalseGame.MSG_GAME_TIME_START:
                 msgToAGame.what = TrueFalseGame.MSG_GAME_TIME_START;
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 TrueFalseGame.uiHandlerTF.sendMessage(msgToAGame);
                 break;
 
             case TrashesGame.MSG_GAME_TIME_NULL:
                 msgToAGame.what = TrashesGame.MSG_GAME_TIME_START;
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 TrashesGame.uiHandlerTG.sendMessage(msgToAGame);
                 break;
 
             case TrashesGame.MSG_GAME_TIME_START:
                 msgToAGame.what = TrashesGame.MSG_GAME_TIME_START;
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 TrashesGame.uiHandlerTG.sendMessage(msgToAGame);
                 break;
 
             case WordPuzzle.MSG_GAME_TIME_START:
                 msgToAGame.what = WordPuzzle.MSG_GAME_TIME_START;
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 WordPuzzle.uiHandlerWP.sendMessage(msgToAGame);
                 break;
 
             case WordPuzzle.MSG_GAME_TIME_NULL:
                 msgToAGame.what = WordPuzzle.MSG_GAME_TIME_NULL;
-                msgToAGame.obj = (Integer) gameTime;
+                msgToAGame.obj = gameTime;
                 WordPuzzle.uiHandlerWP.sendMessage(msgToAGame);
                 break;
 
@@ -267,7 +267,7 @@ public class SzelektAkos extends Application {
 
     public static void getAllPrefs () {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
-        points = 500;//mSharedPref.getInt("points", 0);
+        points = mSharedPref.getInt("points", 0);
         life = mSharedPref.getInt("life", 100);
         energy = mSharedPref.getInt("life", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.drawable.pants00);

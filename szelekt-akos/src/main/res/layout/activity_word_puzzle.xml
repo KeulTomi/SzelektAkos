@@ -121,6 +121,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/seventh_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px"
                 android:layout_marginRight="100px">
@@ -145,6 +146,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/eighth_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px"
                 android:layout_marginRight="100px">
@@ -168,6 +170,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/ninth_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px">
 
@@ -201,6 +204,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/fourth_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px"
                 android:layout_marginRight="100px">
@@ -224,6 +228,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/fifth_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px"
                 android:layout_marginRight="100px">
@@ -247,6 +252,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/sixth_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px">
 
@@ -280,6 +286,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/first_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px"
                 android:layout_marginRight="100px">
@@ -303,6 +310,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/second_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px"
                 android:layout_marginRight="100px">
@@ -326,6 +334,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/third_letter_layout"
                 android:layout_width="208px"
                 android:layout_height="307px">
 
@@ -358,6 +367,7 @@
             android:gravity="center_horizontal">
 
             <RelativeLayout
+                android:id="@+id/guess_first_letter_layout"
                 android:layout_width="148px"
                 android:layout_height="247px">
 
@@ -389,6 +399,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/guess_second_letter_layout"
                 android:layout_width="148px"
                 android:layout_height="247px"
                 android:layout_marginLeft="50px">
@@ -421,6 +432,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/guess_third_letter_layout"
                 android:layout_width="148px"
                 android:layout_height="247px"
                 android:layout_marginLeft="50px">
@@ -453,6 +465,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/guess_fourth_letter_layout"
                 android:layout_width="148px"
                 android:layout_height="247px"
                 android:layout_marginLeft="50px">
@@ -485,6 +498,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/guess_fifth_letter_layout"
                 android:layout_width="148px"
                 android:layout_height="247px"
                 android:layout_marginLeft="50px">
@@ -517,6 +531,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/guess_sixth_letter_layout"
                 android:layout_width="148px"
                 android:layout_height="247px"
                 android:layout_marginLeft="50px">

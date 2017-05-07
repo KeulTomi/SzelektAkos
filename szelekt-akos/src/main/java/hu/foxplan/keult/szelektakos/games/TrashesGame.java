@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Point;
@@ -141,7 +140,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
         final Runnable gameTimer = new Runnable() {
             @Override
             public void run() {
-                if (!((Activity) TrashesGame.this).isFinishing()) {
+                if (!TrashesGame.this.isFinishing()) {
                     // Saját magát hívja késleltetés után
                     SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
                     if (SzelektAkos.gameTime <= 500) {
@@ -198,7 +197,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
 
             case hu.foxplan.keult.szelektakos.R.id.first_trash:
 
-                if (dinamicTrashPlaceList.get(0) == TrashesFactory.mCorrectPicture) {
+                if ((dinamicTrashPlaceList.get(0) == TrashesFactory.mCorrectPicture) ||
+                        (dinamicTrashPlaceList.get(0) == TrashesFactory.mCorrectPicture2)) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
@@ -217,7 +217,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
 
             case hu.foxplan.keult.szelektakos.R.id.second_trash:
 
-                if (dinamicTrashPlaceList.get(1) == TrashesFactory.mCorrectPicture) {
+                if ((dinamicTrashPlaceList.get(1) == TrashesFactory.mCorrectPicture) ||
+                        (dinamicTrashPlaceList.get(1) == TrashesFactory.mCorrectPicture2)) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
@@ -235,7 +236,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
 
             case hu.foxplan.keult.szelektakos.R.id.third_trash:
 
-                if (dinamicTrashPlaceList.get(2) == TrashesFactory.mCorrectPicture) {
+                if ((dinamicTrashPlaceList.get(2) == TrashesFactory.mCorrectPicture) ||
+                        (dinamicTrashPlaceList.get(2) == TrashesFactory.mCorrectPicture2)) {
                     //Plussz pont hozzáadása az elért pontokhoz
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
@@ -254,7 +256,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
 
             case hu.foxplan.keult.szelektakos.R.id.fourth_trash:
 
-                if (dinamicTrashPlaceList.get(3) == TrashesFactory.mCorrectPicture) {
+                if ((dinamicTrashPlaceList.get(3) == TrashesFactory.mCorrectPicture) ||
+                        (dinamicTrashPlaceList.get(3) == TrashesFactory.mCorrectPicture2)) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
@@ -273,7 +276,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
 
             case hu.foxplan.keult.szelektakos.R.id.fifth_trash:
 
-                if (dinamicTrashPlaceList.get(4) == TrashesFactory.mCorrectPicture) {
+                if ((dinamicTrashPlaceList.get(4) == TrashesFactory.mCorrectPicture) ||
+                        (dinamicTrashPlaceList.get(4) == TrashesFactory.mCorrectPicture2)) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();
@@ -291,7 +295,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
 
             case hu.foxplan.keult.szelektakos.R.id.sixth_trash:
 
-                if (dinamicTrashPlaceList.get(5) == TrashesFactory.mCorrectPicture) {
+                if ((dinamicTrashPlaceList.get(5) == TrashesFactory.mCorrectPicture) ||
+                        (dinamicTrashPlaceList.get(5) == TrashesFactory.mCorrectPicture2)) {
                     reachedPointsTG += 1;
                     reachedPointsTxt.setText(String.valueOf(reachedPointsTG));
                     dinamicTrashPlaceList.clear();

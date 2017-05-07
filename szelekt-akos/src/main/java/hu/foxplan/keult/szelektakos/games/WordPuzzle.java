@@ -1,6 +1,5 @@
 package hu.foxplan.keult.szelektakos.games;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -13,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -61,6 +61,13 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public ImageView fourthGuesstLetterPlc;
     public ImageView fifthGuesstLetterPlc;
     public ImageView sixthGuesstLetterPlc;
+    //A tippelt betűk layoutjai
+    public RelativeLayout firstGuesstLetterLayout;
+    public RelativeLayout secondGuesstLetterLayout;
+    public RelativeLayout thirdGuesstLetterLayout;
+    public RelativeLayout fourthGuesstLetterLayout;
+    public RelativeLayout fifthGuesstLetterLayout;
+    public RelativeLayout sixthGuesstLetterLayout;
     //A sorsolt betűk
     public TextView firstLetter;
     public TextView secondLetter;
@@ -71,6 +78,16 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public TextView seventhLetter;
     public TextView eighthLetter;
     public TextView ninthLetter;
+    //Sorsolt betűl layoutjai
+    public RelativeLayout firstLetterLayout;
+    public RelativeLayout secondLetterLayout;
+    public RelativeLayout thirdLetterLayout;
+    public RelativeLayout fourthLetterLayout;
+    public RelativeLayout fifthLetterLayout;
+    public RelativeLayout sixthLetterLayout;
+    public RelativeLayout seventhLetterLayout;
+    public RelativeLayout eighthLetterLayout;
+    public RelativeLayout ninthLetterLayout;
     //A tippelt betűk
     public TextView firstGuessLetter;
     public TextView secondGuessLetter;
@@ -128,6 +145,16 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         eighthLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.eighth_letter_back);
         ninthLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.ninth_letter_back);
 
+        firstLetterLayout = (RelativeLayout) findViewById(R.id.first_letter_layout);
+        secondLetterLayout = (RelativeLayout) findViewById(R.id.second_letter_layout);
+        thirdLetterLayout = (RelativeLayout) findViewById(R.id.third_letter_layout);
+        fourthLetterLayout = (RelativeLayout) findViewById(R.id.fourth_letter_layout);
+        fifthLetterLayout = (RelativeLayout) findViewById(R.id.fifth_letter_layout);
+        sixthLetterLayout = (RelativeLayout) findViewById(R.id.sixth_letter_layout);
+        seventhLetterLayout = (RelativeLayout) findViewById(R.id.seventh_letter_layout);
+        eighthLetterLayout = (RelativeLayout) findViewById(R.id.eighth_letter_layout);
+        ninthLetterLayout = (RelativeLayout) findViewById(R.id.ninth_letter_layout);
+
         firstGuesstLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_first_letter_back);
         secondGuesstLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_second_letter_back);
         thirdGuesstLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_third_letter_back);
@@ -141,6 +168,13 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         fourthGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fourth_letter_plc);
         fifthGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fifth_letter_plc);
         sixthGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_sixth_letter_plc);
+
+        firstGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_first_letter_layout);
+        secondGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_second_letter_layout);
+        thirdGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_third_letter_layout);
+        fourthGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_fourth_letter_layout);
+        fifthGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_fifth_letter_layout);
+        sixthGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_sixth_letter_layout);
 
         firstLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.first_letter);
         secondLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.second_letter);
@@ -166,22 +200,22 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         energyProgress = (ProgressBar) findViewById(hu.foxplan.keult.szelektakos.R.id.progress_energy_WP);
         reachedPointText = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.reached_points_txt_WP);
 
-        firstLetter.setOnClickListener(this);
-        secondLetter.setOnClickListener(this);
-        thirdLetter.setOnClickListener(this);
-        fourthLetter.setOnClickListener(this);
-        fifthLetter.setOnClickListener(this);
-        sixthLetter.setOnClickListener(this);
-        seventhLetter.setOnClickListener(this);
-        eighthLetter.setOnClickListener(this);
-        ninthLetter.setOnClickListener(this);
+        firstLetterLayout.setOnClickListener(this);
+        secondLetterLayout.setOnClickListener(this);
+        thirdLetterLayout.setOnClickListener(this);
+        fourthLetterLayout.setOnClickListener(this);
+        fifthLetterLayout.setOnClickListener(this);
+        sixthLetterLayout.setOnClickListener(this);
+        seventhLetterLayout.setOnClickListener(this);
+        eighthLetterLayout.setOnClickListener(this);
+        ninthLetterLayout.setOnClickListener(this);
 
-        firstGuessLetter.setOnClickListener(this);
-        secondGuessLetter.setOnClickListener(this);
-        thirdGuessLetter.setOnClickListener(this);
-        fourthGuessLetter.setOnClickListener(this);
-        fifthGuessLetter.setOnClickListener(this);
-        sixthGuessLetter.setOnClickListener(this);
+        firstGuesstLetterLayout.setOnClickListener(this);
+        secondGuesstLetterLayout.setOnClickListener(this);
+        thirdGuesstLetterLayout.setOnClickListener(this);
+        fourthGuesstLetterLayout.setOnClickListener(this);
+        fifthGuesstLetterLayout.setOnClickListener(this);
+        sixthGuesstLetterLayout.setOnClickListener(this);
 
         closeWP.setOnClickListener(this);
 
@@ -233,7 +267,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         final Runnable gameTimer = new Runnable() {
             @Override
             public void run() {
-                if(!((Activity) WordPuzzle.this).isFinishing())
+                if (!WordPuzzle.this.isFinishing())
                 {
                     // Saját magát hívja késleltetés után
                     SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
@@ -293,79 +327,79 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         switch (view.getId()){
 
             //Ha a választható betűkre kattint
-            case hu.foxplan.keult.szelektakos.R.id.first_letter:
+            case R.id.first_letter_layout:
                 String firstString = firstLetter.getText().toString();
                 setThePickedLetter(firstString, firstLetter, 0);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.second_letter:
+            case R.id.second_letter_layout:
                 String secondString = secondLetter.getText().toString();
                 setThePickedLetter(secondString, secondLetter, 1);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.third_letter:
+            case R.id.third_letter_layout:
                 String thirdString = thirdLetter.getText().toString();
                 setThePickedLetter(thirdString, thirdLetter, 2);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.fourth_letter:
+            case R.id.fourth_letter_layout:
                 String fourthString = fourthLetter.getText().toString();
                 setThePickedLetter(fourthString, fourthLetter, 3);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.fifth_letter:
+            case R.id.fifth_letter_layout:
                 String fifthString = fifthLetter.getText().toString();
                 setThePickedLetter(fifthString, fifthLetter, 4);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.sixth_letter:
+            case R.id.sixth_letter_layout:
                 String sixthString = sixthLetter.getText().toString();
                 setThePickedLetter(sixthString, sixthLetter, 5);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.seventh_letter:
+            case R.id.seventh_letter_layout:
                 String seventhString = seventhLetter.getText().toString();
                 setThePickedLetter(seventhString, seventhLetter, 6);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.eighth_letter:
+            case R.id.eighth_letter_layout:
                 String eighthString = eighthLetter.getText().toString();
                 setThePickedLetter(eighthString, eighthLetter, 7);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.ninth_letter:
+            case R.id.ninth_letter_layout:
                 String ninthString = ninthLetter.getText().toString();
                 setThePickedLetter(ninthString, ninthLetter, 8);
                 break;
 
 
             //Ha vissza szeretne vonni egyet a már kiválasztott betűkből
-            case hu.foxplan.keult.szelektakos.R.id.guess_first_letter:
+            case R.id.guess_first_letter_layout:
                 String guessFirstString = firstGuessLetter.getText().toString();
                 removeALetter(guessFirstString, firstGuessLetter, 0);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.guess_second_letter:
+            case R.id.guess_second_letter_layout:
                 String guessSecondString = secondGuessLetter.getText().toString();
                 removeALetter(guessSecondString, secondGuessLetter, 1);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.guess_third_letter:
+            case R.id.guess_third_letter_layout:
                 String guessThirdString = thirdGuessLetter.getText().toString();
                 removeALetter(guessThirdString, thirdGuessLetter, 2);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.guess_fourth_letter:
+            case R.id.guess_fourth_letter_layout:
                 String guessFourthString = fourthGuessLetter.getText().toString();
                 removeALetter(guessFourthString, fourthGuessLetter, 3);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.guess_fifth_letter:
+            case R.id.guess_fifth_letter_layout:
                 String guessFifthString = fifthGuessLetter.getText().toString();
                 removeALetter(guessFifthString, fifthGuessLetter, 4);
                 break;
 
-            case hu.foxplan.keult.szelektakos.R.id.guess_sixth_letter:
+            case R.id.guess_sixth_letter_layout:
                 String guessSixthString = sixthGuessLetter.getText().toString();
                 removeALetter(guessSixthString, sixthGuessLetter, 5);
                 break;

@@ -4,6 +4,7 @@ package hu.foxplan.keult.szelektakos.mainscreen;
  * Created by Tomi on 2017. 03. 23..
  */
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import java.util.concurrent.Future;
 
 import hu.foxplan.keult.szelektakos.R;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
+import hu.foxplan.keult.szelektakos.THG_Web;
 
 import static hu.foxplan.keult.szelektakos.mainscreen.MainActivity.currentTrouser;
 
@@ -33,6 +35,7 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
     private ImageView akosRightHand;
     private ImageView animationPlace;
     private ImageView akosEyePlace;
+    private ImageView THGPicture;
     private Handler viewHandler = new Handler();
     private int animationNumber;
     private AnimationDrawable handAnimation;
@@ -55,6 +58,9 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
         akosLeftHand = (ImageView) view.findViewById(R.id.left_hand);
 
         currentTrouser = (ImageView) view.findViewById(R.id.trouser);
+
+        THGPicture = (ImageView) view.findViewById(R.id.thgkft_picture);
+        THGPicture.setOnClickListener(this);
 
         // Fényképező és szív animációjának placeholdere
         animationPlace = (ImageView) view.findViewById(R.id.animation_place);
@@ -92,6 +98,10 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        if (view.getId() == R.id.thgkft_picture) {
+            Intent openTHGWEB = new Intent(getContext(), THG_Web.class);
+            startActivity(openTHGWEB);
+        }
         switch (animationNumber){
             case 0:
                 animationPlace.setBackgroundResource(R.drawable.akos_body_love_animation);
@@ -190,5 +200,6 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
 //                });
                 break;
         }
+
     }
 }
