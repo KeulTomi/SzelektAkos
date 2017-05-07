@@ -13,14 +13,14 @@ import hu.foxplan.keult.szelektakos.R;
 
 public class TrashesFactory {
 
-    public static int[] picturesOfTrashes = {R.mipmap.trash_blue, R.mipmap.trash_braun, R.mipmap.trash_build, R.mipmap.trash_green,
-            R.mipmap.trash_white, R.mipmap.trash_yellow};
+    public static int[] picturesOfTrashes = {R.drawable.trash_blue, R.drawable.trash_braun, R.drawable.trash_build, R.drawable.trash_green,
+            R.drawable.trash_white, R.drawable.trash_yellow};
     public static String[] stringsOfMipmaps = {"trash_blue", "trash_braun", "trash_build", "trash_green", "trash_white", "trash_yellow"};
-    public static Integer[] picturesOfGarbages = {R.mipmap.pill, R.mipmap.battery, R.mipmap.book, R.mipmap.bottle_colorful,
-            R.mipmap.bottle_white, R.mipmap.bottlecap, R.mipmap.butter, R.mipmap.can, R.mipmap.chips, R.mipmap.electronics,
-            R.mipmap.home_oil, R.mipmap.oil, R.mipmap.glass, R.mipmap.plant, R.mipmap.plant2, R.mipmap.plant3, R.mipmap.paper,
-            R.mipmap.paper_bag, R.mipmap.newspaper, R.mipmap.ligth_bulb, R.mipmap.shower_gel, R.mipmap.simple_can, R.mipmap.yogurt,
-            R.mipmap.plastic, R.mipmap.cornflakes};
+    public static Integer[] picturesOfGarbages = {R.drawable.pill, R.drawable.battery, R.drawable.book, R.drawable.bottle_colorful,
+            R.drawable.bottle_white, R.drawable.bottlecap, R.drawable.butter, R.drawable.can, R.drawable.chips, R.drawable.electronics,
+            R.drawable.home_oil, R.drawable.oil, R.drawable.glass, R.drawable.plant, R.drawable.plant2, R.drawable.plant3, R.drawable.paper,
+            R.drawable.paper_bag, R.drawable.newspaper, R.drawable.ligth_bulb, R.drawable.shower_gel, R.drawable.simple_can, R.drawable.yogurt,
+            R.drawable.plastic, R.drawable.cornflakes};
     public static Integer[] correctNumbersArray = {2, 2, 0, 3, 4, 5, 5, 5, 2, 2, 2, 2, 4, 1, 1, 1, 0, 0, 0, 2, 5, 5, 5, 5, 5};
     public static int mCorrectPicture;
     public static String mCorrectPictureString;

@@ -31,7 +31,7 @@
             android:layout_height="175px"
             android:layout_marginLeft="26px"
             android:layout_marginTop="1915px"
-            android:src="@mipmap/picto_web" />
+            android:src="@drawable/picto_web" />
 
         <ImageView
             android:id="@+id/shop"
@@ -39,7 +39,7 @@
             android:layout_height="175px"
             android:layout_marginLeft="1100px"
             android:layout_marginTop="1915px"
-            android:src="@mipmap/picto_shop" />
+            android:src="@drawable/picto_shop" />
 
         <ImageView
             android:id="@+id/pick_one_game"
@@ -47,7 +47,7 @@
             android:layout_height="175px"
             android:layout_marginLeft="2px"
             android:layout_marginTop="2135px"
-            android:src="@mipmap/picto_valaszto" />
+            android:src="@drawable/picto_valaszto" />
 
         <ImageView
             android:id="@+id/trash_game"
@@ -55,7 +55,7 @@
             android:layout_height="175px"
             android:layout_marginLeft="265px"
             android:layout_marginTop="2135px"
-            android:src="@mipmap/picto_kuka" />
+            android:src="@drawable/picto_kuka" />
 
         <ImageView
             android:id="@+id/true_false_game"
@@ -63,7 +63,7 @@
             android:layout_height="175px"
             android:layout_marginLeft="528px"
             android:layout_marginTop="2135px"
-            android:src="@mipmap/picto_igaz_hamis" />
+            android:src="@drawable/picto_igaz_hamis" />
 
         <ImageView
             android:id="@+id/words_game"
@@ -71,7 +71,7 @@
             android:layout_height="175px"
             android:layout_marginLeft="791px"
             android:layout_marginTop="2135px"
-            android:src="@mipmap/picto_abc" />
+            android:src="@drawable/picto_abc" />
 
         <ImageView
             android:id="@+id/jumping_game"
@@ -79,7 +79,7 @@
             android:layout_height="175px"
             android:layout_marginLeft="1054px"
             android:layout_marginTop="2135px"
-            android:src="@mipmap/picto_ugralos" />
+            android:src="@drawable/picto_ugralos" />
 
         <ProgressBar
             android:id="@+id/progress_energy"
@@ -119,7 +119,7 @@
             android:layout_height="220px"
             android:layout_marginLeft="0px"
             android:layout_marginTop="240px"
-            android:src="@mipmap/back_arrow" />
+            android:src="@drawable/back_arrow" />
 
         <TextView
             android:id="@+id/recently_place"
@@ -137,7 +137,7 @@
             android:layout_height="220px"
             android:layout_alignParentRight="true"
             android:layout_marginTop="240px"
-            android:src="@mipmap/back_arrow2" />
+            android:src="@drawable/back_arrow2" />
 
         <TextView
             android:id="@+id/user_points"
@@ -156,7 +156,7 @@
             android:layout_height="89px"
             android:layout_marginLeft="211px"
             android:layout_marginTop="75px"
-            android:src="@mipmap/energy_picto" />
+            android:src="@drawable/energy_picto" />
 
         <ImageView
             android:id="@+id/food_picto"
@@ -164,7 +164,7 @@
             android:layout_height="78px"
             android:layout_marginLeft="1017px"
             android:layout_marginTop="77px"
-            android:src="@mipmap/food_picto" />
+            android:src="@drawable/food_picto" />
 
     </RelativeLayout>
 </FrameLayout>

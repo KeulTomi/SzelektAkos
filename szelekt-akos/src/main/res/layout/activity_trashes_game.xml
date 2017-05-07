@@ -15,7 +15,7 @@
             android:layout_width="1300px"
             android:layout_height="2318px"
             android:scaleType="center"
-            android:src="@mipmap/green_back" />
+            android:src="@drawable/green_back" />
 
         <TextView
             android:layout_width="match_parent"
@@ -71,21 +71,21 @@
             android:layout_height="89px"
             android:layout_marginLeft="211px"
             android:layout_marginTop="75px"
-            android:src="@mipmap/energy_picto" />
+            android:src="@drawable/energy_picto" />
 
         <ImageView
             android:layout_width="79px"
             android:layout_height="78px"
             android:layout_marginLeft="1017px"
             android:layout_marginTop="77px"
-            android:src="@mipmap/food_picto" />
+            android:src="@drawable/food_picto" />
 
         <ImageView
             android:id="@+id/garbage"
             android:layout_width="144px"
             android:layout_height="298px"
             android:layout_centerInParent="true"
-            android:src="@mipmap/pill" />
+            android:src="@drawable/pill" />
 
         <ImageView
             android:id="@+id/first_trash"
@@ -93,7 +93,7 @@
             android:layout_height="350px"
             android:layout_marginLeft="150px"
             android:layout_marginTop="350px"
-            android:src="@mipmap/trash_blue" />
+            android:src="@drawable/trash_blue" />
 
         <ImageView
             android:id="@+id/second_trash"
@@ -102,14 +102,14 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="150px"
             android:layout_marginTop="350px"
-            android:src="@mipmap/trash_braun" />
+            android:src="@drawable/trash_braun" />
 
         <ImageView
             android:id="@+id/third_trash"
             android:layout_width="350px"
             android:layout_height="350px"
             android:layout_centerVertical="true"
-            android:src="@mipmap/trash_white" />
+            android:src="@drawable/trash_white" />
 
         <ImageView
             android:id="@+id/fourth_trash"
@@ -117,7 +117,7 @@
             android:layout_height="350px"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/trash_build" />
+            android:src="@drawable/trash_build" />
 
         <ImageView
             android:id="@+id/fifth_trash"
@@ -127,7 +127,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="350px"
             android:layout_marginRight="150px"
-            android:src="@mipmap/trash_yellow" />
+            android:src="@drawable/trash_yellow" />
 
         <ImageView
             android:id="@+id/sixth_trash"
@@ -136,7 +136,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="350px"
             android:layout_marginLeft="150px"
-            android:src="@mipmap/trash_green" />
+            android:src="@drawable/trash_green" />
 
         <ProgressBar
             android:id="@+id/game_time_progress_TG"

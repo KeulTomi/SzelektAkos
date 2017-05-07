@@ -60,14 +60,14 @@
         android:id="@+id/jump_game_energy_picto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/energy_picto" />
+        android:src="@drawable/energy_picto" />
 
 
     <ImageView
         android:id="@+id/jump_game_food_picto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/food_picto" />
+        android:src="@drawable/food_picto" />
 
 
     <ImageView

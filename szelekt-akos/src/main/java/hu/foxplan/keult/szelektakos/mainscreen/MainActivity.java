@@ -332,8 +332,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // THG Web ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.thg_web);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_web).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_web).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.picto_web).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.picto_web).getHeight();
         viewScaleX = 0.13f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -348,8 +348,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Shop ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.shop);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_shop).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_shop).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.picto_shop).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.picto_shop).getHeight();
         viewScaleX = 0.13f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -364,8 +364,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Pick One game ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.pick_one_game);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_valaszto).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_valaszto).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.picto_valaszto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.picto_valaszto).getHeight();
         viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -380,8 +380,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Trash game ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.trash_game);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_kuka).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_kuka).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.picto_kuka).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.picto_kuka).getHeight();
         viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -396,8 +396,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // True-False game ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.true_false_game);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_igaz_hamis).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_igaz_hamis).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.picto_igaz_hamis).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.picto_igaz_hamis).getHeight();
         viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -412,8 +412,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Words game ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.words_game);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_abc).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_abc).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.picto_abc).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.picto_abc).getHeight();
         viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -428,8 +428,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Jump game ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.jumping_game);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_ugralos).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.picto_ugralos).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.picto_ugralos).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.picto_ugralos).getHeight();
         viewScaleX = 0.17f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -444,8 +444,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Balra nyíl pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.left_arrow);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.back_arrow).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.back_arrow).getHeight();
         viewScaleX = 0.1f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -460,8 +460,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Jobbra nyíl pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.right_arrow);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow2).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.back_arrow2).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.back_arrow2).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.back_arrow2).getHeight();
         viewScaleX = 0.1f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -476,8 +476,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Energy ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.energy_picto);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.energy_picto).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.energy_picto).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getHeight();
         viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -492,8 +492,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Food ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.food_picto);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.food_picto).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.food_picto).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getHeight();
         viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);

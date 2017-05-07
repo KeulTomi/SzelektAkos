@@ -12,8 +12,8 @@ public class ItemsForTrouser implements ListInterface {
     public static String[] names = {"THG", "Kék", "Bordó", "Sárga", "Neon", "Kockás", "Csíkos"} ;
     public static int[] prices = {0, 77, 165, 213, 562, 788, 802,};
     public static boolean[] boughtTrousers = {true, false, false, false, false, false, false};
-    public static int[] pictures = {R.drawable.pants00, R.mipmap.pants_blue, R.mipmap.pants_red, R.mipmap.pants_yellow, R.mipmap.pants_neon,
-            R.mipmap.pants_kockas, R.mipmap.pants_csikos};
+    public static int[] pictures = {R.drawable.pants00, R.drawable.pants_blue, R.drawable.pants_red, R.drawable.pants_yellow, R.drawable.pants_neon,
+            R.drawable.pants_kockas, R.drawable.pants_csikos};
     public String name;
     public int price;
     public int lifeValue;

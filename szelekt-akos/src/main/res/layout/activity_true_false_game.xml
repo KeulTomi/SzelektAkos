@@ -16,7 +16,7 @@
             android:layout_width="1300px"
             android:layout_height="2318px"
             android:scaleType="center"
-            android:src="@mipmap/true_false_back" />
+            android:src="@drawable/true_false_back" />
 
         <TextView
             android:layout_width="1300px"
@@ -90,14 +90,14 @@
             android:layout_height="89px"
             android:layout_marginLeft="211px"
             android:layout_marginTop="75px"
-            android:src="@mipmap/energy_picto" />
+            android:src="@drawable/energy_picto" />
 
         <ImageView
             android:layout_width="79px"
             android:layout_height="78px"
             android:layout_marginLeft="1017px"
             android:layout_marginTop="77px"
-            android:src="@mipmap/food_picto" />
+            android:src="@drawable/food_picto" />
 
         <TextView
             android:id="@+id/question_txt_TFG"

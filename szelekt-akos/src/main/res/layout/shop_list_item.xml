@@ -3,7 +3,7 @@
     android:id="@+id/shop_list_header"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@mipmap/shop_item_back"
+    android:background="@drawable/shop_item_back"
     android:orientation="vertical">
 
     <ImageView
@@ -11,14 +11,14 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_centerInParent="true"
-        android:src="@mipmap/shopitem01" />
+        android:src="@drawable/shopitem01" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:src="@mipmap/buy_button" />
+        android:src="@drawable/buy_button" />
 
     <LinearLayout
         android:layout_width="100dp"

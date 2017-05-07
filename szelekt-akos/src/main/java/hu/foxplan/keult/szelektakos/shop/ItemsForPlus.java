@@ -1,6 +1,7 @@
 package hu.foxplan.keult.szelektakos.shop;
 
 import hu.foxplan.keult.szelektakos.ListInterface;
+import hu.foxplan.keult.szelektakos.R;
 
 /**
  * Created by Tomi on 2017. 03. 30..
@@ -12,7 +13,7 @@ public class ItemsForPlus implements ListInterface {
     private static int[] prices = {762, 865, 1472};
     private static int[] lifeValues = {100, 100, 100};
     //TODO A harmadik elemet nem tölti be!!
-    private static int[] pictures = {hu.foxplan.keult.szelektakos.R.mipmap.plusenergy, hu.foxplan.keult.szelektakos.R.mipmap.plusfood, hu.foxplan.keult.szelektakos.R.mipmap.plusfoodenergy};
+    private static int[] pictures = {R.drawable.plusenergy, R.drawable.plusfood, R.drawable.plusfoodenergy};
     private String name;
     private int price;
     private int lifeValue;

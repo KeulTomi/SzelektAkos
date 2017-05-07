@@ -15,7 +15,7 @@
             android:layout_width="1300px"
             android:layout_height="2318px"
         android:scaleType="center"
-        android:src="@mipmap/quiz_back" />
+            android:src="@drawable/quiz_back" />
 
     <TextView
         android:layout_width="1300px"
@@ -70,7 +70,7 @@
         android:layout_height="89px"
         android:layout_marginLeft="211px"
         android:layout_marginTop="75px"
-        android:src="@mipmap/energy_picto" />
+        android:src="@drawable/energy_picto" />
 
     <ImageView
         android:id="@+id/food_picto"
@@ -78,7 +78,7 @@
         android:layout_height="78px"
         android:layout_marginLeft="1017px"
         android:layout_marginTop="77px"
-        android:src="@mipmap/food_picto" />
+        android:src="@drawable/food_picto" />
 
         <TextView
             android:id="@+id/question_txt_POG"
@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/quiz_button_back" />
+                android:src="@drawable/quiz_button_back" />
 
             <TextView
                 android:id="@+id/first_answer_txt"
@@ -132,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/quiz_button_back" />
+                android:src="@drawable/quiz_button_back" />
 
             <TextView
                 android:id="@+id/second_answer_txt"
@@ -154,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/quiz_button_back" />
+                android:src="@drawable/quiz_button_back" />
 
             <TextView
                 android:id="@+id/third_answer_txt"

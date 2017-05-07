@@ -46,8 +46,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
     public static ImageView fifthTrash;
     public static ImageView sixthTrash;
     public static ImageView[] trashList;
-    public static Integer[] mipmapList = {hu.foxplan.keult.szelektakos.R.mipmap.trash_blue, hu.foxplan.keult.szelektakos.R.mipmap.trash_braun, hu.foxplan.keult.szelektakos.R.mipmap.trash_build, hu.foxplan.keult.szelektakos.R.mipmap.trash_green,
-            hu.foxplan.keult.szelektakos.R.mipmap.trash_white, hu.foxplan.keult.szelektakos.R.mipmap.trash_yellow};
+    public static Integer[] drawableList = {hu.foxplan.keult.szelektakos.R.drawable.trash_blue, hu.foxplan.keult.szelektakos.R.drawable.trash_braun, hu.foxplan.keult.szelektakos.R.drawable.trash_build, hu.foxplan.keult.szelektakos.R.drawable.trash_green,
+            hu.foxplan.keult.szelektakos.R.drawable.trash_white, hu.foxplan.keult.szelektakos.R.drawable.trash_yellow};
     public static Integer[] placesOfTraahesList = {0, 1, 2, 3, 4, 5};
     public static List<Integer> dinamicMipMapList;
     public static ArrayList<Integer> dinamicTrashPlaceList = new ArrayList<>();
@@ -318,7 +318,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
     public void refreshTrashPlaces() {
         Random r = new Random();
         trashList = new ImageView[]{firstTrash, secondTrash, thirdTrash, fourthTrash, fifthTrash, sixthTrash};
-        dinamicMipMapList = new ArrayList<Integer>(Arrays.asList(mipmapList));
+        dinamicMipMapList = new ArrayList<Integer>(Arrays.asList(drawableList));
         int index = 0;
         int placeNumber;
         ImageView place;

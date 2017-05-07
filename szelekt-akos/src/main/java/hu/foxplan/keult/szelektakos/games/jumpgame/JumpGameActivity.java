@@ -173,8 +173,8 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
         // Energy ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.jump_game_energy_picto);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.energy_picto).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.energy_picto).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getHeight();
         viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
@@ -189,8 +189,8 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
         // Food ikon pozícionálása és méretezése
         imageView = (ImageView) findViewById(R.id.jump_game_food_picto);
 
-        origWidth = BitmapFactory.decodeResource(getResources(), R.mipmap.food_picto).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.mipmap.food_picto).getHeight();
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getHeight();
         viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
 
         imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
