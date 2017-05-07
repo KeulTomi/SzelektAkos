@@ -19,6 +19,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import hu.foxplan.keult.szelektakos.R;
+import hu.foxplan.keult.szelektakos.ScaleHelper;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 import hu.foxplan.keult.szelektakos.mainscreen.MainActivity;
 
@@ -251,5 +253,11 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
         }
 
         return false;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        ScaleHelper.scaleContents(findViewById(R.id.pick_one_game_root), findViewById(R.id.pick_one_game_container));
     }
 }

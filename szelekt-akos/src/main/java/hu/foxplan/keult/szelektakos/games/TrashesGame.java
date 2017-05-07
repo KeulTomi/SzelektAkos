@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +28,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import hu.foxplan.keult.szelektakos.R;
+import hu.foxplan.keult.szelektakos.ScaleHelper;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 import hu.foxplan.keult.szelektakos.mainscreen.MainActivity;
 
@@ -333,13 +337,20 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
         garbage.setImageResource(TrashesFactory.mCurrentGarbage);
 
         if (reachedPointsTG > 0) {
-            garbage.setX(250);
-            garbage.setY(500);
+            ViewGroup.LayoutParams layoutparams = garbage.getLayoutParams();
+            Point pos = (Point) garbage.getTag();
+            garbage.setX(garbageX);
+            garbage.setY(garbageY);
         }
 
     }
 
     public void garbageAnimator(final float correctTrashX, final float correctTrashY) {
+
+        // Pozíció mentése, hogy az animálás után vissza lehessen állítani középre
+        garbageX = garbage.getX();
+        garbageY = garbage.getY();
+
         //Animáció a szemétre
         ObjectAnimator animationX = ObjectAnimator.ofFloat(garbage, "x", correctTrashX);
         ObjectAnimator animationY = ObjectAnimator.ofFloat(garbage, "y", correctTrashY);
@@ -357,6 +368,12 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
         animationX.start();
         animationY.start();
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        ScaleHelper.scaleContents(findViewById(R.id.trash_game_root), findViewById(R.id.trash_game_container));
     }
 
 }

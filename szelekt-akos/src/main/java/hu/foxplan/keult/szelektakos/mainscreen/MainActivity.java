@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import hu.foxplan.keult.szelektakos.R;
+import hu.foxplan.keult.szelektakos.ScaleHelper;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 import hu.foxplan.keult.szelektakos.THG_Web;
 import hu.foxplan.keult.szelektakos.games.PickOneGame;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ViewPager pager;
     private ImageView rightArrowOfTitle;
     private ImageView leftArrowOfTitle;
+    private View mContentView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //A fő viewpager összeállítása
         pager = (ViewPager) findViewById(R.id.view_pager);
+        pager.setOffscreenPageLimit(3);
         FragmentManager fm = getSupportFragmentManager();
         Fragment_pager pagerAdapter = new Fragment_pager(fm);
 
@@ -190,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         uiHandler.postDelayed(energyTimer, ENERGY_REFRESH_PERIOD);
         uiHandler.postDelayed(lifeTimer, LIFE_REFRESH_PERIOD);
 
-        scaleImageItems();
+        //scaleImageItems();
 
    }
 
@@ -213,6 +216,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SzelektAkos.life = life.getProgress();
         SzelektAkos.saveAllPrefs();
         super.onDestroy();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        ScaleHelper.scaleContents(findViewById(R.id.main_activity_rootview), findViewById(R.id.main_activity_container));
+        /*ScaleHelper.scaleContents(
+                findViewById(R.id.main_activity_layout),
+                SzelektAkos.displayWidth,
+                SzelektAkos.displayHeight);*/
     }
 
     @Override
@@ -281,6 +294,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int posX;
         int posY;
         ImageView imageView;
+
+        // Header átméretezése
+        imageView = (ImageView) findViewById(R.id.header);
+
+        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.head2_crop).getWidth();
+        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.head2_crop).getHeight();
+        viewScaleX = SzelektAkos.displayWidth / (float) origWidth;
+        viewScaleY = SzelektAkos.displayHeight / (float) origHeight;
+
+        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+
+        posX = 0;
+        posY = 0;
+        imageView.setX(posX * screenScaleX);
+        imageView.setY(posY * screenScaleX);
+
 
         // Menü háttér átméretezése
         imageView = (ImageView) findViewById(R.id.menu_bar);

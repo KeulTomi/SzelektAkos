@@ -19,6 +19,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import hu.foxplan.keult.szelektakos.R;
+import hu.foxplan.keult.szelektakos.ScaleHelper;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 import hu.foxplan.keult.szelektakos.mainscreen.MainActivity;
 
@@ -212,5 +214,11 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
     protected void onDestroy() {
         uiHandlerTF.removeCallbacksAndMessages(gameTimer);
         super.onDestroy();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        ScaleHelper.scaleContents(findViewById(R.id.true_false_game_root), findViewById(R.id.true_false_game_container));
     }
 }

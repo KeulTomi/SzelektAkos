@@ -1,137 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     tools:context="hu.foxplan.keult.szelektakos.mainscreen.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:id="@+id/main_activity_rootview"
+        android:layout_width="1300px"
+        android:layout_height="2318px">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="1300px"
+            android:layout_height="2318px" />
 
 
-    <ImageView
-        android:id="@+id/menu_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/menubar" />
+        <ImageView
+            android:id="@+id/menu_bar"
+            android:layout_width="1300px"
+            android:layout_height="574px"
+            android:layout_marginTop="1741px"
+            android:src="@drawable/menubar" />
 
-    <ImageView
-        android:id="@+id/thg_web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/picto_web" />
+        <ImageView
+            android:id="@+id/thg_web"
+            android:layout_width="175px"
+            android:layout_height="175px"
+            android:layout_marginLeft="26px"
+            android:layout_marginTop="1915px"
+            android:src="@mipmap/picto_web" />
 
-    <ImageView
-        android:id="@+id/shop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/picto_shop" />
+        <ImageView
+            android:id="@+id/shop"
+            android:layout_width="175px"
+            android:layout_height="175px"
+            android:layout_marginLeft="1100px"
+            android:layout_marginTop="1915px"
+            android:src="@mipmap/picto_shop" />
 
-    <ImageView
-        android:id="@+id/pick_one_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/picto_valaszto" />
+        <ImageView
+            android:id="@+id/pick_one_game"
+            android:layout_width="250px"
+            android:layout_height="175px"
+            android:layout_marginLeft="2px"
+            android:layout_marginTop="2135px"
+            android:src="@mipmap/picto_valaszto" />
 
-    <ImageView
-        android:id="@+id/trash_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/picto_kuka" />
+        <ImageView
+            android:id="@+id/trash_game"
+            android:layout_width="250px"
+            android:layout_height="175px"
+            android:layout_marginLeft="265px"
+            android:layout_marginTop="2135px"
+            android:src="@mipmap/picto_kuka" />
 
-    <ImageView
-        android:id="@+id/true_false_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/picto_igaz_hamis" />
+        <ImageView
+            android:id="@+id/true_false_game"
+            android:layout_width="250px"
+            android:layout_height="175px"
+            android:layout_marginLeft="528px"
+            android:layout_marginTop="2135px"
+            android:src="@mipmap/picto_igaz_hamis" />
 
-    <ImageView
-        android:id="@+id/jumping_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/picto_ugralos" />
+        <ImageView
+            android:id="@+id/words_game"
+            android:layout_width="250px"
+            android:layout_height="175px"
+            android:layout_marginLeft="791px"
+            android:layout_marginTop="2135px"
+            android:src="@mipmap/picto_abc" />
 
-    <ImageView
-        android:id="@+id/words_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/picto_abc" />
+        <ImageView
+            android:id="@+id/jumping_game"
+            android:layout_width="250px"
+            android:layout_height="175px"
+            android:layout_marginLeft="1054px"
+            android:layout_marginTop="2135px"
+            android:src="@mipmap/picto_ugralos" />
 
-    <ProgressBar
-        android:id="@+id/progress_energy"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="100"
-        android:progressBackgroundTint="@android:color/white"
-        android:progressDrawable="@drawable/progress_bar"
-        android:progressTint="@color/colorPrimary" />
+        <ProgressBar
+            android:id="@+id/progress_energy"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="400px"
+            android:layout_height="86px"
+            android:layout_marginLeft="52px"
+            android:layout_marginTop="77px"
+            android:max="100"
+            android:progress="100"
+            android:progressBackgroundTint="@android:color/white"
+            android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="@color/colorPrimary" />
 
-    <ProgressBar
-        android:id="@+id/progress_life"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="100"
-        android:progressBackgroundTint="@android:color/white"
-        android:progressDrawable="@drawable/progress_bar"
-        android:progressTint="@color/colorPrimary" />
+        <ProgressBar
+            android:id="@+id/progress_life"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="400px"
+            android:layout_height="86px"
+            android:layout_marginLeft="852px"
+            android:layout_marginTop="77px"
+            android:max="100"
+            android:progress="100"
+            android:progressBackgroundTint="@android:color/white"
+            android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="@color/colorPrimary" />
 
-    <ImageView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="466dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/head2_crop" />
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="1300px"
+            android:layout_height="240px"
+            android:src="@drawable/head2_crop" />
 
-    <ImageView
-        android:id="@+id/left_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/back_arrow" />
+        <ImageView
+            android:id="@+id/left_arrow"
+            android:layout_width="220px"
+            android:layout_height="220px"
+            android:layout_marginLeft="0px"
+            android:layout_marginTop="240px"
+            android:src="@mipmap/back_arrow" />
 
-    <TextView
-        android:id="@+id/recently_place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/livingroom"
-        android:textColor="@android:color/white"
-        android:textSize="25sp" />
+        <TextView
+            android:id="@+id/recently_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="340px"
+            android:text="@string/livingroom"
+            android:textColor="@android:color/white"
+            android:textSize="40px" />
 
-    <ImageView
-        android:id="@+id/right_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/back_arrow2" />
+        <ImageView
+            android:id="@+id/right_arrow"
+            android:layout_width="220px"
+            android:layout_height="220px"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="240px"
+            android:src="@mipmap/back_arrow2" />
 
-    <TextView
-        android:id="@+id/user_points"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        <TextView
+            android:id="@+id/user_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85px"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="60px" />
 
 
-    <ImageView
-        android:id="@+id/energy_picto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/energy_picto" />
+        <ImageView
+            android:id="@+id/energy_picto"
+            android:layout_width="74px"
+            android:layout_height="89px"
+            android:layout_marginLeft="211px"
+            android:layout_marginTop="75px"
+            android:src="@mipmap/energy_picto" />
 
-    <ImageView
-        android:id="@+id/food_picto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/food_picto" />
+        <ImageView
+            android:id="@+id/food_picto"
+            android:layout_width="79px"
+            android:layout_height="78px"
+            android:layout_marginLeft="1017px"
+            android:layout_marginTop="77px"
+            android:src="@mipmap/food_picto" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

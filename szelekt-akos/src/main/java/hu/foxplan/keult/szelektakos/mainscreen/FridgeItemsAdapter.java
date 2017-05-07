@@ -35,6 +35,7 @@ public class FridgeItemsAdapter extends ArrayAdapter<Items> {
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.fridge_list_item, parent, false);
+            listItemView.setTag(getItem(position));
 
         }
 
@@ -50,7 +51,5 @@ public class FridgeItemsAdapter extends ArrayAdapter<Items> {
 
         return listItemView;
     }
-
-
 
 }

@@ -82,17 +82,27 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int selectedPosition, long l) {
 
-        Items item = new Items();
-        //TODO Itt kell hozzá adni az életéhez a changeLifeValue() metódussal!!
-        SzelektAkos.changeLifeValue(item.getLifeValue());
-        mSharedPref = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
-        Items items = Items.innitItem(selectedPosition);
-        //TODO Itt kell hozzá adni az életéhez a increaseLife() metódussal!!
+        // Életerő növelése
+        Items items = (Items) view.getTag(); // ez volt itt előtte Items.innitItem(selectedPosition);
         SzelektAkos.changeLifeValue(items.getLifeValue());
+
+        // Elem eltávolítása a hűtőből
         fridgeItems.remove(selectedPosition);
-        mSharedPref.edit().remove(items.getName());
-        mSharedPref.edit().apply();
         listAdapter.notifyDataSetChanged();
+
+        // Megvásárolt elemek számának csökkentése a sharedpreferences-ben
+        //
+        int numOfBoughtItems = SzelektAkos.getAnInteger(items.getName());
+
+        numOfBoughtItems--; // Elemszám csökkentése
+        if (numOfBoughtItems == 0) {
+            // Ha nulla lett az elemszám (azaz nincs több belőle a hűtőben) akkor a kulcs törlése
+            mSharedPref = getActivity().getApplicationContext().getSharedPreferences("User", Context.MODE_PRIVATE);
+            mSharedPref.edit().remove(items.getName()).apply();
+        } else {
+            // Ha még maradt az adott termékből a hűtőben akkor mentés SharedPref-ben
+            SzelektAkos.saveAnInteger(items.getName(), numOfBoughtItems);
+        }
     }
 
 }

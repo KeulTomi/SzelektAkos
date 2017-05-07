@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pick_one_game_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hu.foxplan.keult.szelektakos.games.PickOneGame">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <RelativeLayout
+        android:id="@+id/pick_one_game_root"
+        android:layout_width="1300px"
+        android:layout_height="2318px">
+
+        <ImageView
+            android:layout_width="1300px"
+            android:layout_height="2318px"
         android:scaleType="center"
         android:src="@mipmap/quiz_back" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="1300px"
+        android:layout_height="86px"
+        android:layout_marginTop="77px"
         android:background="@android:color/white"/>
 
     <ProgressBar
         android:id="@+id/progress_energy_POG"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="400px"
+        android:layout_height="86px"
+        android:layout_marginLeft="52px"
+        android:layout_marginTop="77px"
         android:max="100"
         android:progress="100"
         android:progressDrawable="@drawable/progress_bar"
@@ -32,11 +38,10 @@
     <ProgressBar
         android:id="@+id/progress_life_POG"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="400px"
+        android:layout_height="86px"
+        android:layout_marginLeft="852px"
+        android:layout_marginTop="77px"
         android:max="100"
         android:progress="100"
         android:progressDrawable="@drawable/progress_bar"
@@ -44,135 +49,132 @@
 
     <ImageView
         android:id="@+id/header_POG"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:scaleType="fitStart"
+        android:layout_width="1300px"
+        android:layout_height="240px"
         android:src="@drawable/head2_crop" />
 
     <TextView
         android:id="@+id/reached_points_txt_POG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="85px"
         android:text="0"
         android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        android:textSize="60px" />
 
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/energy_picto_POG"
+        android:layout_width="74px"
+        android:layout_height="89px"
+        android:layout_marginLeft="211px"
+        android:layout_marginTop="75px"
         android:src="@mipmap/energy_picto" />
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="21dp"
+        android:id="@+id/food_picto"
+        android:layout_width="79px"
+        android:layout_height="78px"
+        android:layout_marginLeft="1017px"
+        android:layout_marginTop="77px"
         android:src="@mipmap/food_picto" />
 
-    <TextView
-        android:id="@+id/question_txt_POG"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:text="Kik használták először a papírt?"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/question_txt_POG"
+            android:layout_width="1300px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="317px"
+            android:text="Kik használták először a papírt?"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="55px" />
 
     <LinearLayout
         android:id="@+id/answers_layout"
-        android:layout_width="match_parent"
+        android:layout_width="1300px"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="400px"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/first_answer_img"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/quiz_button_back"/>
+        <RelativeLayout
+            android:layout_width="1115px"
+            android:layout_height="306px"
+            android:layout_marginBottom="50px">
 
-        <ImageView
-            android:id="@+id/second_answer_img"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:src="@mipmap/quiz_button_back" />
+            <ImageView
+                android:id="@+id/first_answer_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/quiz_button_back" />
 
-        <ImageView
-            android:id="@+id/third_answer_img"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@mipmap/quiz_button_back" />
+            <TextView
+                android:id="@+id/first_answer_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Mezopotámia"
+                android:textColor="@android:color/black"
+                android:textSize="50px" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="1115px"
+            android:layout_height="306px"
+            android:layout_marginBottom="50px">
+
+            <ImageView
+                android:id="@+id/second_answer_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/quiz_button_back" />
+
+            <TextView
+                android:id="@+id/second_answer_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Mezopotámia"
+                android:textColor="@android:color/black"
+                android:textSize="50px" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="1115px"
+            android:layout_height="306px">
+
+            <ImageView
+                android:id="@+id/third_answer_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/quiz_button_back" />
+
+            <TextView
+                android:id="@+id/third_answer_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Mezopotámia"
+                android:textColor="@android:color/black"
+                android:textSize="50px" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/first_answer_txt"
-            android:layout_width="300dp"
-            android:layout_height="65dp"
-            android:layout_marginBottom="37dp"
-            android:gravity="center_vertical"
-            android:text="Mezopotámia"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/second_answer_txt"
-            android:layout_width="300dp"
-            android:layout_height="65dp"
-            android:layout_marginBottom="37dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical"
-            android:src="@mipmap/quiz_button_back"
-            android:text="Egyiptom"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/third_answer_txt"
-            android:layout_width="300dp"
-            android:layout_height="65dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical"
-            android:src="@mipmap/quiz_button_back"
-            android:text="Római Birodalom"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/game_time_progress_POG"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="150px"
         android:layout_alignParentBottom="true"
         android:max="500"
         android:progress="0"
@@ -180,12 +182,14 @@
 
     <ImageView
         android:id="@+id/close_POG"
-        android:layout_width="44dp"
-        android:layout_height="45dp"
+        android:layout_width="170px"
+        android:layout_height="150px"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="50px"
+        android:paddingRight="50px"
         android:src="@drawable/ic_close" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

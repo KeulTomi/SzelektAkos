@@ -6,15 +6,16 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bed_room_background"
-        android:layout_marginBottom="0dp"
+        android:layout_width="1300px"
+        android:layout_height="2318px"
+        android:scaleType="fitXY"
         android:src="@drawable/haloszoba" />
 
     <ImageView
         android:id="@+id/sleeping_anim_place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_marginLeft="795px"
+        android:layout_marginTop="1058px" />
 
 </RelativeLayout>
