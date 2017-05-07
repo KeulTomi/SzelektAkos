@@ -25,4 +25,10 @@ public class THG_Web extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         finish();
     }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        ScaleHelper.scaleContents(findViewById(R.id.thg_web_root), findViewById(R.id.thg_web_container));
+    }
 }

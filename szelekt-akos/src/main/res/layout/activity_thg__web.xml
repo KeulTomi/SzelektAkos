@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/thg_web_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hu.foxplan.keult.szelektakos.THG_Web">
 
-    <WebView
-        android:id="@+id/thg_web"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp">
-    </WebView>
+    <RelativeLayout
+        android:id="@+id/thg_web_root"
+        android:layout_width="1300px"
+        android:layout_height="2318px">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/head_crop" />
+        <WebView
+            android:id="@+id/thg_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="147px"></WebView>
 
-    <ImageView
-        android:id="@+id/close_THG"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="3dp"
-        android:src="@drawable/ic_close"/>
+        <ImageView
+            android:layout_width="1300px"
+            android:layout_height="207px"
+            android:src="@drawable/head_crop" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:text="thgkft.hu"
-        android:textColor="@android:color/white"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/close_THG"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:layout_marginLeft="30px"
+            android:src="@drawable/ic_close" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12px"
+            android:gravity="center_horizontal"
+            android:text="thgkft.hu"
+            android:textColor="@android:color/white"
+            android:textSize="90px"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</FrameLayout>

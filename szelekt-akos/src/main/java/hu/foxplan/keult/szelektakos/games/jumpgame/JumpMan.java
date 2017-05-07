@@ -29,6 +29,7 @@ class JumpMan {
     private boolean isGravityOn;
     private boolean isJumping;
     private int v0; // Ugrás induló sebessége
+    private float gravityFactor; // Gravitációs tényező ugrás lassításához
     private int jumpCycleCount; // Ugrás mozzanatok számlálója (hanyadik mozzanat)
     private int y0; // Ugrás induló y pozíciója
     private int y1; // Ugrás menet közbeni pozíciója
@@ -59,6 +60,7 @@ class JumpMan {
         isGravityOn = true;
         isJumping = false;
         v0 = 40 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
+        gravityFactor = 0.9f * SzelektAkos.displayHeight / 960;
     }
 
     void startAnimation() {
@@ -129,7 +131,7 @@ class JumpMan {
                     @Override
                     public void run() {
                         isGravityOn = false;
-                        y1 = v0 * jumpCycleCount - 1 * jumpCycleCount * jumpCycleCount;
+                        y1 = v0 * jumpCycleCount - (int) (gravityFactor * jumpCycleCount * jumpCycleCount);
                         if ((getPos().y <= posBottomLimit) && (getPos().y >= posUpperLimit)) {
                             setPos(null, y0 - y1);
                             jumpCycleCount++; // idő növelése

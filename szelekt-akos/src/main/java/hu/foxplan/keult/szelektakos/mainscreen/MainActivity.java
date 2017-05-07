@@ -222,10 +222,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         ScaleHelper.scaleContents(findViewById(R.id.main_activity_rootview), findViewById(R.id.main_activity_container));
-        /*ScaleHelper.scaleContents(
-                findViewById(R.id.main_activity_layout),
-                SzelektAkos.displayWidth,
-                SzelektAkos.displayHeight);*/
     }
 
     @Override

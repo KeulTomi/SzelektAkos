@@ -67,10 +67,10 @@
 
     <ImageView
         android:id="@+id/animation_place"
-        android:layout_width="490px"
-        android:layout_height="365px"
+        android:layout_width="1000px"
+        android:layout_height="1000px"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1300px"
+        android:layout_marginTop="1000px"
         android:visibility="visible" />
 
 </RelativeLayout>

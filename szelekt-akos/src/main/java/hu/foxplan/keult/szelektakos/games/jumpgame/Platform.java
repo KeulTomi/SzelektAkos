@@ -9,6 +9,7 @@ import android.os.Handler;
 import java.util.Random;
 
 import hu.foxplan.keult.szelektakos.R;
+import hu.foxplan.keult.szelektakos.SzelektAkos;
 
 /**
  * Bitmap objektum adatait tároló objektum
@@ -18,7 +19,7 @@ public class Platform implements Runnable {
 
     private static Item[] sourceItems;
     private final int PLATFORM_MOVE_CYCLE = 10; // Járda pozíció frissítési ciklusa
-    private final int PLATFORM_MOVE_STEP = 5; // Egy frissítési ciklusban hány pixelt lépjen a járda
+    private int PLATFORM_MOVE_STEP = 5; // Egy frissítési ciklusban hány pixelt lépjen a járda
     private Point pos = new Point(0, 0);
     private Bitmap bmp;
     private Item[] carriedItems;
@@ -27,41 +28,77 @@ public class Platform implements Runnable {
     public Platform(Bitmap bmp, int targetHeight, Handler handler) {
         this.bmp = Bitmap.createScaledBitmap(
                 bmp,
-                (int) (bmp.getWidth() * targetHeight / bmp.getHeight()),
-                (int) targetHeight,
+                bmp.getWidth() * targetHeight / bmp.getHeight(),
+                targetHeight,
                 false);
 
         if (handler != null) {
             this.viewHandler = handler;
         }
+
+        PLATFORM_MOVE_STEP = 5 * SzelektAkos.displayWidth / 540;
     }
 
     public static void loadItemResources(Context context) {
 
+        Bitmap bmp;
+        int targetHeight = (int) (0.07 * SzelektAkos.displayHeight);
+
         sourceItems = new Item[6];
 
         sourceItems[0] = new Item();
-        sourceItems[0].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_01);
+        bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_01);
+
+        sourceItems[0].bmp = Bitmap.createScaledBitmap(
+                bmp,
+                bmp.getWidth() * targetHeight / bmp.getHeight(),
+                targetHeight,
+                false);
         sourceItems[0].isBadItem = true;
 
         sourceItems[1] = new Item();
-        sourceItems[1].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_02);
+        bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_02);
+        sourceItems[1].bmp = Bitmap.createScaledBitmap(
+                bmp,
+                bmp.getWidth() * targetHeight / bmp.getHeight(),
+                targetHeight,
+                false);
         sourceItems[1].isBadItem = true;
 
         sourceItems[2] = new Item();
-        sourceItems[2].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_03);
+        bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_baditem_03);
+        sourceItems[2].bmp = Bitmap.createScaledBitmap(
+                bmp,
+                bmp.getWidth() * targetHeight / bmp.getHeight(),
+                targetHeight,
+                false);
         sourceItems[2].isBadItem = true;
 
         sourceItems[3] = new Item();
-        sourceItems[3].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_01);
+        bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_01);
+        sourceItems[3].bmp = Bitmap.createScaledBitmap(
+                bmp,
+                bmp.getWidth() * targetHeight / bmp.getHeight(),
+                targetHeight,
+                false);
         sourceItems[3].isBadItem = false;
 
         sourceItems[4] = new Item();
-        sourceItems[4].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_02);
+        bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_02);
+        sourceItems[4].bmp = Bitmap.createScaledBitmap(
+                bmp,
+                bmp.getWidth() * targetHeight / bmp.getHeight(),
+                targetHeight,
+                false);
         sourceItems[4].isBadItem = false;
 
         sourceItems[5] = new Item();
-        sourceItems[5].bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_03);
+        bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.jump_gooditem_03);
+        sourceItems[5].bmp = Bitmap.createScaledBitmap(
+                bmp,
+                bmp.getWidth() * targetHeight / bmp.getHeight(),
+                targetHeight,
+                false);
         sourceItems[5].isBadItem = false;
 
     }
@@ -97,10 +134,7 @@ public class Platform implements Runnable {
     }
 
     public boolean isItemValid(int num) {
-        if (carriedItems[num].bmp != null)
-            return true;
-        else
-            return false;
+        return carriedItems[num].bmp != null;
     }
 
     public void invalidateItem(int num) {
