@@ -70,7 +70,7 @@
         android:layout_width="1000px"
         android:layout_height="1000px"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1000px"
+        android:layout_marginTop="900px"
         android:visibility="visible" />
 
 </RelativeLayout>

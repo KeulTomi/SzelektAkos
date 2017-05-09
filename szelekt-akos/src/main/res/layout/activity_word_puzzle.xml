@@ -60,10 +60,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginTop="85px"
+            android:layout_marginTop="75px"
             android:text="0"
             android:textColor="@android:color/white"
-            android:textSize="60px" />
+            android:textSize="80px" />
 
 
         <ImageView
@@ -88,7 +88,7 @@
             android:text="Kik használták először a papírt?"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="40px" />
+            android:textSize="75px" />
 
         <ProgressBar
             android:id="@+id/game_time_progress_WP"
@@ -103,11 +103,11 @@
         <ImageView
             android:id="@+id/close_WP"
             android:layout_width="170px"
-            android:layout_height="130px"
+            android:layout_height="150px"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:paddingLeft="50px"
-            android:paddingRight="50px"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:src="@drawable/ic_close" />
 
 
@@ -141,7 +141,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -165,7 +165,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -188,7 +188,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -223,7 +223,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -247,7 +247,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -270,7 +270,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -305,7 +305,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -329,7 +329,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -352,7 +352,7 @@
                     android:layout_centerInParent="true"
                     android:text="a"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -394,7 +394,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -427,7 +427,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -460,7 +460,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -493,7 +493,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -526,7 +526,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 
@@ -559,7 +559,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:textColor="@android:color/black"
-                    android:textSize="75px" />
+                    android:textSize="150px" />
 
             </RelativeLayout>
 

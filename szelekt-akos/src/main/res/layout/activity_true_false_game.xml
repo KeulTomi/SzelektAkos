@@ -79,10 +79,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_marginTop="85px"
+            android:layout_marginTop="75px"
             android:text="0"
             android:textColor="@android:color/white"
-            android:textSize="60px" />
+            android:textSize="80px" />
 
 
         <ImageView
@@ -107,7 +107,7 @@
             android:text="Kik használták először a papírt?"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="55px" />
+            android:textSize="75px" />
 
         <ProgressBar
             android:id="@+id/game_time_progress_TFG"

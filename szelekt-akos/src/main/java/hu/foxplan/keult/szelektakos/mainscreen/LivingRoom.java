@@ -101,6 +101,7 @@ public class LivingRoom extends Fragment implements View.OnClickListener {
         if (view.getId() == R.id.thgkft_picture) {
             Intent openTHGWEB = new Intent(getContext(), THG_Web.class);
             startActivity(openTHGWEB);
+            return;
         }
         switch (animationNumber){
             case 0:

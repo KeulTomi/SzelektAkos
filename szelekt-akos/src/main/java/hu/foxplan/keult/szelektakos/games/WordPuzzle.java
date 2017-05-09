@@ -375,33 +375,45 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
 
             //Ha vissza szeretne vonni egyet a már kiválasztott betűkből
             case R.id.guess_first_letter_layout:
-                String guessFirstString = firstGuessLetter.getText().toString();
-                removeALetter(guessFirstString, firstGuessLetter, 0);
+                if (firstGuessLetter.getText() != "") {
+                    String guessFirstString = firstGuessLetter.getText().toString();
+                    removeALetter(guessFirstString, firstGuessLetter, 0);
+                }
                 break;
 
             case R.id.guess_second_letter_layout:
-                String guessSecondString = secondGuessLetter.getText().toString();
-                removeALetter(guessSecondString, secondGuessLetter, 1);
+                if (secondGuessLetter.getText() != "") {
+                    String guessSecondString = secondGuessLetter.getText().toString();
+                    removeALetter(guessSecondString, secondGuessLetter, 1);
+                }
                 break;
 
             case R.id.guess_third_letter_layout:
-                String guessThirdString = thirdGuessLetter.getText().toString();
-                removeALetter(guessThirdString, thirdGuessLetter, 2);
+                if (thirdGuessLetter.getText() != "") {
+                    String guessThirdString = thirdGuessLetter.getText().toString();
+                    removeALetter(guessThirdString, thirdGuessLetter, 2);
+                }
                 break;
 
             case R.id.guess_fourth_letter_layout:
-                String guessFourthString = fourthGuessLetter.getText().toString();
-                removeALetter(guessFourthString, fourthGuessLetter, 3);
+                if (fourthGuessLetter.getText() != "") {
+                    String guessFourthString = fourthGuessLetter.getText().toString();
+                    removeALetter(guessFourthString, fourthGuessLetter, 3);
+                }
                 break;
 
             case R.id.guess_fifth_letter_layout:
-                String guessFifthString = fifthGuessLetter.getText().toString();
-                removeALetter(guessFifthString, fifthGuessLetter, 4);
+                if (fifthGuessLetter.getText() != "") {
+                    String guessFifthString = fifthGuessLetter.getText().toString();
+                    removeALetter(guessFifthString, fifthGuessLetter, 4);
+                }
                 break;
 
             case R.id.guess_sixth_letter_layout:
-                String guessSixthString = sixthGuessLetter.getText().toString();
-                removeALetter(guessSixthString, sixthGuessLetter, 5);
+                if (sixthGuessLetter.getText() != "") {
+                    String guessSixthString = sixthGuessLetter.getText().toString();
+                    removeALetter(guessSixthString, sixthGuessLetter, 5);
+                }
                 break;
 
             case hu.foxplan.keult.szelektakos.R.id.close_WP:
