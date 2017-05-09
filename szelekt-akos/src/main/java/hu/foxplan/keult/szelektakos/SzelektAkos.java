@@ -137,14 +137,14 @@ public class SzelektAkos extends Application {
         switch (msg) {
             case PickOneGame.MSG_GAME_TIME_NULL:
 
-                msgToAGame.what = PickOneGame.MSG_GAME_TIME_START; //Üzenetkód beállítása
+                msgToAGame.what = PickOneGame.MSG_GAME_TIME_NULL; //Üzenetkód beállítása
                 msgToAGame.obj = gameTime;
                 PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
 
             case PickOneGame.MSG_GAME_TIME_START:
 
-                msgToAGame.what = PickOneGame.MSG_GAME_TIME_NULL;
+                msgToAGame.what = PickOneGame.MSG_GAME_TIME_START;
                 msgToAGame.obj = gameTime;
                 PickOneGame.uiHandlerPOG.sendMessage(msgToAGame);
                 break;
@@ -269,7 +269,7 @@ public class SzelektAkos extends Application {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
         points = mSharedPref.getInt("points", 0);
         life = mSharedPref.getInt("life", 100);
-        energy = mSharedPref.getInt("life", 100);
+        energy = mSharedPref.getInt("energy", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.drawable.pants00);
     }
 

@@ -137,7 +137,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                     {
                     // Saját magát hívja késleltetés után
                     SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
-                    if (SzelektAkos.gameTime <= 500) {
+                    if (SzelektAkos.gameTime <= 813) {
                         uiHandlerPOG.postDelayed(this, GAME_TIME_REFRESHED_TIME);
                     }
                     else {

@@ -271,7 +271,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                 {
                     // Saját magát hívja késleltetés után
                     SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
-                    if (SzelektAkos.gameTime <= 500) {
+                    if (SzelektAkos.gameTime <= 813) {
                         uiHandlerWP.postDelayed(this, GAME_TIME_REFRESHED_TIME);
                     }
                     else {

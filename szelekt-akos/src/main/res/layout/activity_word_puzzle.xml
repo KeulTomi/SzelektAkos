@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:layout_alignParentBottom="true"
-            android:max="500"
+            android:max="813"
             android:progress="500"
             android:progressDrawable="@drawable/game_time_progress" />
 

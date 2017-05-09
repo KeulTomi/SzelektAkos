@@ -14,7 +14,8 @@ public class THG_Web extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_thg__web);
 
         WebView browser = (WebView) findViewById(R.id.thg_web);
-        browser.loadUrl("http://www.thgkft.hu/");
+        browser.loadUrl("http://google.com");
+        //www.thgkft.hu/
 
         ImageView closeTHG = (ImageView) findViewById(R.id.close_THG);
         closeTHG.setOnClickListener(this);

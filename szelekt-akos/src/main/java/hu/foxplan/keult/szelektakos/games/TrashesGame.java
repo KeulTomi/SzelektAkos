@@ -143,7 +143,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                 if (!TrashesGame.this.isFinishing()) {
                     // Saját magát hívja késleltetés után
                     SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
-                    if (SzelektAkos.gameTime <= 500) {
+                    if (SzelektAkos.gameTime <= 813) {
                         uiHandlerTG.postDelayed(this, GAME_TIME_REFRESHED_TIME);
                     } else {
                         //show dialog
