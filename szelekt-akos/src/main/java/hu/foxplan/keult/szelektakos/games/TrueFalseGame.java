@@ -69,22 +69,7 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
         //A két progressbarokból levonunk 5-öt
         lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
         energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
-        if (energyProgress.getProgress() <= 0) {
-            if (!TrueFalseGame.this.isFinishing()) {
-            } else {
-                //show dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(TrueFalseGame.this);
-                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
-                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog alert = builder.create();
 
-                alert.show();
-            }
-        }
 
         //Megkapjuk a kérdést és kiíratjuk
         getTheCurrentQuestion();
@@ -154,6 +139,7 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
                                         gameTimeStopper.cancel(true);
                                         uiHandlerTF.removeCallbacksAndMessages(gameTimer);
                                         finish();
+                                        overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                                     }
                                 });
                         AlertDialog alert = builder.create();
@@ -225,6 +211,7 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
                     gameTimeStopper.cancel(true);
                     uiHandlerTF.removeCallbacksAndMessages(gameTimer);
                     finish();
+                    overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                     break;
         }
     }

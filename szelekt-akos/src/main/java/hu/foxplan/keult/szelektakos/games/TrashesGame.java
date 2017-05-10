@@ -160,6 +160,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                                         SzelektAkos.comeBackFromGame = true;
                                         gameTimeStopper.cancel(true);
                                         finish();
+                                        overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                                     }
                                 });
                         AlertDialog alert = builder.create();
@@ -321,6 +322,8 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                 SzelektAkos.comeBackFromGame = true;
                 gameTimeStopper.cancel(true);
                 finish();
+                overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
+                break;
         }
     }
 

@@ -223,22 +223,6 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         //A két progressbarokból levonunk 5-öt
         lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
         energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
-        if (energyProgress.getProgress() <= 0) {
-            if (!WordPuzzle.this.isFinishing()) {
-            } else {
-                //show dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(WordPuzzle.this);
-                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
-                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog alert = builder.create();
-
-                alert.show();
-            }
-        }
 
         //A telefon rezgetéséhez szükséges vibrátor
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -305,6 +289,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                                         gameTimeStopper.cancel(true);
                                         dialog.dismiss();
                                         finish();
+                                        overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                                     }
                                 });
                         AlertDialog alert = builder.create();
@@ -439,6 +424,8 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                 SzelektAkos.increasePoints(reachedPointsWP);
                 SzelektAkos.comeBackFromGame = true;
                 finish();
+                overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
+                break;
         }
     }
 

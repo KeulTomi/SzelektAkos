@@ -86,7 +86,6 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
         //A két progressbarokból levonunk 5-öt
         lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
         energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
-        energyProgress.getProgress();
 
         //Megkapjuk a kérdést és kiíratjuk
         getTheCurrentQuestion();
@@ -155,6 +154,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                                             SzelektAkos.comeBackFromGame = true;
                                             gameTimeStopper.cancel(true);
                                             finish();
+                                            overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                                         }
                                     });
                             AlertDialog alert = builder.create();
@@ -259,6 +259,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                     SzelektAkos.comeBackFromGame = true;
                     gameTimeStopper.cancel(true);
                     finish();
+                    overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                     break;
                 }
         }

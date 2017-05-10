@@ -233,36 +233,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.thg_web:
                 Intent openTHGWeb = new Intent(this, THG_Web.class);
                 startActivity(openTHGWeb);
+                overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_stay);
                 break;
 
             case R.id.shop:
                 Intent openShop = new Intent(this, ShopActivity.class);
                 startActivity(openShop);
+                overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_stay);
                 break;
 
             case R.id.pick_one_game:
                 Intent playPOG = new Intent(this, PickOneGame.class);
                 startActivity(playPOG);
+                overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_stay);
                 break;
 
             case R.id.true_false_game:
                 Intent playTFG = new Intent(this, TrueFalseGame.class);
                 startActivity(playTFG);
+                overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_stay);
                 break;
 
             case R.id.trash_game:
                 Intent playTG = new Intent(this, TrashesGame.class);
                 startActivity(playTG);
+                overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_stay);
                 break;
 
             case R.id.words_game:
                 Intent playWP = new Intent(this, WordPuzzle.class);
                 startActivity(playWP);
+                overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_stay);
                 break;
 
             case R.id.jumping_game:
                 Intent playJump = new Intent(this, JumpGameActivity.class);
                 startActivity(playJump);
+                overridePendingTransition(R.anim.activity_slide_up, R.anim.activity_stay);
                 break;
 
             case R.id.left_arrow:

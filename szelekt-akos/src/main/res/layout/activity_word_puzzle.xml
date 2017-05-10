@@ -382,9 +382,11 @@
 
                 <ImageView
                     android:id="@+id/guess_first_letter_plc"
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_centerInParent="true"
+                    android:layout_width="25px"
+                    android:layout_height="25px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="90px"
                     android:src="@drawable/ic_point"
                     android:visibility="invisible" />
 
@@ -415,9 +417,11 @@
 
                 <ImageView
                     android:id="@+id/guess_second_letter_plc"
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_centerInParent="true"
+                    android:layout_width="25px"
+                    android:layout_height="25px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="90px"
                     android:src="@drawable/ic_point"
                     android:visibility="invisible" />
 
@@ -448,9 +452,11 @@
 
                 <ImageView
                     android:id="@+id/guess_third_letter_plc"
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_centerInParent="true"
+                    android:layout_width="25px"
+                    android:layout_height="25px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="90px"
                     android:src="@drawable/ic_point"
                     android:visibility="invisible" />
 
@@ -481,9 +487,11 @@
 
                 <ImageView
                     android:id="@+id/guess_fourth_letter_plc"
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_centerInParent="true"
+                    android:layout_width="25px"
+                    android:layout_height="25px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="90px"
                     android:src="@drawable/ic_point"
                     android:visibility="invisible" />
 
@@ -514,9 +522,11 @@
 
                 <ImageView
                     android:id="@+id/guess_fifth_letter_plc"
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_centerInParent="true"
+                    android:layout_width="25px"
+                    android:layout_height="25px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="90px"
                     android:src="@drawable/ic_point"
                     android:visibility="invisible" />
 
@@ -547,9 +557,11 @@
 
                 <ImageView
                     android:id="@+id/guess_sixth_letter_plc"
-                    android:layout_width="45px"
-                    android:layout_height="45px"
-                    android:layout_centerInParent="true"
+                    android:layout_width="25px"
+                    android:layout_height="25px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="90px"
                     android:src="@drawable/ic_point"
                     android:visibility="invisible" />
 

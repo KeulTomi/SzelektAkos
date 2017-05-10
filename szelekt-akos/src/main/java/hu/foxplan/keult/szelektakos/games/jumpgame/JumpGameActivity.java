@@ -137,6 +137,7 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
                 //SzelektAkos.increasePoints(reachedPointsPOG);
                 SzelektAkos.comeBackFromGame = true;
                 finish();
+                overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                 break;
             case R.id.jump_game_surface_view:
                 jumpGameView.click();

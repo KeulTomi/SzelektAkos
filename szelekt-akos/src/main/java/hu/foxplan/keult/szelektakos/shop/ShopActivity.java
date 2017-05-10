@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import hu.foxplan.keult.szelektakos.R;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 
 /**
@@ -72,6 +73,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
             case hu.foxplan.keult.szelektakos.R.id.close_shop:
                 SzelektAkos.saveTroousersToMainData(TrouserAdapter.isBoughtTrouser);
                 finish();
+                overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                 break;
 
             case hu.foxplan.keult.szelektakos.R.id.shop_food_topic:

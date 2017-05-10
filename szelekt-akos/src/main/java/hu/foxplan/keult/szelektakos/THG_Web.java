@@ -28,6 +28,7 @@ public class THG_Web extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         finish();
+        overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
     }
 
     @Override
