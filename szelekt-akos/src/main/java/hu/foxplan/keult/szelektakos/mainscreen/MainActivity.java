@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 1:
                         // Nappalira lapozott, energiaszint csökken
                         SzelektAkos.changeEnergy(-1);
+                        break;
                     case 2:
                         // Konyhára lapozott, energiaszint csökken
                         SzelektAkos.changeEnergy(-1);

@@ -43,6 +43,7 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
     private ProgressBar energyProgress;
     private Vibrator mVibrator;
     private int reachedPointsTF;
+    private int firstWindow = 0;
     private Runnable gameTimer;
 
     @Override
@@ -68,6 +69,22 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
         //A két progressbarokból levonunk 5-öt
         lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
         energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
+        if (energyProgress.getProgress() <= 0) {
+            if (!TrueFalseGame.this.isFinishing()) {
+            } else {
+                //show dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(TrueFalseGame.this);
+                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
+                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+
+                alert.show();
+            }
+        }
 
         //Megkapjuk a kérdést és kiíratjuk
         getTheCurrentQuestion();
@@ -126,7 +143,9 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
                 else {
                         //show dialog
                         AlertDialog.Builder builder = new AlertDialog.Builder(TrueFalseGame.this);
-                        builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsTF) + " pontot szereztél")
+                        builder
+                                .setCancelable(false)
+                                .setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsTF) + " pontot szereztél")
                                 .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Kilép az activity-ből
@@ -220,5 +239,25 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         ScaleHelper.scaleContents(findViewById(R.id.true_false_game_root), findViewById(R.id.true_false_game_container));
+        if (firstWindow == 0) {
+            if (energyProgress.getProgress() <= 0) {
+//            if (!PickOneGame.this.isFinishing()) {
+//            }
+//            else {
+                //show dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(TrueFalseGame.this);
+                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
+                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+
+                alert.show();
+//            }
+            }
+        }
+        firstWindow++;
     }
 }

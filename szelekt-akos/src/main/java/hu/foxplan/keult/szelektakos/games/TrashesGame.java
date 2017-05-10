@@ -56,6 +56,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
     public ImageView garbage;
     private TextView reachedPointsTxt;
     private int reachedPointsTG;
+    private int firstWindow = 0;
     private float garbageX;
     private float garbageY;
     private Vibrator mVibrator;
@@ -94,6 +95,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
 
         //A két progressbarból levonunk 5-öt
         lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
+
         energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
 
         //A telefon rezgetéséhez szükséges vibrátor
@@ -148,7 +150,9 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                     } else {
                         //show dialog
                         AlertDialog.Builder builder = new AlertDialog.Builder(TrashesGame.this);
-                        builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsTG) + " pontot szereztél")
+                        builder
+                                .setCancelable(false)
+                                .setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsTG) + " pontot szereztél")
                                 .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Kilép az activity-ből
@@ -379,6 +383,26 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         ScaleHelper.scaleContents(findViewById(R.id.trash_game_root), findViewById(R.id.trash_game_container));
+        if (firstWindow == 0) {
+            if (energyProgress.getProgress() <= 0) {
+//            if (!PickOneGame.this.isFinishing()) {
+//            }
+//            else {
+                //show dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(TrashesGame.this);
+                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
+                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+
+                alert.show();
+//            }
+            }
+        }
+        firstWindow++;
     }
 
 }

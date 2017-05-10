@@ -49,6 +49,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     private ImageView thirdAnswerImg;
     private ImageView closeTheGame;
     private int reachedPointsPOG;
+    int firstWindow = 0;
     private Vibrator mVibrator;
     private Future gameTimeStopper;
 
@@ -85,6 +86,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
         //A két progressbarokból levonunk 5-öt
         lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
         energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
+        energyProgress.getProgress();
 
         //Megkapjuk a kérdést és kiíratjuk
         getTheCurrentQuestion();
@@ -143,7 +145,9 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
                     else {
                             //show dialog
                             AlertDialog.Builder builder = new AlertDialog.Builder(PickOneGame.this);
-                            builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsPOG) + " pontot szereztél")
+                            builder
+                                    .setCancelable(false)
+                                    .setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsPOG) + " pontot szereztél")
                                     .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             //Kilép az activity-ből
@@ -266,5 +270,25 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         ScaleHelper.scaleContents(findViewById(R.id.pick_one_game_root), findViewById(R.id.pick_one_game_container));
+        if (firstWindow == 0) {
+            if (energyProgress.getProgress() <= 0) {
+//            if (!PickOneGame.this.isFinishing()) {
+//            }
+//            else {
+                //show dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(PickOneGame.this);
+                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
+                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+
+                alert.show();
+//            }
+            }
+        }
+        firstWindow++;
     }
 }

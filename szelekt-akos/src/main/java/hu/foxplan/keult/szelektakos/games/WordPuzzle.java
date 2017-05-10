@@ -121,6 +121,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     int previousPlace;
     boolean haveEmptyPlace;
     int reachedPointsWP;
+    int firstWindow = 0;
     TextView reachedPointText;
     Vibrator mVibrator;
     private Future gameTimeStopper;
@@ -222,6 +223,22 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         //A két progressbarokból levonunk 5-öt
         lifeProgress.setProgress(MainActivity.life.getProgress() - 5);
         energyProgress.setProgress(MainActivity.energy.getProgress() - 5);
+        if (energyProgress.getProgress() <= 0) {
+            if (!WordPuzzle.this.isFinishing()) {
+            } else {
+                //show dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(WordPuzzle.this);
+                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
+                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+
+                alert.show();
+            }
+        }
 
         //A telefon rezgetéséhez szükséges vibrátor
         mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -277,7 +294,9 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                     else {
                         //show dialog
                         AlertDialog.Builder builder = new AlertDialog.Builder(WordPuzzle.this);
-                        builder.setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsWP) + " pontot szereztél")
+                        builder
+                                .setCancelable(false)
+                                .setMessage("Gratulálunk!" + "\n" + String.valueOf(reachedPointsWP) + " pontot szereztél")
                                 .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         //Kilép az activity-ből
@@ -647,5 +666,25 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         ScaleHelper.scaleContents(findViewById(R.id.words_game_root), findViewById(R.id.words_game_container));
+        if (firstWindow == 0) {
+            if (energyProgress.getProgress() <= 0) {
+//            if (!PickOneGame.this.isFinishing()) {
+//            }
+//            else {
+                //show dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(WordPuzzle.this);
+                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
+                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+
+                alert.show();
+//            }
+            }
+        }
+        firstWindow++;
     }
 }
