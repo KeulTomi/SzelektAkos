@@ -91,7 +91,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
         getTheCurrentQuestion();
 
         //A jó válaszok listájának feltöltése
-        QuizQuestionFactory.getTheCorrectAnswerList();
+        //QuizQuestionFactory.getTheCorrectAnswerList();
 
         //A telefon rezgetéséhez szükséges vibrátor
          mVibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);

@@ -27,6 +27,7 @@ public class SzelektAkos extends Application {
     public static int gameTime;
     public static int inGameProgress;
     public static boolean comeBackFromGame = false;
+    public static boolean installStatus;
     public static float displayDensity;
     public static int displayHeight;
     public static int displayWidth;
@@ -262,6 +263,7 @@ public class SzelektAkos extends Application {
         editor.putInt("life", life);
         editor.putInt("energy", energy);
         editor.putInt("trouser", trouserToWear);
+        editor.putBoolean("installStatus", false);
         editor.apply();
     }
 
@@ -271,6 +273,7 @@ public class SzelektAkos extends Application {
         life = mSharedPref.getInt("life", 100);
         energy = mSharedPref.getInt("energy", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.drawable.pants00);
+        installStatus = mSharedPref.getBoolean("installStatus", true);
     }
 
     public static void saveTroousersToMainData (boolean[] classBoughtTrousersList){

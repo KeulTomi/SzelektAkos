@@ -1,83 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_jump_game"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_jump_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@android:color/white"
+    tools:context="hu.foxplan.keult.szelektakos.mainscreen.MainActivity">
 
-    <hu.foxplan.keult.szelektakos.games.jumpgame.JumpGameView
-        android:id="@+id/jump_game_surface_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:id="@+id/activity_jump_root"
+        android:layout_width="1300px"
+        android:layout_height="2318px">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/white" />
+        <hu.foxplan.keult.szelektakos.games.jumpgame.JumpGameView
+            android:id="@+id/jump_game_surface_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <ProgressBar
-        android:id="@+id/jump_game_progress_energy"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="100"
-        android:progressBackgroundTint="@android:color/white"
-        android:progressDrawable="@drawable/progress_bar"
-        android:progressTint="@color/colorPrimary" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white" />
 
-    <ProgressBar
-        android:id="@+id/jump_game_progress_life"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="100"
-        android:progressBackgroundTint="@android:color/white"
-        android:progressDrawable="@drawable/progress_bar"
-        android:progressTint="@color/colorPrimary" />
+        <ProgressBar
+            android:id="@+id/jump_game_progress_energy"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="400px"
+            android:layout_height="86px"
+            android:layout_marginLeft="52px"
+            android:layout_marginTop="77px"
+            android:max="100"
+            android:progress="100"
+            android:progressBackgroundTint="@android:color/white"
+            android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="@color/colorPrimary" />
 
-    <ImageView
-        android:id="@+id/jump_game_header"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="466dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/head2_crop" />
+        <ProgressBar
+            android:id="@+id/jump_game_progress_life"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="400px"
+            android:layout_height="86px"
+            android:layout_marginLeft="852px"
+            android:layout_marginTop="77px"
+            android:max="100"
+            android:progress="100"
+            android:progressBackgroundTint="@android:color/white"
+            android:progressDrawable="@drawable/progress_bar"
+            android:progressTint="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/jump_game_reached_points_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="0"
-        android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        <ImageView
+            android:id="@+id/jump_game_header"
+            android:layout_width="1300px"
+            android:layout_height="240px"
+            android:src="@drawable/head2_crop" />
 
-    <ImageView
-        android:id="@+id/jump_game_energy_picto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/energy_picto" />
+        <TextView
+            android:id="@+id/jump_game_reached_points_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="75px"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="80px" />
+
+        <ImageView
+            android:id="@+id/jump_game_energy_picto"
+            android:layout_width="74px"
+            android:layout_height="89px"
+            android:layout_marginLeft="211px"
+            android:layout_marginTop="75px"
+            android:src="@drawable/energy_picto" />
 
 
-    <ImageView
-        android:id="@+id/jump_game_food_picto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/food_picto" />
+        <ImageView
+            android:id="@+id/jump_game_food_picto"
+            android:layout_width="79px"
+            android:layout_height="78px"
+            android:layout_marginLeft="1017px"
+            android:layout_marginTop="77px"
+            android:src="@drawable/food_picto" />
 
 
-    <ImageView
-        android:id="@+id/jump_game_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:src="@drawable/ic_close" />
+        <ImageView
+            android:id="@+id/jump_game_close"
+            android:layout_width="170px"
+            android:layout_height="150px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/ic_close" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

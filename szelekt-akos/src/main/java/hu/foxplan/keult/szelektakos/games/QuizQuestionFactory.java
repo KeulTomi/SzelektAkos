@@ -36,12 +36,12 @@ public class QuizQuestionFactory {
     public static List<String> dinamicThirdAList = new ArrayList<String>(Arrays.asList(thirdAnswersArray));
     public static List<Integer> dinamicCorrectAList = new ArrayList<Integer>(Arrays.asList(correctAnswersArray));
 
-    public static void getTheCorrectAnswerList() {
-        dinamicCorrectAList = new ArrayList<Integer>();
-        for (int index = 0; index < correctAnswersArray.length; index++) {
-            dinamicCorrectAList.add(correctAnswersArray[index]);
-        }
-    }
+//    public static void getTheCorrectAnswerList() {
+//        dinamicCorrectAList = new ArrayList<Integer>();
+//        for (int index = 0; index < correctAnswersArray.length; index++) {
+//            dinamicCorrectAList.add(correctAnswersArray[index]);
+//        }
+//    }
 
     public static void questionFactory () {
         Random r = new Random();
@@ -68,6 +68,7 @@ public class QuizQuestionFactory {
             dinamicFirstAList = new ArrayList<String>(Arrays.asList(firstAnswersArray));
             dinamicSecondAList = new ArrayList<String>(Arrays.asList(secondAnswersArray));
             dinamicThirdAList = new ArrayList<String>(Arrays.asList(thirdAnswersArray));
+            dinamicCorrectAList = new ArrayList<Integer>(Arrays.asList(correctAnswersArray));
             questionFactory();
         }
     }

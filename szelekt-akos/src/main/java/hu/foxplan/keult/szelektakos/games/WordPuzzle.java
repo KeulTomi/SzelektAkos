@@ -54,6 +54,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public ImageView fourthGuesstLetterBack;
     public ImageView fifthGuesstLetterBack;
     public ImageView sixthGuesstLetterBack;
+    public ImageView seventhGuesstLetterBack;
     //A tippelt betűk üres helyei
     public ImageView firstGuesstLetterPlc;
     public ImageView secondGuesstLetterPlc;
@@ -61,6 +62,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public ImageView fourthGuesstLetterPlc;
     public ImageView fifthGuesstLetterPlc;
     public ImageView sixthGuesstLetterPlc;
+    public ImageView seventhGuesstLetterPlc;
     //A tippelt betűk layoutjai
     public RelativeLayout firstGuesstLetterLayout;
     public RelativeLayout secondGuesstLetterLayout;
@@ -68,6 +70,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public RelativeLayout fourthGuesstLetterLayout;
     public RelativeLayout fifthGuesstLetterLayout;
     public RelativeLayout sixthGuesstLetterLayout;
+    public RelativeLayout seventhGuesstLetterLayout;
     //A sorsolt betűk
     public TextView firstLetter;
     public TextView secondLetter;
@@ -95,6 +98,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public TextView fourthGuessLetter;
     public TextView fifthGuessLetter;
     public TextView sixthGuessLetter;
+    public TextView seventhGuessLetter;
     //A kérdés text-je
     public TextView questionText;
     //Bezerás gomb
@@ -116,6 +120,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     public String fourthCorrectL;
     public String fifthCorrectL;
     public String sixthCorrectL;
+    public String seventhCorrectL;
     public String correctWord;
     //Egyéb változók
     int previousPlace;
@@ -162,6 +167,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         fourthGuesstLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fourth_letter_back);
         fifthGuesstLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fifth_letter_back);
         sixthGuesstLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_sixth_letter_back);
+        seventhGuesstLetterBack = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_seventh_letter_back);
 
         firstGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_first_letter_plc);
         secondGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_second_letter_plc);
@@ -169,6 +175,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         fourthGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fourth_letter_plc);
         fifthGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fifth_letter_plc);
         sixthGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_sixth_letter_plc);
+        seventhGuesstLetterPlc = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_seventh_letter_plc);
 
         firstGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_first_letter_layout);
         secondGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_second_letter_layout);
@@ -176,6 +183,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         fourthGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_fourth_letter_layout);
         fifthGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_fifth_letter_layout);
         sixthGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_sixth_letter_layout);
+        seventhGuesstLetterLayout = (RelativeLayout) findViewById(R.id.guess_seventh_letter_layout);
 
         firstLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.first_letter);
         secondLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.second_letter);
@@ -193,6 +201,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         fourthGuessLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fourth_letter);
         fifthGuessLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_fifth_letter);
         sixthGuessLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_sixth_letter);
+        seventhGuessLetter = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.guess_seventh_letter);
 
         questionText = (TextView) findViewById(hu.foxplan.keult.szelektakos.R.id.question_txt_WP);
         closeWP = (ImageView) findViewById(hu.foxplan.keult.szelektakos.R.id.close_WP);
@@ -217,6 +226,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         fourthGuesstLetterLayout.setOnClickListener(this);
         fifthGuesstLetterLayout.setOnClickListener(this);
         sixthGuesstLetterLayout.setOnClickListener(this);
+        seventhGuesstLetterLayout.setOnClickListener(this);
 
         closeWP.setOnClickListener(this);
 
@@ -420,6 +430,13 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                 }
                 break;
 
+            case R.id.guess_seventh_letter_layout:
+                if (seventhGuessLetter.getText() != "") {
+                    String guessSixthString = seventhGuessLetter.getText().toString();
+                    removeALetter(guessSixthString, seventhGuessLetter, 6);
+                }
+                break;
+
             case hu.foxplan.keult.szelektakos.R.id.close_WP:
                 SzelektAkos.increasePoints(reachedPointsWP);
                 SzelektAkos.comeBackFromGame = true;
@@ -442,13 +459,13 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                 ,sixthLetter, seventhLetter, eighthLetter, ninthLetter};
 
         guessImgViewListPlc = new ImageView[]{firstGuesstLetterPlc, secondGuesstLetterPlc, thirdGuesstLetterPlc, fourthGuesstLetterPlc
-                ,fifthGuesstLetterPlc, sixthGuesstLetterPlc};
+                ,fifthGuesstLetterPlc, sixthGuesstLetterPlc, seventhGuesstLetterPlc};
 
         guessImgViewListBack = new ImageView[]{firstGuesstLetterBack, secondGuesstLetterBack, thirdGuesstLetterBack, fourthGuesstLetterBack
-        ,fifthGuesstLetterBack, sixthGuesstLetterBack};
+        ,fifthGuesstLetterBack, sixthGuesstLetterBack, seventhGuesstLetterBack};
 
         guessTxtViewList = new TextView[]{firstGuessLetter, secondGuessLetter, thirdGuessLetter, fourthGuessLetter, fifthGuessLetter
-                ,sixthGuessLetter};
+                ,sixthGuessLetter, seventhGuessLetter};
 
         dinamixTxtViewList = new ArrayList<TextView>(Arrays.asList(txtViewList));
         dinamicGuessImgViewListPlc = new ArrayList<ImageView>();
@@ -461,7 +478,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
 
         //Addig keressük a random helyeket a helyes szó betűinek amíg el nem fogynak a betűk
         while (index <= (WordFactory.mCurrentWord.length() - 1)){
-            if (index == 6){
+            if (index == 7){
                 return;
             }
             currentLetter = Character.toString(WordFactory.mCurrentWord.charAt(index));
@@ -501,7 +518,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
 
         while (guessTxtViewList[placesNumber].getText() != ""){
             placesNumber++;
-            if (placesNumber == 6) return;
+            if (placesNumber == 7) return;
             if (placesNumber == (dinamicGuessTxtViewList.size())) return;
         }
 
@@ -538,10 +555,14 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                     case 5:
                         sixthCorrectL = pickedLetter;
                         break;
+                    case 6:
+                        seventhCorrectL = pickedLetter;
+                        break;
                 }
                 int index = 0;
-                String[] letters = {firstCorrectL, secondCorrectL, thirdCorrectL, fourthCorrectL, fifthCorrectL, sixthCorrectL};
-                while (index <=5){
+                String[] letters = {firstCorrectL, secondCorrectL, thirdCorrectL, fourthCorrectL, fifthCorrectL,
+                        sixthCorrectL, seventhCorrectL};
+                while (index <=6){
                     if (letters[index] != null) {
                         if (index == 0){
                             correctWord = letters[index];
@@ -567,6 +588,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                     guessImgViewListBack[3].setVisibility(View.INVISIBLE);
                     guessImgViewListBack[4].setVisibility(View.INVISIBLE);
                     guessImgViewListBack[5].setVisibility(View.INVISIBLE);
+                    guessImgViewListBack[6].setVisibility(View.INVISIBLE);
 
                     guessImgViewListPlc[0].setVisibility(View.INVISIBLE);
                     guessImgViewListPlc[1].setVisibility(View.INVISIBLE);
@@ -574,6 +596,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                     guessImgViewListPlc[3].setVisibility(View.INVISIBLE);
                     guessImgViewListPlc[4].setVisibility(View.INVISIBLE);
                     guessImgViewListPlc[5].setVisibility(View.INVISIBLE);
+                    guessImgViewListPlc[6].setVisibility(View.INVISIBLE);
 
                     reachedPointsWP += 1;
                     reachedPointText.setText(String.valueOf(reachedPointsWP));
@@ -629,6 +652,10 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                     break;
                 case 5:
                     sixthCorrectL = "";
+                    break;
+
+                case 6:
+                    seventhCorrectL = "";
                     break;
             }
         }

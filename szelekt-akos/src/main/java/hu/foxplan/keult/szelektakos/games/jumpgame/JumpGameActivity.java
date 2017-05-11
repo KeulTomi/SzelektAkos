@@ -1,7 +1,6 @@
 package hu.foxplan.keult.szelektakos.games.jumpgame;
 
 import android.content.DialogInterface;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import hu.foxplan.keult.szelektakos.R;
+import hu.foxplan.keult.szelektakos.ScaleHelper;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 import hu.foxplan.keult.szelektakos.mainscreen.MainActivity;
 
@@ -30,6 +30,7 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
     ImageView gameCloseVew;
     private ProgressBar lifeProgress;
     private ProgressBar energyProgress;
+    int firstWindow = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,7 +115,7 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
         gameCloseVew = (ImageView) findViewById(R.id.jump_game_close);
         gameCloseVew.setOnTouchListener(this);
 
-        scaleImageItems();
+//        scaleImageItems();
     }
 
     @Override
@@ -147,105 +148,131 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
         return false;
     }
 
-    private void scaleImageItems() {
+//    private void scaleImageItems() {
+//
+//        // Méretarány kiszámítása
+//        float viewScaleX;
+//        float viewScaleY;
+//        float screenScaleX = SzelektAkos.displayWidth / 1300.0f;
+//        float screenScaleY = SzelektAkos.displayHeight / 2558.0f;
+//        float akosPosY;
+//        int origWidth;
+//        int origHeight;
+//        int posX;
+//        int posY;
+//        ImageView imageView;
+//
+//        // User points szöveg pozícionálása (méretezésre nincs szükség)
+//        TextView textView = (TextView) findViewById(R.id.jump_game_reached_points_txt);
+//        textView.setTextSize(0.8f * SzelektAkos.displayHeight / textView.getTextSize());
+//
+//        posX = 537;
+//        posY = 92;
+//        //textView.setX(posX * screenScaleX);
+//        textView.setY(posY * screenScaleY);
+//
+//
+//        // Energy ikon pozícionálása és méretezése
+//        imageView = (ImageView) findViewById(R.id.jump_game_energy_picto);
+//
+//        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getWidth();
+//        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getHeight();
+//        viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
+//
+//        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+//        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+//        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//
+//        posX = 208;
+//        posY = 95;
+//        imageView.setX(posX * screenScaleX);
+//        imageView.setY(posY * screenScaleY);
+//
+//        // Food ikon pozícionálása és méretezése
+//        imageView = (ImageView) findViewById(R.id.jump_game_food_picto);
+//
+//        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getWidth();
+//        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getHeight();
+//        viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
+//
+//        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
+//        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
+//        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//
+//        posX = 1008;
+//        posY = 105;
+//        imageView.setX(posX * screenScaleX);
+//        imageView.setY(posY * screenScaleY);
+//
+//        // Game close ikon pozícionálása és méretezése
+//        View view = findViewById(R.id.jump_game_close);
+//
+//
+//        origWidth = 100;
+//        origHeight = 100;
+//        viewScaleX = 0.1f * SzelektAkos.displayWidth / (float) origWidth;
+//
+//        view.getLayoutParams().width = (int) (origWidth * viewScaleX);
+//        view.getLayoutParams().height = (int) (origHeight * viewScaleX);
+//
+//        // Energy progressbar pozícionálása és méretezése
+//        ProgressBar progressBar;
+//
+//        progressBar = (ProgressBar) findViewById(R.id.jump_game_progress_energy);
+//
+//        origWidth = 400;
+//        origHeight = 85;
+//        viewScaleX = 0.305f * SzelektAkos.displayWidth / (float) origWidth;
+//        viewScaleY = 0.07f * SzelektAkos.displayHeight / (float) origHeight;
+//
+//        progressBar.getLayoutParams().width = (int) (origWidth * viewScaleX);
+//        progressBar.getLayoutParams().height = (int) (origHeight * viewScaleY);
+//
+//        posX = 52;
+//        posY = 77;
+//        progressBar.setX(posX * screenScaleX);
+//        progressBar.setY(posY * screenScaleY);
+//
+//        // Life progressbar pozícionálása és méretezése
+//        progressBar = (ProgressBar) findViewById(R.id.jump_game_progress_life);
+//
+//        origWidth = 400;
+//        origHeight = 85;
+//        viewScaleX = 0.305f * SzelektAkos.displayWidth / (float) origWidth;
+//        viewScaleY = 0.07f * SzelektAkos.displayHeight / (float) origHeight;
+//
+//        progressBar.getLayoutParams().width = (int) (origWidth * viewScaleX);
+//        progressBar.getLayoutParams().height = (int) (origHeight * viewScaleY);
+//
+//        posX = 850;
+//        posY = 77;
+//        progressBar.setX(posX * screenScaleX);
+//        progressBar.setY(posY * screenScaleY);
+//    }
 
-        // Méretarány kiszámítása
-        float viewScaleX;
-        float viewScaleY;
-        float screenScaleX = SzelektAkos.displayWidth / 1300.0f;
-        float screenScaleY = SzelektAkos.displayHeight / 2558.0f;
-        float akosPosY;
-        int origWidth;
-        int origHeight;
-        int posX;
-        int posY;
-        ImageView imageView;
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        ScaleHelper.scaleContents(findViewById(R.id.activity_jump_root), findViewById(R.id.activity_jump_container));
+        if (firstWindow == 0) {
+            if (energyProgress.getProgress() <= 0) {
+//            if (!PickOneGame.this.isFinishing()) {
+//            }
+//            else {
+                //show dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(JumpGameActivity.this);
+                builder.setMessage("Szelekt Ákos elfáradt aludnia kell!")
+                        .setPositiveButton("Rendben", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
 
-        // User points szöveg pozícionálása (méretezésre nincs szükség)
-        TextView textView = (TextView) findViewById(R.id.jump_game_reached_points_txt);
-        textView.setTextSize(0.8f * SzelektAkos.displayHeight / textView.getTextSize());
-
-        posX = 537;
-        posY = 92;
-        //textView.setX(posX * screenScaleX);
-        textView.setY(posY * screenScaleY);
-
-
-        // Energy ikon pozícionálása és méretezése
-        imageView = (ImageView) findViewById(R.id.jump_game_energy_picto);
-
-        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.energy_picto).getHeight();
-        viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
-
-        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
-        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        posX = 208;
-        posY = 95;
-        imageView.setX(posX * screenScaleX);
-        imageView.setY(posY * screenScaleY);
-
-        // Food ikon pozícionálása és méretezése
-        imageView = (ImageView) findViewById(R.id.jump_game_food_picto);
-
-        origWidth = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getWidth();
-        origHeight = BitmapFactory.decodeResource(getResources(), R.drawable.food_picto).getHeight();
-        viewScaleX = 0.056f * SzelektAkos.displayWidth / (float) origWidth;
-
-        imageView.getLayoutParams().width = (int) (origWidth * viewScaleX);
-        imageView.getLayoutParams().height = (int) (origHeight * viewScaleX);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        posX = 1008;
-        posY = 105;
-        imageView.setX(posX * screenScaleX);
-        imageView.setY(posY * screenScaleY);
-
-        // Game close ikon pozícionálása és méretezése
-        View view = findViewById(R.id.jump_game_close);
-
-
-        origWidth = 100;
-        origHeight = 100;
-        viewScaleX = 0.1f * SzelektAkos.displayWidth / (float) origWidth;
-
-        view.getLayoutParams().width = (int) (origWidth * viewScaleX);
-        view.getLayoutParams().height = (int) (origHeight * viewScaleX);
-
-        // Energy progressbar pozícionálása és méretezése
-        ProgressBar progressBar;
-
-        progressBar = (ProgressBar) findViewById(R.id.jump_game_progress_energy);
-
-        origWidth = 400;
-        origHeight = 85;
-        viewScaleX = 0.305f * SzelektAkos.displayWidth / (float) origWidth;
-        viewScaleY = 0.07f * SzelektAkos.displayHeight / (float) origHeight;
-
-        progressBar.getLayoutParams().width = (int) (origWidth * viewScaleX);
-        progressBar.getLayoutParams().height = (int) (origHeight * viewScaleY);
-
-        posX = 52;
-        posY = 77;
-        progressBar.setX(posX * screenScaleX);
-        progressBar.setY(posY * screenScaleY);
-
-        // Life progressbar pozícionálása és méretezése
-        progressBar = (ProgressBar) findViewById(R.id.jump_game_progress_life);
-
-        origWidth = 400;
-        origHeight = 85;
-        viewScaleX = 0.305f * SzelektAkos.displayWidth / (float) origWidth;
-        viewScaleY = 0.07f * SzelektAkos.displayHeight / (float) origHeight;
-
-        progressBar.getLayoutParams().width = (int) (origWidth * viewScaleX);
-        progressBar.getLayoutParams().height = (int) (origHeight * viewScaleY);
-
-        posX = 850;
-        posY = 77;
-        progressBar.setX(posX * screenScaleX);
-        progressBar.setY(posY * screenScaleY);
+                alert.show();
+//            }
+            }
+        }
+        firstWindow++;
     }
 }
