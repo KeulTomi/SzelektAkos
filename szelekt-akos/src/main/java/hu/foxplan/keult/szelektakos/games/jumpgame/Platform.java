@@ -36,8 +36,8 @@ public class Platform implements Runnable {
             this.viewHandler = handler;
         }
 
-        PLATFORM_MOVE_STEP = Math.round(2.88f * SzelektAkos.displayWidth / 540.0f);
-        PLATFORM_MOVE_CYCLE = (int) (1000 * 2.0f * PLATFORM_MOVE_STEP / SzelektAkos.displayWidth);
+        PLATFORM_MOVE_STEP = Math.round(5.0f * SzelektAkos.displayWidth / 540.0f);
+        PLATFORM_MOVE_CYCLE = (int) (1000 * 1.5f * PLATFORM_MOVE_STEP / SzelektAkos.displayWidth);
     }
 
     public static void loadItemResources(Context context) {
@@ -116,7 +116,7 @@ public class Platform implements Runnable {
         int posEnd;
 
         for (int i = 0; i < itemsToDrop; i++) {
-            randomItem = selector.nextInt(sourceItems.length * 6); // Items gyakoriság szabályozása
+            randomItem = selector.nextInt(sourceItems.length * 10); // Items gyakoriság szabályozása
             carriedItems[i] = new Item();
 
             if (randomItem < sourceItems.length) {

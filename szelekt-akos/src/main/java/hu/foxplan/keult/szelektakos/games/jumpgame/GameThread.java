@@ -268,7 +268,7 @@ class GameThread extends Thread {
 
                     // Ha a járda már nem látszik a képernyőn újra lehet hasznosítani,
                     // pozícionálás véletlenszerűen a képernyő szélességen túlra
-                    mUpperPlatform.setPos(getNextRandomPos(mDisplayWidth, mDisplayWidth), null);
+                    mUpperPlatform.setPos(getNextRandomPos(2 * mDisplayWidth, mDisplayWidth), null);
 
                     // Újabb elemeket lehet rádobni
                     mUpperPlatform.dropItems(2);
@@ -342,8 +342,8 @@ class GameThread extends Thread {
                 canvas.drawBitmap(mBluePlatform.getBmp(), mBluePlatform.getPos().x, mBluePlatform.getPos().y, null);
 
                 if (jumpManPos.y + mJumpMan.getHeight() == BOTTOM_PLATFORM_YPOS &&
-                        mBluePlatform.getPos().x <= jumpManPos.x && mBluePlatform.getPos().x + mBluePlatform.getWidth() >= jumpManPos.x)
-                    mJumpMan.jump();
+                        mBluePlatform.getPos().x <= (jumpManPos.x + mJumpMan.getWidth()) && mBluePlatform.getPos().x + mBluePlatform.getWidth() >= jumpManPos.x)
+                    if (mJumpMan.isFalling) mJumpMan.jump();
             }
 
             if (mJumpMan != null)
@@ -439,21 +439,6 @@ class GameThread extends Thread {
         Bitmap greenPlatform = BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_green_platform);
 
         //
-        // Alsó járda inicializálása és méretezése
-        //
-        mBottomPlatform = new Platform(
-                greenPlatform,
-                PLATFORM_HEIGHT,
-                mViewHandler);
-
-        mBottomPlatform.setPos(
-                getNextRandomPos(mDisplayWidth, mDisplayWidth),
-                BOTTOM_PLATFORM_YPOS);
-
-        mBottomPlatform.dropItems(2);
-
-
-        //
         // Felső járda inicializálása és méretezése
         //
         mUpperPlatform = new Platform(
@@ -462,10 +447,27 @@ class GameThread extends Thread {
                 mViewHandler);
 
         mUpperPlatform.setPos(
-                getNextRandomPos(mBottomPlatform.getPos().x, mDisplayWidth),
+                getNextRandomPos(2 * mDisplayWidth, mDisplayWidth),
                 UPPER_PLATFORM_YPOS);
 
         mUpperPlatform.dropItems(2);
+
+        //
+        // Alsó járda inicializálása és méretezése
+        //
+        mBottomPlatform = new Platform(
+                greenPlatform,
+                PLATFORM_HEIGHT,
+                mViewHandler);
+
+        mBottomPlatform.setPos(
+                getNextRandomPos(mUpperPlatform.getPos().x + mUpperPlatform.getWidth() + mDisplayWidth, mDisplayWidth),
+                BOTTOM_PLATFORM_YPOS);
+
+        mBottomPlatform.dropItems(2);
+
+
+
 
         //
         // Kék ugró járda
@@ -479,7 +481,9 @@ class GameThread extends Thread {
                 mViewHandler);
 
         mBluePlatform.setPos(
-                getNextRandomPos(2 * mDisplayWidth, (int) (mDisplayWidth * 1.5)),
+                getNextRandomPos(
+                        mBottomPlatform.getPos().x + mBottomPlatform.getWidth() + 2 * mDisplayWidth,
+                        mDisplayWidth * 2),
                 BOTTOM_PLATFORM_YPOS);
 
 
