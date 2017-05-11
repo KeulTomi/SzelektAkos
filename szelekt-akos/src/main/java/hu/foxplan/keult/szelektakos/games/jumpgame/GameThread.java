@@ -90,7 +90,7 @@ class GameThread extends Thread {
             boolean isBottomPosLimited = false;
 
             if (jumpRequest) {
-                mJumpMan.jump();
+                mJumpMan.jump(false);
                 jumpRequest = false;
             }
 
@@ -343,7 +343,7 @@ class GameThread extends Thread {
 
                 if (jumpManPos.y + mJumpMan.getHeight() == BOTTOM_PLATFORM_YPOS &&
                         mBluePlatform.getPos().x <= (jumpManPos.x + mJumpMan.getWidth()) && mBluePlatform.getPos().x + mBluePlatform.getWidth() >= jumpManPos.x)
-                    if (mJumpMan.isFalling) mJumpMan.jump();
+                    if (mJumpMan.isFalling) mJumpMan.jump(true);
             }
 
             if (mJumpMan != null)

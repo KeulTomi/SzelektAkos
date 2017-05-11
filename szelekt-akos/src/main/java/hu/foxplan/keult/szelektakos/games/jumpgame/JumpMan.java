@@ -75,7 +75,8 @@ class JumpMan {
                 } else
                     mCurrrentBmpIndex++;
 
-                viewHandler.postDelayed(this, FOOT_ANIMATION_CYCLE);
+                if (GameThread.isGameRunning)
+                    viewHandler.postDelayed(this, FOOT_ANIMATION_CYCLE);
             }
         });
 
@@ -99,7 +100,8 @@ class JumpMan {
 
                     yLast = getPos().y;
                 }
-                viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
+                if (GameThread.isGameRunning)
+                    viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
             }
         });
     }
@@ -127,13 +129,18 @@ class JumpMan {
         return mBitmapArray[mCurrrentBmpIndex].getWidth();
     }
 
-    void jump() {
+    void jump(boolean jumpFromBluePlatform) {
 
         if (isJumping)
             return; // Ha már ugrásban van akkor nem indítható még egy ugrás
 
         jumpCycleCount = 1; // Idő inicializlása (első "másodperc")
         y0 = getPos().y; // Ugrás induló pozíciójának tárolása
+
+        if (jumpFromBluePlatform)
+            v0 = 25 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
+        else
+            v0 = 40 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
 
         // Ugrás animációja
         if (getPos().y == posBottomLimit) {
@@ -150,7 +157,8 @@ class JumpMan {
                             setPos(null, y0 - dy);
                             jumpCycleCount++; // idő növelése
                             yLast = getPos().y;
-                            viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
+                            if (GameThread.isGameRunning)
+                                viewHandler.postDelayed(this, JUMP_REFRESH_CYCLE);
                         } else {
                             isGravityOn = true;
                             isJumping = false;

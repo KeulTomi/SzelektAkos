@@ -165,13 +165,13 @@
             android:layout_marginLeft="1017px"
             android:layout_marginTop="77px"
             android:src="@drawable/food_picto" />
-        
-        <ImageView
+
+        <!--<ImageView
             android:layout_width="match_parent"
             android:layout_height="1800px"
             android:layout_alignParentBottom="true"
             android:visibility="gone"
-            android:src="@drawable/rule01_cut"/>
+            android:src="@drawable/rule01_cut"/>-->
 
     </RelativeLayout>
 </FrameLayout>
