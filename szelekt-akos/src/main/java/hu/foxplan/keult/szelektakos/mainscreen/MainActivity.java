@@ -71,6 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //A szükségés innicializálások a későbbi activity-k közti ugrálásokhoz
         SzelektAkos.innitApp(getApplicationContext());
 
+        //Vizsgáljuk, hogy most telepítette-e, ha igen, akkor megjelenítjük a segítő zöveget,
+        //ha nem, akkor pedig eltüntetjük
+        if (SzelektAkos.installStatus == false){
+
+        }
+
         //Felső header inicializálása
         life = (ProgressBar) findViewById(R.id.progress_life);
         energy = (ProgressBar) findViewById(R.id.progress_energy);

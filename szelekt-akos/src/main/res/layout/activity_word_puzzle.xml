@@ -368,8 +368,8 @@
 
             <RelativeLayout
                 android:id="@+id/guess_first_letter_layout"
-                android:layout_width="148px"
-                android:layout_height="247px">
+                android:layout_width="128px"
+                android:layout_height="227px">
 
                 <ImageView
                     android:id="@+id/guess_first_letter_back"
@@ -402,8 +402,8 @@
 
             <RelativeLayout
                 android:id="@+id/guess_second_letter_layout"
-                android:layout_width="148px"
-                android:layout_height="247px"
+                android:layout_width="128px"
+                android:layout_height="227px"
                 android:layout_marginLeft="50px">
 
                 <ImageView
@@ -437,8 +437,8 @@
 
             <RelativeLayout
                 android:id="@+id/guess_third_letter_layout"
-                android:layout_width="148px"
-                android:layout_height="247px"
+                android:layout_width="128px"
+                android:layout_height="227px"
                 android:layout_marginLeft="50px">
 
                 <ImageView
@@ -472,8 +472,8 @@
 
             <RelativeLayout
                 android:id="@+id/guess_fourth_letter_layout"
-                android:layout_width="148px"
-                android:layout_height="247px"
+                android:layout_width="128px"
+                android:layout_height="227px"
                 android:layout_marginLeft="50px">
 
                 <ImageView
@@ -507,8 +507,8 @@
 
             <RelativeLayout
                 android:id="@+id/guess_fifth_letter_layout"
-                android:layout_width="148px"
-                android:layout_height="247px"
+                android:layout_width="128px"
+                android:layout_height="227px"
                 android:layout_marginLeft="50px">
 
                 <ImageView
@@ -542,8 +542,8 @@
 
             <RelativeLayout
                 android:id="@+id/guess_sixth_letter_layout"
-                android:layout_width="148px"
-                android:layout_height="247px"
+                android:layout_width="128px"
+                android:layout_height="227px"
                 android:layout_marginLeft="50px">
 
                 <ImageView
@@ -567,6 +567,41 @@
 
                 <TextView
                     android:id="@+id/guess_sixth_letter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="150px" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/guess_seventh_letter_layout"
+                android:layout_width="128px"
+                android:layout_height="227px"
+                android:layout_marginLeft="50px">
+
+                <ImageView
+                    android:id="@+id/guess_seventh_letter_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/letters_back"
+                    android:visibility="invisible" />
+
+
+                <ImageView
+                    android:id="@+id/guess_seventh_letter_plc"
+                    android:layout_width="25px"
+                    android:layout_height="25px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="90px"
+                    android:src="@drawable/ic_point"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/guess_seventh_letter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
