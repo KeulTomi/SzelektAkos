@@ -18,8 +18,8 @@ import hu.foxplan.keult.szelektakos.SzelektAkos;
 public class Platform implements Runnable {
 
     private static Item[] sourceItems;
-    private final int PLATFORM_MOVE_CYCLE = 10; // Járda pozíció frissítési ciklusa
-    private int PLATFORM_MOVE_STEP = 5; // Egy frissítési ciklusban hány pixelt lépjen a járda
+    private int PLATFORM_MOVE_CYCLE = 15; // Járda pozíció frissítési ciklusa
+    private int PLATFORM_MOVE_STEP; // Egy frissítési ciklusban hány pixelt lépjen a járda
     private Point pos = new Point(0, 0);
     private Bitmap bmp;
     private Item[] carriedItems;
@@ -36,7 +36,8 @@ public class Platform implements Runnable {
             this.viewHandler = handler;
         }
 
-        PLATFORM_MOVE_STEP = 5 * SzelektAkos.displayWidth / 540;
+        PLATFORM_MOVE_STEP = Math.round(2.88f * SzelektAkos.displayWidth / 540.0f);
+        PLATFORM_MOVE_CYCLE = (int) (1000 * 2.0f * PLATFORM_MOVE_STEP / SzelektAkos.displayWidth);
     }
 
     public static void loadItemResources(Context context) {
@@ -110,16 +111,23 @@ public class Platform implements Runnable {
     public void dropItems(int itemsToDrop) {
         Random selector = new Random();
         carriedItems = new Item[itemsToDrop];
-        int randomPos;
+        int randomItem;
+        int posStart;
+        int posEnd;
 
         for (int i = 0; i < itemsToDrop; i++) {
-            randomPos = selector.nextInt(30);
+            randomItem = selector.nextInt(sourceItems.length * 6); // Items gyakoriság szabályozása
             carriedItems[i] = new Item();
 
-            if (randomPos < sourceItems.length) {
-                carriedItems[i].bmp = sourceItems[randomPos].bmp;
-                carriedItems[i].isBadItem = sourceItems[randomPos].isBadItem;
-                carriedItems[i].relativePos = carriedItems[i].bmp.getWidth() + selector.nextInt(getWidth() - 2 * carriedItems[i].bmp.getWidth());
+            if (randomItem < sourceItems.length) {
+                carriedItems[i].bmp = sourceItems[randomItem].bmp;
+                carriedItems[i].isBadItem = sourceItems[randomItem].isBadItem;
+
+                // Járda itemsToDrop részre osztása, és azon belüli pozícionálása
+                // védőtávolság az item bmp szélessége, nehogy a szakaszhatrokra torlódjanak az itemek
+                posStart = i * getWidth() / itemsToDrop + carriedItems[i].bmp.getWidth();
+                posEnd = (i + 1) * getWidth() / itemsToDrop - carriedItems[i].bmp.getWidth();
+                carriedItems[i].relativePos = posStart + selector.nextInt(posEnd - posStart);
             }
         }
 
@@ -134,6 +142,10 @@ public class Platform implements Runnable {
     }
 
     public boolean isItemValid(int num) {
+
+        if (carriedItems == null)
+            return false; // Ha egyáltalán nincs elem a járdán
+
         return carriedItems[num].bmp != null;
     }
 

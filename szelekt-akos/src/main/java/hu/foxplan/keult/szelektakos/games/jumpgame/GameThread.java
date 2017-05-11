@@ -13,6 +13,7 @@ import android.view.SurfaceHolder;
 
 import java.util.Random;
 
+import hu.foxplan.keult.szelektakos.R;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 
 /**
@@ -422,7 +423,9 @@ class GameThread extends Thread {
         badItemsCollected = 0;
 
         // Háttér inicializálása és méretezése
-        Bitmap bitmap = BitmapFactory.decodeResource(mViewContext.getResources(), hu.foxplan.keult.szelektakos.R.drawable.jump_game_background);
+        Bitmap bitmap = BitmapFactory.decodeResource(
+                mViewContext.getResources(),
+                R.drawable.jump_game_background);
 
         mBackgroundPic = Bitmap.createScaledBitmap(
                 bitmap,
@@ -433,7 +436,7 @@ class GameThread extends Thread {
         // Véletlenszerűen a járdákra dobott tárgyak betöltése a Platform objektumba
         Platform.loadItemResources(mViewContext);
 
-        Bitmap greenPlatform = BitmapFactory.decodeResource(mViewContext.getResources(), hu.foxplan.keult.szelektakos.R.drawable.jump_game_green_platform);
+        Bitmap greenPlatform = BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_green_platform);
 
         //
         // Alsó járda inicializálása és méretezése
@@ -468,7 +471,7 @@ class GameThread extends Thread {
         // Kék ugró járda
         //
 
-        Bitmap bluePlatform = BitmapFactory.decodeResource(mViewContext.getResources(), hu.foxplan.keult.szelektakos.R.drawable.jump_game_blue_platform);
+        Bitmap bluePlatform = BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_blue_platform);
 
         mBluePlatform = new Platform(
                 bluePlatform,
@@ -486,34 +489,32 @@ class GameThread extends Thread {
         mBasePlatform = new Platform[3];
 
         mBasePlatform[0] = new Platform(
-                BitmapFactory.decodeResource(mViewContext.getResources(), hu.foxplan.keult.szelektakos.R.drawable.jump_game_base_platform),
+                BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_base_platform),
                 PLATFORM_HEIGHT,
                 mViewHandler);
 
         mBasePlatform[0].setPos(
-                (int) (0),
+                0,
                 BASE_PLATFORM_YPOS);
 
-        mBasePlatform[0].dropItems(2);
 
         mBasePlatform[1] = new Platform(
-                BitmapFactory.decodeResource(mViewContext.getResources(), hu.foxplan.keult.szelektakos.R.drawable.jump_game_base_platform),
+                BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_base_platform),
                 PLATFORM_HEIGHT,
                 mViewHandler);
 
         mBasePlatform[1].setPos(
-                (int) (mBasePlatform[0].getWidth() + GAP_BETWEEN_BASE_PLATFORMS),
+                mBasePlatform[0].getWidth() + GAP_BETWEEN_BASE_PLATFORMS,
                 BASE_PLATFORM_YPOS);
 
-        mBasePlatform[1].dropItems(2);
 
         mBasePlatform[2] = new Platform(
-                BitmapFactory.decodeResource(mViewContext.getResources(), hu.foxplan.keult.szelektakos.R.drawable.jump_game_base_platform),
+                BitmapFactory.decodeResource(mViewContext.getResources(), R.drawable.jump_game_base_platform),
                 PLATFORM_HEIGHT,
                 mViewHandler);
 
         mBasePlatform[2].setPos(
-                (int) (mBasePlatform[1].getPos().x + mBasePlatform[1].getWidth() + GAP_BETWEEN_BASE_PLATFORMS),
+                mBasePlatform[1].getPos().x + mBasePlatform[1].getWidth() + GAP_BETWEEN_BASE_PLATFORMS,
                 BASE_PLATFORM_YPOS);
 
         mBasePlatform[2].dropItems(2);
@@ -523,17 +524,17 @@ class GameThread extends Thread {
         // Ugró figura inicializálása és méretezése
         //
         Integer[] jumpManResourceArray = new Integer[11];
-        jumpManResourceArray[0] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_01;
-        jumpManResourceArray[1] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_02;
-        jumpManResourceArray[2] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_03;
-        jumpManResourceArray[3] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_04;
-        jumpManResourceArray[4] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_05;
-        jumpManResourceArray[5] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_06;
-        jumpManResourceArray[6] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_07;
-        jumpManResourceArray[7] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_08;
-        jumpManResourceArray[8] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_09;
-        jumpManResourceArray[9] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_10;
-        jumpManResourceArray[10] = hu.foxplan.keult.szelektakos.R.drawable.akos_run_11;
+        jumpManResourceArray[0] = R.drawable.akos_run_01;
+        jumpManResourceArray[1] = R.drawable.akos_run_02;
+        jumpManResourceArray[2] = R.drawable.akos_run_03;
+        jumpManResourceArray[3] = R.drawable.akos_run_04;
+        jumpManResourceArray[4] = R.drawable.akos_run_05;
+        jumpManResourceArray[5] = R.drawable.akos_run_06;
+        jumpManResourceArray[6] = R.drawable.akos_run_07;
+        jumpManResourceArray[7] = R.drawable.akos_run_08;
+        jumpManResourceArray[8] = R.drawable.akos_run_09;
+        jumpManResourceArray[9] = R.drawable.akos_run_10;
+        jumpManResourceArray[10] = R.drawable.akos_run_11;
 
         mJumpMan = new JumpMan(
                 jumpManResourceArray,
@@ -546,7 +547,7 @@ class GameThread extends Thread {
                 BASE_PLATFORM_YPOS - mJumpMan.getHeight());
 
         JUMPMAN_UPPER_LIMIT_YPOS = 0; //UPPER_PLATFORM_YPOS - mJumpMan.getHeight() - 3 * mUpperPlatform.getHeight();
-        JUMPMAN_BOTTOM_LIMIT_YPOS = (int) (BASE_PLATFORM_YPOS - mJumpMan.getHeight());
+        JUMPMAN_BOTTOM_LIMIT_YPOS = BASE_PLATFORM_YPOS - mJumpMan.getHeight();
         mJumpMan.setPosBottomLimit(JUMPMAN_BOTTOM_LIMIT_YPOS);
         mJumpMan.setPosUpperLimit(JUMPMAN_UPPER_LIMIT_YPOS);
 
