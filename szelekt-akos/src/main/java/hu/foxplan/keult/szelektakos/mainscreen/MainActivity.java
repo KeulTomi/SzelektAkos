@@ -1,6 +1,9 @@
 package hu.foxplan.keult.szelektakos.mainscreen;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +26,8 @@ import hu.foxplan.keult.szelektakos.games.TrueFalseGame;
 import hu.foxplan.keult.szelektakos.games.WordPuzzle;
 import hu.foxplan.keult.szelektakos.games.jumpgame.JumpGameActivity;
 import hu.foxplan.keult.szelektakos.shop.ShopActivity;
+
+import static hu.foxplan.keult.szelektakos.SzelektAkos.mSharedPref;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,6 +52,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        int version = 1;
+        mSharedPref = this.getSharedPreferences("User", Context.MODE_PRIVATE);
+        SzelektAkos.savedVersion = mSharedPref.getInt("savedVersion", 1);
+        SzelektAkos.installStatus = mSharedPref.getBoolean("installStatus", true);
+
+        if (SzelektAkos.installStatus == true) {
+            try {
+                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            if (version > SzelektAkos.savedVersion) {
+                mSharedPref = this.getSharedPreferences("User", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSharedPref.edit();
+                editor.remove("points");
+                editor.remove("life");
+                editor.remove("energy");
+                editor.remove("trouser");
+                editor.remove("installStatus");
+                editor.apply();
+                //do something
+            }
+        }
+
+        mSharedPref = getApplicationContext().getSharedPreferences("User", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        try {
+            editor.putInt("savedVersion", getPackageManager().getPackageInfo(getPackageName(), 0).versionCode);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        editor.apply();
+
         // Activity üzenetkezelője
         uiHandler = new Handler() {
             @Override
@@ -70,12 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //A szükségés innicializálások a későbbi activity-k közti ugrálásokhoz
         SzelektAkos.innitApp(getApplicationContext());
-
-        //Vizsgáljuk, hogy most telepítette-e, ha igen, akkor megjelenítjük a segítő zöveget,
-        //ha nem, akkor pedig eltüntetjük
-        if (SzelektAkos.installStatus == false){
-
-        }
 
         //Felső header inicializálása
         life = (ProgressBar) findViewById(R.id.progress_life);

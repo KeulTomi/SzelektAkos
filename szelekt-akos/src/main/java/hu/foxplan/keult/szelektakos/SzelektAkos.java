@@ -36,8 +36,9 @@ public class SzelektAkos extends Application {
     public static boolean[] mainBoughtTrousersList = new boolean[6];
     private static int points;
     private static int trouserToWear;
+    public static int savedVersion;
     private static List<Integer> avaiableTrousers = new ArrayList<>();
-    private static SharedPreferences mSharedPref;
+    public static SharedPreferences mSharedPref;
     private static Context appContext;
     private static Handler progressBarHandler = new Handler();
 
