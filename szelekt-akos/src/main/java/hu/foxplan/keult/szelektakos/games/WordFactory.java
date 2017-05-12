@@ -26,9 +26,9 @@ public class WordFactory {
             ,"Ebben szerepelnek a hulladékszállítási időpontok","Minden fontos információ megtalálható rajta","Ezt a hulladékot is elhelyezhetjük a sárga/kék gyűjtőbe"
             ,"Ezeket az utcákon helyezik el, tájékoztató céllal","Ezt a fajta üveghulladékot nem helyezhetjük el a zöld szigeteken"};
 
-    public static String[] words  = {"Elem","biokuka","sárga","barna","zöld","fehér","kőolaj","szemét","papír","fém","üveg","lom"
+    public static String[] words  = {"elem","biokuka","sárga","barna","zöld","fehér","kőolaj","szemét","papír","fém","üveg","lom"
             ,"gyom","csont","könyv","füzet","zacskó","fólia","edény","italos","karton","gumi","nejlon","olaj","kerti","színes","pala"
-            ,"kuka","chip","lakos","zsák","fekete","kék","Kerék","Udvar","lerakó","sofőr","bála","szalag","tálca","naptár","honlap"
+            ,"kuka","chip","lakos","zsák","fekete","kék","kerék","udvar","lerakó","sofőr","bála","szalag","tálca","naptár","honlap"
             ,"flakon","plakát","ablak"};
 
     public static String mCurrentWord;
