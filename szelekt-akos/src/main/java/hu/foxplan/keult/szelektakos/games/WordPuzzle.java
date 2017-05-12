@@ -133,6 +133,7 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
     private ProgressBar gameTimeProgress;
     private ProgressBar lifeProgress;
     private ProgressBar energyProgress;
+    private ImageView correctOrNot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -227,6 +228,8 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
         fifthGuesstLetterLayout.setOnClickListener(this);
         sixthGuesstLetterLayout.setOnClickListener(this);
         seventhGuesstLetterLayout.setOnClickListener(this);
+
+        correctOrNot = (ImageView) findViewById(R.id.correct_or_not_img);
 
         closeWP.setOnClickListener(this);
 
@@ -539,15 +542,61 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
                 switch (placesNumber){
                     case 0:
                         firstCorrectL = pickedLetter;
+                        if (firstCorrectL != null & secondCorrectL != null & thirdCorrectL != null) {
+                            if (firstCorrectL != "" & secondCorrectL != "" & thirdCorrectL != "") {
+                                if ((firstCorrectL + secondCorrectL + thirdCorrectL).matches((String.valueOf(WordFactory.mCurrentWord.charAt(0)) +
+                                        String.valueOf(WordFactory.mCurrentWord.charAt(1)) +
+                                        String.valueOf(WordFactory.mCurrentWord.charAt(2))))
+                                        ) {
+
+                                    correctOrNot.setVisibility(View.VISIBLE);
+                                    correctOrNot.setImageResource(R.drawable.correct_akos);
+                                } else {
+                                    correctOrNot.setVisibility(View.VISIBLE);
+                                    correctOrNot.setImageResource(R.drawable.uncorrect_akos);
+                                }
+                            }
+                        }
                         break;
                     case 1:
                         secondCorrectL = pickedLetter;
+                        if (firstCorrectL != null & secondCorrectL != null & thirdCorrectL != null) {
+                            if (firstCorrectL != "" & secondCorrectL != "" & thirdCorrectL != "") {
+                                if ((firstCorrectL + secondCorrectL + thirdCorrectL).matches((String.valueOf(WordFactory.mCurrentWord.charAt(0)) +
+                                        String.valueOf(WordFactory.mCurrentWord.charAt(1)) +
+                                        String.valueOf(WordFactory.mCurrentWord.charAt(2))))
+                                        ) {
+
+                                    correctOrNot.setVisibility(View.VISIBLE);
+                                    correctOrNot.setImageResource(R.drawable.correct_akos);
+                                } else {
+                                    correctOrNot.setVisibility(View.VISIBLE);
+                                    correctOrNot.setImageResource(R.drawable.uncorrect_akos);
+                                }
+                            }
+                        }
                         break;
                     case 2:
                         thirdCorrectL = pickedLetter;
+                        if (firstCorrectL != null & secondCorrectL != null & thirdCorrectL != null) {
+                            if (firstCorrectL != "" & secondCorrectL != "" & thirdCorrectL != "") {
+                                if ((firstCorrectL + secondCorrectL + thirdCorrectL).matches((String.valueOf(WordFactory.mCurrentWord.charAt(0)) +
+                                        String.valueOf(WordFactory.mCurrentWord.charAt(1)) +
+                                        String.valueOf(WordFactory.mCurrentWord.charAt(2))))
+                                        ) {
+
+                                    correctOrNot.setVisibility(View.VISIBLE);
+                                    correctOrNot.setImageResource(R.drawable.correct_akos);
+                                } else {
+                                    correctOrNot.setVisibility(View.VISIBLE);
+                                    correctOrNot.setImageResource(R.drawable.uncorrect_akos);
+                                }
+                            }
+                        }
                         break;
                     case 3:
                         fourthCorrectL = pickedLetter;
+                        correctOrNot.setVisibility(View.GONE);
                         break;
                     case 4:
                         fifthCorrectL = pickedLetter;
@@ -637,15 +686,32 @@ public class WordPuzzle extends AppCompatActivity implements View.OnClickListene
             switch (removeLetterNum){
                 case 0:
                     firstCorrectL = "";
+                    correctOrNot.setVisibility(View.GONE);
                     break;
                 case 1:
                     secondCorrectL = "";
+                    correctOrNot.setVisibility(View.GONE);
                     break;
                 case 2:
                     thirdCorrectL = "";
+                    correctOrNot.setVisibility(View.GONE);
                     break;
                 case 3:
                     fourthCorrectL = "";
+                    if (fourthCorrectL + fifthCorrectL + sixthCorrectL == ""){
+                        if ((firstCorrectL + secondCorrectL + thirdCorrectL).matches((String.valueOf(WordFactory.mCurrentWord.charAt(0)) +
+                                String.valueOf(WordFactory.mCurrentWord.charAt(1)) +
+                                String.valueOf(WordFactory.mCurrentWord.charAt(2))))
+                                ){
+
+                            correctOrNot.setVisibility(View.VISIBLE);
+                            correctOrNot.setImageResource(R.drawable.correct_akos);
+                        }
+                        else {
+                            correctOrNot.setVisibility(View.VISIBLE);
+                            correctOrNot.setImageResource(R.drawable.uncorrect_akos);
+                        }
+                    }
                     break;
                 case 4:
                     fifthCorrectL = "";

@@ -17,11 +17,11 @@ public class TrashesFactory {
             R.drawable.trash_white, R.drawable.trash_yellow};
     public static String[] stringsOfMipmaps = {"trash_blue", "trash_braun", "trash_build", "trash_green", "trash_white", "trash_yellow"};
     public static Integer[] picturesOfGarbages = {R.drawable.pill, R.drawable.battery, R.drawable.book, R.drawable.bottle_colorful,
-            R.drawable.bottle_white, R.drawable.bottlecap, R.drawable.butter, R.drawable.can, R.drawable.chips, R.drawable.electronics,
+            R.drawable.bottle_white, R.drawable.bottlecap, R.drawable.butter, R.drawable.can, R.drawable.electronics,
             R.drawable.home_oil, R.drawable.oil, R.drawable.glass, R.drawable.plant, R.drawable.plant2, R.drawable.plant3, R.drawable.paper,
             R.drawable.paper_bag, R.drawable.newspaper, R.drawable.ligth_bulb, R.drawable.shower_gel, R.drawable.simple_can, R.drawable.yogurt,
             R.drawable.plastic, R.drawable.cornflakes};
-    public static Integer[] correctNumbersArray = {2, 2, 0, 3, 4, 5, 5, 5, 2, 2, 2, 2, 4, 1, 1, 1, 0, 0, 0, 2, 5, 5, 5, 5, 5};
+    public static Integer[] correctNumbersArray = {2, 2, 0, 3, 4, 5, 5, 5, 2, 2, 2, 4, 1, 1, 1, 0, 0, 0, 2, 5, 5, 5, 5, 5};
     public static int mCorrectPicture;
     public static int mCorrectPicture2;
     public static String mCorrectPictureString;

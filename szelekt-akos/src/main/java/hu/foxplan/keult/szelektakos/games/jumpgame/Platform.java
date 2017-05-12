@@ -116,7 +116,7 @@ public class Platform implements Runnable {
         int posEnd;
 
         for (int i = 0; i < itemsToDrop; i++) {
-            randomItem = selector.nextInt(sourceItems.length * 8); // Items gyakoriság szabályozása
+            randomItem = selector.nextInt(sourceItems.length * 3); // Items gyakoriság szabályozása
             carriedItems[i] = new Item();
 
             if (randomItem < sourceItems.length) {

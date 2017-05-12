@@ -78,6 +78,7 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
                                         SzelektAkos.increasePoints(reachedPoints);
                                         SzelektAkos.comeBackFromGame = true;
                                         finish();
+                                        overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                                     }
                                 });
                         AlertDialog alert = builder.create();

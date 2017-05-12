@@ -612,6 +612,13 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="208px"
+            android:layout_height="307px"
+            android:id="@+id/correct_or_not_img"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="750px" />
+
     </RelativeLayout>
 
 </FrameLayout>
