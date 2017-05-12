@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
 
     public static boolean[] isBoughtTrouser;
     private Activity activity;
+    public ListView foodList;
+    public int realPosition;
 
     TrouserAdapter(Activity context, ArrayList<ItemsForTrouser> items) {
         super(context, 0, items);
@@ -35,6 +38,8 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItemView = convertView;
+        foodList = (ListView) parent.findViewById(R.id.shop_list);
+        //foodList.setFastScrollEnabled(true);
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.shop_list_item, parent, false);
@@ -81,13 +86,14 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
     @Override
     public void onClick(final View view) {
 
-        final int position = (Integer) view.getTag();
-        final ItemsForTrouser currentItem = getItem(position);
+//        final int position = (Integer) view.getTag();
+        realPosition = foodList.getPositionForView((View) view.getParent()) - 1;
+        final ItemsForTrouser currentItem = getItem(realPosition);
 
         switch (view.getId()) {
 
             case R.id.shop_item_buy_title:
-                if (isBoughtTrouser[position] == false) {
+                if (isBoughtTrouser[realPosition] == false) {
                     //show dialog
                     final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("Biztosan meg szeretnéd venni?")
@@ -99,8 +105,9 @@ public class TrouserAdapter extends ArrayAdapter<ItemsForTrouser> implements Vie
                                     String itemName = currentItem.getName();
 
                                     if (SzelektAkos.decreasePoints(itemPrice)) {
-                                        isBoughtTrouser[position] = true;
-                                        setButtonText(view, position);
+
+                                        isBoughtTrouser[realPosition] = true;
+                                        setButtonText(view, realPosition);
                                     }
                                     return;
 

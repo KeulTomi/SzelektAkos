@@ -11,7 +11,7 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/shopitem01" />
+        android:src="@drawable/shopitem_carrot" />
 
     <ImageView
         android:layout_width="100dp"

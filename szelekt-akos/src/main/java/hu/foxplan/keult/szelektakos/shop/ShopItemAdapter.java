@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import hu.foxplan.keult.szelektakos.R;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
 
 /**
@@ -23,6 +25,8 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
 
     private Activity activity;
     private TextView buyItem;
+    public ListView foodList;
+    public int realPosition;
 
     ShopItemAdapter(Activity context, ArrayList<Items> items) {
         super(context, 0, items);
@@ -34,6 +38,7 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItemView = convertView;
         final View itemView;
+        foodList = (ListView) parent.findViewById(R.id.shop_list);
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(hu.foxplan.keult.szelektakos.R.layout.shop_list_item, parent, false);
@@ -70,8 +75,8 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
                 .setPositiveButton("Megveszem", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        int position = (Integer) view.getTag();
-                        Items currentItem = getItem(position);
+                        realPosition = foodList.getPositionForView((View) view.getParent()) - 1;
+                        Items currentItem = getItem(realPosition);
 
                         int itemPrice = currentItem.getPrice();
                         String itemName = currentItem.getName();

@@ -270,7 +270,7 @@ public class SzelektAkos extends Application {
 
     public static void getAllPrefs () {
         mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
-        points = mSharedPref.getInt("points", 0);
+        points = 1500; //mSharedPref.getInt("points", 0);
         life = mSharedPref.getInt("life", 100);
         energy = mSharedPref.getInt("energy", 100);
         trouserToWear = mSharedPref.getInt("trouser", R.drawable.pants00);

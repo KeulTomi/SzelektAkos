@@ -40,6 +40,7 @@
         android:id="@+id/shop_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fastScrollEnabled="true"
         android:background="@color/colorPrimaryDark" />
 
 </LinearLayout>

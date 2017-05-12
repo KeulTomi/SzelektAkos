@@ -82,60 +82,60 @@
 
         <ImageView
             android:id="@+id/garbage"
-            android:layout_width="244px"
+            android:layout_width="200px"
             android:layout_height="410px"
             android:layout_centerInParent="true"
             android:src="@drawable/pill" />
 
         <ImageView
             android:id="@+id/first_trash"
-            android:layout_width="350px"
-            android:layout_height="350px"
-            android:layout_marginLeft="150px"
+            android:layout_width="400px"
+            android:layout_height="400px"
+            android:layout_marginLeft="100px"
             android:layout_marginTop="350px"
             android:src="@drawable/trash_blue" />
 
         <ImageView
             android:id="@+id/second_trash"
-            android:layout_width="350px"
-            android:layout_height="350px"
+            android:layout_width="400px"
+            android:layout_height="400px"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="150px"
+            android:layout_marginRight="100px"
             android:layout_marginTop="350px"
             android:src="@drawable/trash_braun" />
 
         <ImageView
             android:id="@+id/third_trash"
-            android:layout_width="350px"
-            android:layout_height="350px"
+            android:layout_width="400px"
+            android:layout_height="400px"
             android:layout_centerVertical="true"
             android:src="@drawable/trash_white" />
 
         <ImageView
             android:id="@+id/fourth_trash"
-            android:layout_width="350px"
-            android:layout_height="350px"
+            android:layout_width="400px"
+            android:layout_height="400px"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/trash_build" />
 
         <ImageView
             android:id="@+id/fifth_trash"
-            android:layout_width="350px"
-            android:layout_height="350px"
+            android:layout_width="400px"
+            android:layout_height="400px"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="350px"
-            android:layout_marginRight="150px"
+            android:layout_marginRight="100px"
             android:src="@drawable/trash_yellow" />
 
         <ImageView
             android:id="@+id/sixth_trash"
-            android:layout_width="350px"
-            android:layout_height="350px"
+            android:layout_width="400px"
+            android:layout_height="400px"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="350px"
-            android:layout_marginLeft="150px"
+            android:layout_marginLeft="100px"
             android:src="@drawable/trash_green" />
 
         <ProgressBar

@@ -84,8 +84,19 @@ public class PlusAdapter extends ArrayAdapter<ItemsForPlus> implements View.OnCl
                                 String itemName = currentItem.getName();
 
                                 if (SzelektAkos.decreasePoints(itemPrice)) {
-
-                                    SzelektAkos.saveAnInteger(itemName, SzelektAkos.getAnInteger(itemName)+1);
+                                    switch (position){
+                                        case 0:
+                                            SzelektAkos.changeEnergy(100);
+                                            break;
+                                        case 1:
+                                            SzelektAkos.changeLifeValue(100);
+                                            break;
+                                        case 2:
+                                            SzelektAkos.changeEnergy(100);
+                                            SzelektAkos.changeLifeValue(100);
+                                            break;
+                                    }
+//                                    SzelektAkos.saveAnInteger(itemName, SzelektAkos.getAnInteger(itemName)+1);
                                 }
                             }
                         });
