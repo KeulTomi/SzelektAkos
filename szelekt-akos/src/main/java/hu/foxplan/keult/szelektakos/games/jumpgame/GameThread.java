@@ -395,7 +395,7 @@ class GameThread extends Thread {
         if (platform.isItemBad(itemPos)) {
             vibrator.vibrate(100);
             badItemsCollected++;
-            if (badItemsCollected >= 500) {
+            if (badItemsCollected >= 5) {
                 isGameRunning = false;
                 msgToActivity.what = JumpGameActivity.MSG_GAME_OVER;
                 msgToActivity.arg1 = goodItemsCollected;
