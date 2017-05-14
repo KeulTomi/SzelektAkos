@@ -3,6 +3,8 @@ package hu.foxplan.keult.szelektakos.mainscreen;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import hu.foxplan.keult.szelektakos.shop.Items;
 
 public class Kitchen extends Fragment implements AdapterView.OnItemClickListener {
 
+    public static Handler kitchenHandler;
     ArrayList<Items> fridgeItems;
     FridgeItemsAdapter listAdapter;
     ListView fridgeItemsList;
@@ -35,21 +38,29 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
         fridgeItemsList = (ListView) view.findViewById(R.id.fridge_items_list);
 
         fridgeItems = new ArrayList<Items>();
+        kitchenHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                fridgeItems.add((Items) msg.obj);
+                listAdapter.notifyDataSetChanged();
+            }
+        };
 
-        refreshItems();
+        refreshItems(false);
 
         listAdapter = new FridgeItemsAdapter(getActivity(), fridgeItems);
         fridgeItemsList.setAdapter(listAdapter);
+
         fridgeItemsList.setOnItemClickListener(this);
 
         return view;
     }
 
-
     @Override
     public void onResume() {
-        refreshItems();
-        listAdapter.notifyDataSetChanged();
+        //refreshItems();
+        //listAdapter.notifyDataSetChanged();
         super.onResume();
     }
 
@@ -65,8 +76,10 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
         super.onDestroyView();
     }
 
-    public void refreshItems ( ) {
-        fridgeItems.clear();
+    public void refreshItems(boolean clearItems) {
+
+        if (clearItems) fridgeItems.clear();
+
         for (int i = 0; i < 7; i++ ) {
             Items item = Items.innitItem(i);
 
@@ -76,7 +89,15 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
                 fridgeItems.add(item);
                 count--;
             }
+        }
+    }
 
+    private void removeDummyItems(int numOfDummies) {
+
+        int itemsToKeep = fridgeItems.size() - numOfDummies;
+
+        for (int i = 0; i < numOfDummies; i++) {
+            fridgeItems.remove(i);
         }
     }
 

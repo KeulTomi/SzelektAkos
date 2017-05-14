@@ -2,6 +2,7 @@ package hu.foxplan.keult.szelektakos.shop;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 
 import hu.foxplan.keult.szelektakos.R;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
+import hu.foxplan.keult.szelektakos.mainscreen.Kitchen;
 
 /**
  * Created by Tomi on 2017. 03. 26..
@@ -84,6 +86,9 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
                         if (SzelektAkos.decreasePoints(itemPrice)) {
 
                             SzelektAkos.saveAnInteger(itemName, SzelektAkos.getAnInteger(itemName)+1);
+                            Message msg = new Message();
+                            msg.obj = currentItem;
+                            Kitchen.kitchenHandler.sendMessage(msg);
                         }
                     }
                 });

@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public final static int MSG_UPDATE_LIFE = 0; // Üzenetkód életerő progressbar frissítéséhez
     public final static int MSG_UPDATE_ENERGY = 1; // Üzenetkód energia progressbar frissítéséhez
+    public final static int MSG_RESTART_ACTIVITY = 2; // Üzenetkód activity újraindításához
     public static ImageView currentTrouser;
     public static TextView userPointsText;
     public static TextView recentlyPlaceTitle;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -99,6 +101,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case MSG_UPDATE_ENERGY:
                         energy.setProgress((Integer) msg.obj); // Energia frissítése msg.obj-ben küldött értékkel
                         break;
+                    case MSG_RESTART_ACTIVITY:
+                        Intent intent = getIntent();
+                        intent.putExtra("FragmentToLoad", currentFragmentPage);
+                        SzelektAkos.saveAllPrefs();
+                        finish();
+
+                        startActivity(intent);
+                        break;
                     default:
                         // Ha valamilyen más üzenet érkezik, itt lehet lekezelni
                         break;
@@ -117,23 +127,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rightArrowOfTitle = (ImageView) findViewById(R.id.right_arrow);
         leftArrowOfTitle = (ImageView) findViewById(R.id.left_arrow);
 
-        //A kezdő oldalt a lapszámláló egyesként jelzo ezért hogy ne nullával számoljon be kell állíani 1-re
-        currentFragmentPage = 1;
 
         //Beállítás az elmentett értékekre
         life.setProgress(SzelektAkos.life);
         energy.setProgress(SzelektAkos.energy);
         energy.getProgress();
 
-        //A fő viewpager összeállítása
+        //A kezdő oldal beállítása
+        int fragmentToLoad;
+
+        if (getIntent().hasExtra("FragmentToLoad"))
+            fragmentToLoad = getIntent().getIntExtra("FragmentToLoad", 0);
+        else
+            fragmentToLoad = 1;
+
         pager = (ViewPager) findViewById(R.id.view_pager);
         pager.setOffscreenPageLimit(3);
         FragmentManager fm = getSupportFragmentManager();
         Fragment_pager pagerAdapter = new Fragment_pager(fm);
-
-        // A masodik fragmentet tötljük be kezdésként
         pager.setAdapter(pagerAdapter);
-        pager.setCurrentItem(1);
+        pager.setCurrentItem(fragmentToLoad);
+
+        currentFragmentPage = fragmentToLoad;
+
+        switch (fragmentToLoad) {
+            case 0:
+                recentlyPlaceTitle.setText("halószoba");
+                leftArrowOfTitle.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                recentlyPlaceTitle.setText("nappali");
+                leftArrowOfTitle.setVisibility(View.VISIBLE);
+                rightArrowOfTitle.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                recentlyPlaceTitle.setText("konyha");
+                rightArrowOfTitle.setVisibility(View.INVISIBLE);
+                break;
+        }
 
         //A ViewPager_re pagecChangeListenert teszünk, hogy oldalváltásoknál cseréljük a recentlyPlaceTitle-t.
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

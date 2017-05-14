@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,6 +15,7 @@ import java.util.List;
 
 import hu.foxplan.keult.szelektakos.R;
 import hu.foxplan.keult.szelektakos.SzelektAkos;
+import hu.foxplan.keult.szelektakos.mainscreen.MainActivity;
 
 /**
  * Created by Tomi on 2017. 03. 25..
@@ -49,8 +49,8 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         ShopItemAdapter listAdapterFood = new ShopItemAdapter(this,listFoodItems);
-        headerView = (LinearLayout)inflater.inflate(
-                hu.foxplan.keult.szelektakos.R.layout.shop_list_header, null);
+        headerView = inflater.inflate(
+                R.layout.shop_list_header, null);
         itemList.addHeaderView(headerView, null, false);
         itemList.setAdapter(listAdapterFood);
 
@@ -74,6 +74,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                 SzelektAkos.saveTroousersToMainData(TrouserAdapter.isBoughtTrouser);
                 finish();
                 overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
+                MainActivity.uiHandler.sendEmptyMessage(MainActivity.MSG_RESTART_ACTIVITY);
                 break;
 
             case hu.foxplan.keult.szelektakos.R.id.shop_food_topic:
