@@ -1,8 +1,6 @@
 package hu.foxplan.keult.szelektakos.mainscreen;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -27,8 +25,6 @@ import hu.foxplan.keult.szelektakos.games.WordPuzzle;
 import hu.foxplan.keult.szelektakos.games.jumpgame.JumpGameActivity;
 import hu.foxplan.keult.szelektakos.shop.ShopActivity;
 
-import static hu.foxplan.keult.szelektakos.SzelektAkos.mSharedPref;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public final static int MSG_UPDATE_LIFE = 0; // Üzenetkód életerő progressbar frissítéséhez
@@ -42,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static Handler uiHandler; // MainActivity üzenetkezelője (onCreate-ben van definiálva)
     public final int ENERGY_REFRESH_PERIOD = 30 * 1000; // Energiaszint frissítési periódusa ezredmásodpercben
     public final int LIFE_REFRESH_PERIOD = 30 * 1000; // Életerő frissítési periódusa ezredmásodpercben
-    private ViewPager pager;
+    public ViewPager pager;
     private ImageView rightArrowOfTitle;
     private ImageView leftArrowOfTitle;
     private View mContentView;
@@ -52,40 +48,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //A szükségés innicializálások a későbbi activity-k közti ugrálásokhoz
+        SzelektAkos.innitApp(getApplicationContext());
 
-        int version = 1;
-        mSharedPref = this.getSharedPreferences("User", Context.MODE_PRIVATE);
-        SzelektAkos.savedVersion = mSharedPref.getInt("savedVersion", 1);
-        SzelektAkos.installStatus = mSharedPref.getBoolean("installStatus", true);
+        // Futó szoftver verzió lekérdezése
+        int currentVersionCode = 0;
 
-        if (SzelektAkos.installStatus == true) {
-            try {
-                version = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            if (version > SzelektAkos.savedVersion) {
-                mSharedPref = this.getSharedPreferences("User", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = mSharedPref.edit();
-                editor.remove("points");
-                editor.remove("life");
-                editor.remove("energy");
-                editor.remove("trouser");
-                editor.remove("installStatus");
-                editor.apply();
-                //do something
-            }
-        }
-
-        mSharedPref = getApplicationContext().getSharedPreferences("User", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = mSharedPref.edit();
         try {
-            editor.putInt("savedVersion", getPackageManager().getPackageInfo(getPackageName(), 0).versionCode);
+            currentVersionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        editor.apply();
+
+        // Eszközre mentett szoftver verzió előhívása
+        int savedVersionCode = SzelektAkos.getVersionCode();
+
+        // Eszközre mentett verziókód ellenőrzése
+        if (savedVersionCode == 0) {
+
+            // Lehet, hogy voltak korábban mentett adatok, ezeket is törölni kell
+            SzelektAkos.clearAllPrefs();
+
+            // Ha nincs eszközre mentett szoftver verzió (0 az eredmény) akkor most le kell menteni
+            SzelektAkos.saveVersionCode(currentVersionCode);
+
+        } else {
+            // Van eszközre mentett szoftver verzió
+            if (currentVersionCode != savedVersionCode) {
+
+                // Eltér az aktuális és a mentett verzió, ezért törölni kell a mentett (régi) adatokat
+                SzelektAkos.clearAllPrefs();
+
+                // És le kell menteni a jelenlegi verziót
+                SzelektAkos.saveVersionCode(currentVersionCode);
+            }
+
+        }
 
         // Activity üzenetkezelője
         uiHandler = new Handler() {
@@ -108,8 +106,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        //A szükségés innicializálások a későbbi activity-k közti ugrálásokhoz
-        SzelektAkos.innitApp(getApplicationContext());
 
         //Felső header inicializálása
         life = (ProgressBar) findViewById(R.id.progress_life);
@@ -247,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             SzelektAkos.changeEnergy(-5);
             SzelektAkos.comeBackFromGame = false;
         }
+
         super.onResume();
     }
 
@@ -262,7 +259,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        ScaleHelper.scaleContents(findViewById(R.id.main_activity_rootview), findViewById(R.id.main_activity_container));
+
+        if (hasFocus) {
+
+            ScaleHelper.scaleContents(
+                    findViewById(R.id.main_activity_rootview),
+                    findViewById(R.id.main_activity_container),
+                    false);
+        }
+
     }
 
     @Override

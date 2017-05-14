@@ -321,6 +321,7 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
                 SzelektAkos.increasePoints(reachedPointsTG);
                 SzelektAkos.comeBackFromGame = true;
                 gameTimeStopper.cancel(true);
+                dinamicTrashPlaceList.clear();
                 finish();
                 overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                 break;
@@ -385,7 +386,11 @@ public class TrashesGame extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        ScaleHelper.scaleContents(findViewById(R.id.trash_game_root), findViewById(R.id.trash_game_container));
+        ScaleHelper.scaleContents(
+                findViewById(R.id.trash_game_root),
+                findViewById(R.id.trash_game_container),
+                false);
+
         if (firstWindow == 0) {
             if (energyProgress.getProgress() <= 0) {
 //            if (!PickOneGame.this.isFinishing()) {

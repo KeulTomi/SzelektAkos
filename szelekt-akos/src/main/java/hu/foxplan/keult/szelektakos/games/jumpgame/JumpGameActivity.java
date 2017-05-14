@@ -28,9 +28,10 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
     public static TextView pointsTextView;
     JumpGameView jumpGameView;
     ImageView gameCloseVew;
+    int firstWindow = 0;
+    int reachedPoints = 0;
     private ProgressBar lifeProgress;
     private ProgressBar energyProgress;
-    int firstWindow = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,10 +65,11 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
                         break;
                     case MSG_POINTS_COLLECTED:
                         pointsTextView.setText(Integer.toString(msg.arg1));
+                        reachedPoints++;
                         break;
                     case MSG_GAME_OVER:
                         // popup ablak megjelenítése
-                        final int reachedPoints = msg.arg1;
+                        reachedPoints = msg.arg1;
                         AlertDialog.Builder builder = new AlertDialog.Builder(JumpGameActivity.this);
                         builder
                                 .setCancelable(false)
@@ -138,6 +140,7 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
             case R.id.jump_game_close:
                 //SzelektAkos.increasePoints(reachedPointsPOG);
                 SzelektAkos.comeBackFromGame = true;
+                SzelektAkos.increasePoints(reachedPoints);
                 finish();
                 overridePendingTransition(R.anim.activity_stay, R.anim.activity_slide_down);
                 break;
@@ -254,7 +257,11 @@ public class JumpGameActivity extends AppCompatActivity implements View.OnTouchL
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        ScaleHelper.scaleContents(findViewById(R.id.activity_jump_root), findViewById(R.id.activity_jump_container));
+        ScaleHelper.scaleContents(
+                findViewById(R.id.activity_jump_root),
+                findViewById(R.id.activity_jump_container),
+                false);
+
         if (firstWindow == 0) {
             if (energyProgress.getProgress() <= 0) {
 //            if (!PickOneGame.this.isFinishing()) {

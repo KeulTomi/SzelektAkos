@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fridge_relative_layout"
     android:layout_width="428px"
     android:layout_height="150px"
     android:orientation="vertical">
@@ -13,20 +14,20 @@
 
     <ImageView
         android:id="@+id/fride_item_pic"
-        android:layout_width="100px"
-        android:layout_height="100px"
+        android:layout_width="200px"
+        android:layout_height="200px"
         android:layout_marginLeft="15px"
         android:layout_marginTop="20px"
-        android:src="@drawable/shopitem_pizza" />
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/fridge_item_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="150px"
+        android:layout_marginLeft="250px"
         android:text="12 %"
         android:textColor="@android:color/black"
-        android:textSize="40px" />
+        android:textSize="80px" />
 
 </RelativeLayout>

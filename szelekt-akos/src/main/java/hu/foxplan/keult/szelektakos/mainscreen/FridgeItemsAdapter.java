@@ -35,18 +35,17 @@ public class FridgeItemsAdapter extends ArrayAdapter<Items> {
 
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.fridge_list_item, parent, false);
-            listItemView.setTag(getItem(position));
-
         }
 
         Items currentItem = getItem(position);
-
+        listItemView.setTag(getItem(position));
 
         TextView foodLifeValue = (TextView) listItemView.findViewById(R.id.fridge_item_value);
         foodLifeValue.setText(String.valueOf(currentItem.getLifeValue() + " %"));
 
         ImageView foodPicture = (ImageView) listItemView.findViewById(R.id.fride_item_pic);
         foodPicture.setImageResource(currentItem.getPicture());
+        foodPicture.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
 
         return listItemView;

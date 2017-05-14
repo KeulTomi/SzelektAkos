@@ -34,11 +34,11 @@ public class SzelektAkos extends Application {
     public static int energy;
     public static int life;
     public static boolean[] mainBoughtTrousersList = new boolean[6];
+    public static int savedVersion;
+    public static SharedPreferences mSharedPref;
     private static int points;
     private static int trouserToWear;
-    public static int savedVersion;
     private static List<Integer> avaiableTrousers = new ArrayList<>();
-    public static SharedPreferences mSharedPref;
     private static Context appContext;
     private static Handler progressBarHandler = new Handler();
 
@@ -277,6 +277,15 @@ public class SzelektAkos extends Application {
         installStatus = mSharedPref.getBoolean("installStatus", true);
     }
 
+    public static void clearAllPrefs() {
+
+        mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        editor.clear();
+        editor.apply();
+
+    }
+
     public static void saveTroousersToMainData (boolean[] classBoughtTrousersList){
         mainBoughtTrousersList = classBoughtTrousersList;
     }
@@ -298,6 +307,25 @@ public class SzelektAkos extends Application {
         view.setX(imageRect.left * scaleX);
         view.setY(imageRect.top * (scaleY == 0 ? scaleX : scaleY));
 
+
+    }
+
+    public static int getVersionCode() {
+
+        int versionCode;
+
+        mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
+        versionCode = mSharedPref.getInt("versionCode", 0);
+
+        return versionCode;
+    }
+
+    public static void saveVersionCode(int versionCode) {
+
+        mSharedPref = appContext.getSharedPreferences("User", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSharedPref.edit();
+        editor.putInt("versionCode", versionCode);
+        editor.apply();
 
     }
 

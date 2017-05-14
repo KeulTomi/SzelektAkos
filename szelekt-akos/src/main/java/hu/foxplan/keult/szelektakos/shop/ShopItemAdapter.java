@@ -23,10 +23,10 @@ import hu.foxplan.keult.szelektakos.SzelektAkos;
 
 public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClickListener {
 
-    private Activity activity;
-    private TextView buyItem;
     public ListView foodList;
     public int realPosition;
+    private Activity activity;
+    private TextView buyItem;
 
     ShopItemAdapter(Activity context, ArrayList<Items> items) {
         super(context, 0, items);
@@ -41,27 +41,26 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
         foodList = (ListView) parent.findViewById(R.id.shop_list);
 
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(hu.foxplan.keult.szelektakos.R.layout.shop_list_item, parent, false);
-            buyItem = (TextView) listItemView.findViewById(hu.foxplan.keult.szelektakos.R.id.shop_item_buy_title);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.shop_list_item, parent, false);
 
-            buyItem.setTag(position);
-            buyItem.setOnClickListener(this);
+            listItemView.findViewById(R.id.shop_item_buy_title).setOnClickListener(this);
             itemView = listItemView;
 
         }
 
         Items currentItem = getItem(position);
+        listItemView.findViewById(R.id.shop_item_buy_title).setTag(position);
 
-        TextView foodName = (TextView) listItemView.findViewById(hu.foxplan.keult.szelektakos.R.id.shop_item_name);
+        TextView foodName = (TextView) listItemView.findViewById(R.id.shop_item_name);
         foodName.setText(currentItem.getName());
 
-        TextView foodPrice = (TextView) listItemView.findViewById(hu.foxplan.keult.szelektakos.R.id.shop_item_price);
+        TextView foodPrice = (TextView) listItemView.findViewById(R.id.shop_item_price);
         foodPrice.setText(String.valueOf(currentItem.getPrice()));
 
-        TextView foodLifeValue = (TextView) listItemView.findViewById(hu.foxplan.keult.szelektakos.R.id.shop_item_life_value);
+        TextView foodLifeValue = (TextView) listItemView.findViewById(R.id.shop_item_life_value);
         foodLifeValue.setText(String.valueOf(currentItem.getLifeValue()) + " %");
 
-        ImageView foodPicture = (ImageView) listItemView.findViewById(hu.foxplan.keult.szelektakos.R.id.shop_item_picture);
+        ImageView foodPicture = (ImageView) listItemView.findViewById(R.id.shop_item_picture);
         foodPicture.setImageResource(currentItem.getPicture());
 
         return listItemView;
@@ -75,8 +74,9 @@ public class ShopItemAdapter extends ArrayAdapter<Items> implements View.OnClick
                 .setPositiveButton("Megveszem", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
-                        realPosition = foodList.getPositionForView((View) view.getParent()) - 1;
-                        Items currentItem = getItem(realPosition);
+                        //realPosition = foodList.getPositionForView((View) view.getParent()) - 1;
+                        int position = (Integer) view.getTag();
+                        Items currentItem = getItem(position);
 
                         int itemPrice = currentItem.getPrice();
                         String itemName = currentItem.getName();

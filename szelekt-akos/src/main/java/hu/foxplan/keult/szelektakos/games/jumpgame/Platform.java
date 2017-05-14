@@ -43,7 +43,7 @@ public class Platform implements Runnable {
     public static void loadItemResources(Context context) {
 
         Bitmap bmp;
-        int targetHeight = (int) (0.07 * SzelektAkos.displayHeight);
+        int targetHeight = (int) (0.06 * SzelektAkos.displayHeight); // Szemét méret skálázása
 
         sourceItems = new Item[6];
 
@@ -126,8 +126,10 @@ public class Platform implements Runnable {
                 // Járda itemsToDrop részre osztása, és azon belüli pozícionálása
                 // védőtávolság az item bmp szélessége, nehogy a szakaszhatrokra torlódjanak az itemek
                 posStart = i * getWidth() / itemsToDrop + carriedItems[i].bmp.getWidth();
-                posEnd = (i + 1) * getWidth() / itemsToDrop - carriedItems[i].bmp.getWidth();
-                carriedItems[i].relativePos = posStart + selector.nextInt(posEnd - posStart);
+                posEnd = (i + 1) * getWidth() / itemsToDrop - 2 * carriedItems[i].bmp.getWidth();
+
+                if (posEnd > posStart)
+                    carriedItems[i].relativePos = posStart + selector.nextInt(posEnd - posStart);
             }
         }
 

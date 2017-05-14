@@ -1,6 +1,5 @@
 package hu.foxplan.keult.szelektakos.games;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -117,7 +116,7 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
             @Override
             public void run() {
 
-                if(!((Activity) TrueFalseGame.this).isFinishing())
+                if (!TrueFalseGame.this.isFinishing())
                 {
                 // Saját magát hívja késleltetés után
                 SzelektAkos.increaseGameTime(MSG_GAME_TIME_START);
@@ -225,7 +224,11 @@ public class TrueFalseGame extends AppCompatActivity implements View.OnClickList
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        ScaleHelper.scaleContents(findViewById(R.id.true_false_game_root), findViewById(R.id.true_false_game_container));
+        ScaleHelper.scaleContents(
+                findViewById(R.id.true_false_game_root),
+                findViewById(R.id.true_false_game_container),
+                false);
+
         if (firstWindow == 0) {
             if (energyProgress.getProgress() <= 0) {
 //            if (!PickOneGame.this.isFinishing()) {

@@ -341,9 +341,14 @@ class GameThread extends Thread {
                 // Járda rajzolása
                 canvas.drawBitmap(mBluePlatform.getBmp(), mBluePlatform.getPos().x, mBluePlatform.getPos().y, null);
 
-                if (jumpManPos.y + mJumpMan.getHeight() == BOTTOM_PLATFORM_YPOS &&
-                        mBluePlatform.getPos().x <= (jumpManPos.x + mJumpMan.getWidth()) && mBluePlatform.getPos().x + mBluePlatform.getWidth() >= jumpManPos.x)
-                    if (mJumpMan.isFalling) mJumpMan.jump(true);
+                if (jumpManPos.y + mJumpMan.getHeight() <= BOTTOM_PLATFORM_YPOS &&
+                        jumpManPos.y + mJumpMan.getHeight() >= BOTTOM_PLATFORM_YPOS - 3 &&
+                        mBluePlatform.getPos().x <= (jumpManPos.x + mJumpMan.getWidth()) &&
+                        mBluePlatform.getPos().x + mBluePlatform.getWidth() >= jumpManPos.x)
+
+                    if (mJumpMan.isFalling)
+                        mJumpMan.jump(true);
+
             }
 
             if (mJumpMan != null)
@@ -390,7 +395,7 @@ class GameThread extends Thread {
         if (platform.isItemBad(itemPos)) {
             vibrator.vibrate(100);
             badItemsCollected++;
-            if (badItemsCollected >= 5) {
+            if (badItemsCollected >= 500) {
                 isGameRunning = false;
                 msgToActivity.what = JumpGameActivity.MSG_GAME_OVER;
                 msgToActivity.arg1 = goodItemsCollected;
@@ -550,7 +555,7 @@ class GameThread extends Thread {
                 JUMPMAN_XPOS,
                 BASE_PLATFORM_YPOS - mJumpMan.getHeight());
 
-        JUMPMAN_UPPER_LIMIT_YPOS = 0; //UPPER_PLATFORM_YPOS - mJumpMan.getHeight() - 3 * mUpperPlatform.getHeight();
+        JUMPMAN_UPPER_LIMIT_YPOS = -100; // Gyakorlatilag nincs felső limit
         JUMPMAN_BOTTOM_LIMIT_YPOS = BASE_PLATFORM_YPOS - mJumpMan.getHeight();
         mJumpMan.setPosBottomLimit(JUMPMAN_BOTTOM_LIMIT_YPOS);
         mJumpMan.setPosUpperLimit(JUMPMAN_UPPER_LIMIT_YPOS);

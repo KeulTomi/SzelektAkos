@@ -35,6 +35,7 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     //TODO A gombnyomásra ki kell cserélni a képeket.
     public ImageView firstAnswerImg;
     public ImageView secondAnswerImg;
+    int firstWindow = 0;
     private TextView questionTxt;
     private TextView firstAnswerTxt;
     private TextView secondAnswerTxt;
@@ -49,7 +50,6 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     private ImageView thirdAnswerImg;
     private ImageView closeTheGame;
     private int reachedPointsPOG;
-    int firstWindow = 0;
     private Vibrator mVibrator;
     private Future gameTimeStopper;
 
@@ -270,7 +270,11 @@ public class PickOneGame extends AppCompatActivity implements View.OnTouchListen
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        ScaleHelper.scaleContents(findViewById(R.id.pick_one_game_root), findViewById(R.id.pick_one_game_container));
+        ScaleHelper.scaleContents(
+                findViewById(R.id.pick_one_game_root),
+                findViewById(R.id.pick_one_game_container),
+                false);
+
         if (firstWindow == 0) {
             if (energyProgress.getProgress() <= 0) {
 //            if (!PickOneGame.this.isFinishing()) {

@@ -22,6 +22,7 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
 
     ArrayList<Items> fridgeItems;
     FridgeItemsAdapter listAdapter;
+    ListView fridgeItemsList;
     SharedPreferences mSharedPref;
     private TextView fragmentTitle;
     private ArrayList<String> ateItems = new ArrayList<String>();
@@ -31,9 +32,9 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.kitchen, container, false);
 
-        ListView fridgeItemsList = (ListView) view.findViewById(R.id.fridge_items_list);
+        fridgeItemsList = (ListView) view.findViewById(R.id.fridge_items_list);
 
-       fridgeItems = new ArrayList<Items>();
+        fridgeItems = new ArrayList<Items>();
 
         refreshItems();
 
@@ -83,7 +84,7 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int selectedPosition, long l) {
 
         // Életerő növelése
-        Items items = (Items) view.getTag(); // ez volt itt előtte Items.innitItem(selectedPosition);
+        Items items = (Items) view.getTag();
         SzelektAkos.changeLifeValue(items.getLifeValue());
 
         // Elem eltávolítása a hűtőből
@@ -103,6 +104,7 @@ public class Kitchen extends Fragment implements AdapterView.OnItemClickListener
             // Ha még maradt az adott termékből a hűtőben akkor mentés SharedPref-ben
             SzelektAkos.saveAnInteger(items.getName(), numOfBoughtItems);
         }
+
     }
 
 }

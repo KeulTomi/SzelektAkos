@@ -61,7 +61,7 @@ class JumpMan {
         isGravityOn = true;
         isJumping = false;
         v0 = 40 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
-        gravityFactor = 0.8f * SzelektAkos.displayHeight / 960;
+        gravityFactor = 0.7f * SzelektAkos.displayHeight / 960;
     }
 
     void startAnimation() {
@@ -138,9 +138,9 @@ class JumpMan {
         y0 = getPos().y; // Ugrás induló pozíciójának tárolása
 
         if (jumpFromBluePlatform)
-            v0 = 25 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
+            v0 = 30 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
         else
-            v0 = 40 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
+            v0 = 35 * SzelektAkos.displayHeight / 960; // Kezdő sebesség beállítása
 
         // Ugrás animációja
         if (getPos().y == posBottomLimit) {
